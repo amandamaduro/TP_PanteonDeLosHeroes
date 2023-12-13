@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "gsap": "^3.12.3",
+    "three": "^0.159.0"
+  },
+  "name": "panteondelosheroes",
+  "description": "![image](https://github.com/amparooliver/PanteonDeLosHeroes/assets/70351967/7df87d97-72ce-4621-8f97-b1be5d41dcb8)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
