@@ -4,6 +4,9 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 //Para tener la interfaz que ayuda con las posiciones 
 import * as dat from 'dat.gui';
 
+//Para el texto
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 // Create a scene
 const scene = new THREE.Scene();
@@ -896,6 +899,31 @@ triangle2.receiveShadow = true;
 
 panteon.castShadow = true; // El grupo arroja sombras
 panteon.receiveShadow = true; // El grupo recibe sombras (ajusta según sea necesario)
+
+/// Frase en Techo triangular
+  const fontLoader = new FontLoader();
+  fontLoader.load(
+    'fonts/Cinzel_Regular.json',
+    (font) => {
+      const textGeometry = new TextGeometry('FIDES   ET   PATRIA', {
+        font: font,
+        size: 0.1,
+        height: 1,
+        // curveSegments: 1,
+        // bevelEnabled: true,
+        // bevelThickness: 1,
+        // bevelSize: 1,
+        // bevelOffset: 0,
+        // bevelSegments: 1
+      });
+      const textMaterial = new THREE.MeshPhongMaterial({ color: 0xC17868 });
+      const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+      textMesh.position.set(-0.6,0.83,2.5)
+      panteon.add(textMesh);
+
+    }
+  );
+
 
 
 //prueba de grupo
