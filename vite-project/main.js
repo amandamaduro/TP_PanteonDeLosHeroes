@@ -115,236 +115,120 @@ panteon.add(caja2)
 caja2.castShadow = true;
 caja2.receiveShadow = true;
 
+// Bordeado Panteon Suelo
+function crearBordePanteon(panteon, geometry, material, position, castShadow = true, receiveShadow = true) {
+  const borde = new THREE.Mesh(geometry, material);
+  borde.position.copy(position);
+  panteon.add(borde);
+  borde.castShadow = castShadow;
+  borde.receiveShadow = receiveShadow;
+}
 
-// Columnas izquierda
+const bordeP1Geometry = new THREE.BoxGeometry(3.25, 0.15, 3.05);
+crearBordePanteon(panteon, bordeP1Geometry, cajaMaterial, new THREE.Vector3(0, -0.8, 0));
+const bordeP2Geometry = new THREE.BoxGeometry(3.35, 0.15, 3.15);
+crearBordePanteon(panteon, bordeP2Geometry, cajaMaterial, new THREE.Vector3(0, -0.9, 0));
+const bordeP3Geometry = new THREE.BoxGeometry(1, 0.15, 1.5);
+crearBordePanteon(panteon, bordeP3Geometry, cajaMaterial, new THREE.Vector3(-0.66, -0.9, 2));
+const bordeP4Geometry = new THREE.BoxGeometry(1, 0.15, 1.5);
+crearBordePanteon(panteon, bordeP4Geometry, cajaMaterial, new THREE.Vector3(-0.62, -0.8, 2));
+crearBordePanteon(panteon, bordeP3Geometry, cajaMaterial, new THREE.Vector3(0.66, -0.9, 2));
+crearBordePanteon(panteon, bordeP4Geometry, cajaMaterial, new THREE.Vector3(0.62, -0.8, 2));
 
-const columnaGeometry = new THREE.CylinderGeometry(0.06, 0.06, 1.95, 16); // R top, R bot, H, R Seg
-const columna1 = new THREE.Mesh(columnaGeometry, cajaMaterial);
-columna1.position.set(-1, 0, 3.4);
-panteon.add(columna1);
-columna1.castShadow = true;
-columna1.receiveShadow = true;
+//////////// COLUMNAS CILINDRICAS ////////////////////////////
+function crearColumna(panteon, posX, posY, posZ) {
+  const columnaGeometry = new THREE.CylinderGeometry(0.06, 0.06, 1.95, 16);
+  const columna = new THREE.Mesh(columnaGeometry, cajaMaterial);
+  columna.position.set(posX, posY, posZ);
+  panteon.add(columna);
+  columna.castShadow = true;
+  columna.receiveShadow = true;
+}
 
-const columna2 = new THREE.Mesh(columnaGeometry, cajaMaterial);
-columna2.position.set(-0.8, 0, 3.4);
-panteon.add(columna2);
-columna2.castShadow = true;
-columna2.receiveShadow = true;
+function crearBaseColumna(panteon, posX, posY, posZ) {
+  const baseColumnaGeometry = new THREE.BoxGeometry(0.22, 0.4, 0.16);
+  const baseColumna = new THREE.Mesh(baseColumnaGeometry, cajaMaterial);
+  baseColumna.position.set(posX, posY, posZ);
+  panteon.add(baseColumna);
+  baseColumna.castShadow = true;
+  baseColumna.receiveShadow = true;
+}
 
-const baseColumnaGeometry = new THREE.BoxGeometry(0.22, 0.4, 0.16);  // Width, Height, Depth
-const baseColumna1 = new THREE.Mesh(baseColumnaGeometry, cajaMaterial);
-baseColumna1.position.set(-1, -0.85, 3.4); //0.9 a 0.85(0.05 dif)
-panteon.add(baseColumna1);
-baseColumna1.castShadow = true;
-baseColumna1.receiveShadow = true;
+// Llamadas individuales
+crearColumna(panteon, -1, 0, 3.4);
+crearBaseColumna(panteon, -1, -0.85, 3.4);
 
-const baseColumna2 = new THREE.Mesh(baseColumnaGeometry, cajaMaterial);
-baseColumna2.position.set(-0.8, -0.85, 3.4);
-panteon.add(baseColumna2);
-baseColumna2.castShadow = true;
-baseColumna2.receiveShadow = true;
+crearColumna(panteon, -0.8, 0, 3.4);
+crearBaseColumna(panteon, -0.8, -0.85, 3.4);
 
-// Columna Izquierda Unica
+crearColumna(panteon, -1, 0, 2.8);
+crearBaseColumna(panteon, -1, -0.85, 2.8);
 
-const columnaUizq = new THREE.Mesh(columnaGeometry, cajaMaterial);
-columnaUizq.position.set(-1, 0, 2.8);
-panteon.add(columnaUizq);
-columnaUizq.castShadow = true;
-columnaUizq.receiveShadow = true;
+crearColumna(panteon, 1, 0, 2.8);
+crearBaseColumna(panteon, 1, -0.85, 2.8);
 
-const baseColumnaUizq = new THREE.Mesh(baseColumnaGeometry, cajaMaterial);
-baseColumnaUizq.position.set(-1, -0.85, 2.8);
-panteon.add(baseColumnaUizq);
-baseColumnaUizq.castShadow = true;
-baseColumnaUizq.receiveShadow = true;
+crearColumna(panteon, 1, 0, 3.4);
+crearBaseColumna(panteon, 1, -0.85, 3.4);
 
-// Columna Der Unica
+crearColumna(panteon, 0.8, 0, 3.4);
+crearBaseColumna(panteon, 0.8, -0.85, 3.4);
 
-const columnaUder = new THREE.Mesh(columnaGeometry, cajaMaterial);
-columnaUder.position.set(1, 0, 2.8);
-panteon.add(columnaUder);
-columnaUder.castShadow = true;
-columnaUder.receiveShadow = true;
+crearColumna(panteon, 0.3, 0, 3.4);
+crearBaseColumna(panteon, 0.3, -0.85, 3.4);
 
-const baseColumnaUder = new THREE.Mesh(baseColumnaGeometry, cajaMaterial);
-baseColumnaUder.position.set(1, -0.85, 2.8);
-panteon.add(baseColumnaUder);
-baseColumnaUder.castShadow = true;
-baseColumnaUder.receiveShadow = true;
+crearColumna(panteon, -0.3, 0, 3.4);
+crearBaseColumna(panteon, -0.3, -0.85, 3.4);
 
-// Primera Columna 
-const torusGeometry = new THREE.TorusGeometry(0.067, 0.012, 16, 50); // R, tube R, 
-const torus = new THREE.Mesh(torusGeometry, cajaMaterial);
-torus.position.set(-1, -0.64, 3.4); // 0.69 a 0.64 dif1
-torus.rotation.x = Math.PI / 2;
-panteon.add(torus);
-torus.castShadow = true;
-torus.receiveShadow = true;
+///////////////// DETALLES COLUMNA CILINDRICA ////////////////////////////
+function crearTorus(panteon, posX, posY, posZ) {
+  const torusGeometry = new THREE.TorusGeometry(0.067, 0.012, 16, 50);
+  const torus = new THREE.Mesh(torusGeometry, cajaMaterial);
+  torus.position.set(posX, posY, posZ);
+  torus.rotation.x = Math.PI / 2;
+  panteon.add(torus);
+  torus.castShadow = true;
+  torus.receiveShadow = true;
+}
 
-const torusSmallGeometry = new THREE.TorusGeometry(0.0652, 0.0062, 16, 50); // R, tube R, 
-const torusSmall = new THREE.Mesh(torusSmallGeometry, cajaMaterial);
-torusSmall.position.set(-1, -0.62, 3.4); // 0.67 a 0.62 dif2
-torusSmall.rotation.x = Math.PI / 2;
-panteon.add(torusSmall);
-torusSmall.castShadow = true;
-torusSmall.receiveShadow = true;
+function crearTorusSmall(panteon, posX, posY, posZ) {
+  const torusSmallGeometry = new THREE.TorusGeometry(0.0652, 0.0062, 16, 50);
+  const torusSmall = new THREE.Mesh(torusSmallGeometry, cajaMaterial);
+  torusSmall.position.set(posX, posY, posZ);
+  torusSmall.rotation.x = Math.PI / 2;
+  panteon.add(torusSmall);
+  torusSmall.castShadow = true;
+  torusSmall.receiveShadow = true;
+}
 
-//Segunda Columna
-const torus1 = new THREE.Mesh(torusGeometry, cajaMaterial);
-torus1.position.set(-0.8, -0.64, 3.4);
-torus1.rotation.x = Math.PI / 2;
-panteon.add(torus1);
-torus1.castShadow = true;
-torus1.receiveShadow = true;
+// Llamadas individuales
+crearTorus(panteon, -1, -0.64, 3.4);
+crearTorusSmall(panteon, -1, -0.62, 3.4);
 
-const torusSmall1 = new THREE.Mesh(torusSmallGeometry, cajaMaterial);
-torusSmall1.position.set(-0.8, -0.62, 3.4);
-torusSmall1.rotation.x = Math.PI / 2;
-panteon.add(torusSmall1);
-torusSmall1.castShadow = true;
-torusSmall1.receiveShadow = true;
+crearTorus(panteon, -0.8, -0.64, 3.4);
+crearTorusSmall(panteon, -0.8, -0.62, 3.4);
 
-// Columnas derecha
+crearTorus(panteon, 0.8, -0.64, 3.4);
+crearTorusSmall(panteon, 0.8, -0.62, 3.4);
 
-const columna3 = new THREE.Mesh(columnaGeometry, cajaMaterial);
-columna3.position.set(1, 0, 3.4);
-panteon.add(columna3);
-columna3.castShadow = true;
-columna3.receiveShadow = true;
+crearTorus(panteon, 1, -0.64, 3.4);
+crearTorusSmall(panteon, 1, -0.62, 3.4);
 
-const columna4 = new THREE.Mesh(columnaGeometry, cajaMaterial);
-columna4.position.set(0.8, 0, 3.4);
-panteon.add(columna4);
-columna4.castShadow = true;
-columna4.receiveShadow = true;
+crearTorus(panteon, 0.3, -0.64, 3.4);
+crearTorusSmall(panteon, 0.3, -0.62, 3.4);
 
-const baseColumna3 = new THREE.Mesh(baseColumnaGeometry, cajaMaterial);
-baseColumna3.position.set(1, -0.85, 3.4);
-panteon.add(baseColumna3);
-baseColumna3.castShadow = true;
-baseColumna3.receiveShadow = true;
+crearTorus(panteon, -0.3, -0.64, 3.4);
+crearTorusSmall(panteon, -0.3, -0.62, 3.4);
 
-const baseColumna4 = new THREE.Mesh(baseColumnaGeometry, cajaMaterial);
-baseColumna4.position.set(0.8, -0.85, 3.4);
-panteon.add(baseColumna4);
-baseColumna4.castShadow = true;
-baseColumna4.receiveShadow = true;
+crearTorus(panteon, -1, -0.64, 2.8);
+crearTorusSmall(panteon, -1, -0.62, 2.8);
 
-// Detalles Columna Derecha
+crearTorus(panteon, 1, -0.64, 2.8);
+crearTorusSmall(panteon, 1, -0.62, 2.8);
 
-const torus2 = new THREE.Mesh(torusGeometry, cajaMaterial);
-torus2.position.set(0.8, -0.64, 3.4);
-torus2.rotation.x = Math.PI / 2;
-panteon.add(torus2);
-torus2.castShadow = true;
-torus2.receiveShadow = true;
+//////////////////////////////////////////////////////////////////////////
 
-const torusSmall2 = new THREE.Mesh(torusSmallGeometry, cajaMaterial);
-torusSmall2.position.set(0.8, -0.62, 3.4);
-torusSmall2.rotation.x = Math.PI / 2;
-panteon.add(torusSmall2);
-torusSmall2.castShadow = true;
-torusSmall2.receiveShadow = true;
+// Escalones principales
 
-const torus3 = new THREE.Mesh(torusGeometry, cajaMaterial);
-torus3.position.set(1, -0.64, 3.4);
-torus3.rotation.x = Math.PI / 2;
-panteon.add(torus3);
-torus3.castShadow = true;
-torus3.receiveShadow = true;
-
-const torusSmall3 = new THREE.Mesh(torusSmallGeometry, cajaMaterial);
-torusSmall3.position.set(1, -0.62, 3.4);
-torusSmall3.rotation.x = Math.PI / 2;
-panteon.add(torusSmall3);
-torusSmall3.castShadow = true;
-torusSmall3.receiveShadow = true;
-
-// Columnas centrales
-
-const columna5 = new THREE.Mesh(columnaGeometry, cajaMaterial);
-columna5.position.set(0.3, 0, 3.4);
-panteon.add(columna5);
-columna5.castShadow = true;
-columna5.receiveShadow = true;
-
-const columna6 = new THREE.Mesh(columnaGeometry, cajaMaterial);
-columna6.position.set(-0.3, 0, 3.4);
-panteon.add(columna6);
-columna6.castShadow = true;
-columna6.receiveShadow = true;
-
-const baseColumna5 = new THREE.Mesh(baseColumnaGeometry, cajaMaterial);
-baseColumna5.position.set(0.3, -0.85, 3.4);
-panteon.add(baseColumna5);
-baseColumna5.castShadow = true;
-baseColumna5.receiveShadow = true;
-
-const baseColumna6 = new THREE.Mesh(baseColumnaGeometry, cajaMaterial);
-baseColumna6.position.set(-0.3, -0.85, 3.4);
-panteon.add(baseColumna6);
-baseColumna6.castShadow = true;
-baseColumna6.receiveShadow = true;
-
-// Detalles Columna Centrales
-const torus4 = new THREE.Mesh(torusGeometry, cajaMaterial);
-torus4.position.set(0.3, -0.64, 3.4);
-torus4.rotation.x = Math.PI / 2;
-panteon.add(torus4);
-torus4.castShadow = true;
-torus4.receiveShadow = true;
-const torusSmall4 = new THREE.Mesh(torusSmallGeometry, cajaMaterial);
-torusSmall4.position.set(0.3, -0.62, 3.4);
-torusSmall4.rotation.x = Math.PI / 2;
-panteon.add(torusSmall4);
-torusSmall4.castShadow = true;
-torusSmall4.receiveShadow = true;
-const torus5 = new THREE.Mesh(torusGeometry, cajaMaterial);
-torus5.position.set(-0.3, -0.64, 3.4);
-torus5.rotation.x = Math.PI / 2;
-panteon.add(torus5);
-torus5.castShadow = true;
-torus5.receiveShadow = true;
-const torusSmall5 = new THREE.Mesh(torusSmallGeometry, cajaMaterial);
-torusSmall5.position.set(-0.3, -0.62, 3.4);
-torusSmall5.rotation.x = Math.PI / 2;
-panteon.add(torusSmall5);
-torusSmall5.castShadow = true;
-torusSmall5.receiveShadow = true;
-
-// Detalles columnas Unicas
-
-const torusUizq = new THREE.Mesh(torusGeometry, cajaMaterial);
-torusUizq.position.set(-1, -0.64, 2.8);
-torusUizq.rotation.x = Math.PI / 2;
-panteon.add(torusUizq);
-torusUizq.castShadow = true;
-torusUizq.receiveShadow = true;
-
-const torusSmallUizq = new THREE.Mesh(torusSmallGeometry, cajaMaterial);
-torusSmallUizq.position.set(-1, -0.62, 2.8);
-torusSmallUizq.rotation.x = Math.PI / 2;
-panteon.add(torusSmallUizq);
-torusSmallUizq.castShadow = true;
-torusSmallUizq.receiveShadow = true;
-
-const torusUder = new THREE.Mesh(torusGeometry, cajaMaterial);
-torusUder.position.set(1, -0.64, 2.8);
-torusUder.rotation.x = Math.PI / 2;
-panteon.add(torusUder);
-torusUder.castShadow = true;
-torusUder.receiveShadow = true;
-
-const torusSmallUder = new THREE.Mesh(torusSmallGeometry, cajaMaterial);
-torusSmallUder.position.set(1, -0.62, 2.8);
-torusSmallUder.rotation.x = Math.PI / 2;
-panteon.add(torusSmallUder);
-torusSmallUder.castShadow = true;
-torusSmallUder.receiveShadow = true;
-
-// Escalones
-
-const escalonCortoGeometry1 = new THREE.BoxGeometry(1.75, 0.05, 1)  // Width, Height, Depth
 const escalonMaterial = new THREE.MeshStandardMaterial({
   map: escalonTexture,
   color: "#a2aaaf",
@@ -352,120 +236,55 @@ const escalonMaterial = new THREE.MeshStandardMaterial({
   metalness: 0.1, // Adjust metalness
 });
 
-const escalon1 = new THREE.Mesh(escalonCortoGeometry1, escalonMaterial);
-escalon1.position.set(0, -0.705, 2.85); //2.75
-panteon.add(escalon1);
-escalon1.castShadow = true;
-escalon1.receiveShadow = true;
+function crearEscalonPrincipal(panteon, posX, posY, posZ, width, depth) {
+  const escalonCortoGeometry = new THREE.BoxGeometry(width, 0.05, depth);
+  const escalon = new THREE.Mesh(escalonCortoGeometry, escalonMaterial);
+  escalon.position.set(posX, posY, posZ);
+  panteon.add(escalon);
+  escalon.castShadow = true;
+  escalon.receiveShadow = true;
+}
 
-const escalonCortoGeometry2 = new THREE.BoxGeometry(1.85, 0.05, 1)
-const escalon2 = new THREE.Mesh(escalonCortoGeometry2, escalonMaterial)
-escalon2.position.set(0,-0.755,2.95);
-panteon.add(escalon2);
-escalon2.castShadow = true;
-escalon2.receiveShadow = true;
+function crearEscalonIzquierdo(panteon, posX, posY, posZ, width, depth) {
+  const escalonCortoGeometry = new THREE.BoxGeometry(width, 0.05, depth);
+  const escalon = new THREE.Mesh(escalonCortoGeometry, escalonMaterial);
+  escalon.position.set(posX, posY, posZ);
+  panteon.add(escalon);
+  escalon.castShadow = true;
+  escalon.receiveShadow = true;
+}
 
-const escalonCortoGeometry3 = new THREE.BoxGeometry(1.55, 0.05, 1)
-const escalon3 = new THREE.Mesh(escalonCortoGeometry3, escalonMaterial)
-escalon3.position.set(0,-0.805,3.05);
-panteon.add(escalon3);
-escalon3.castShadow = true;
-escalon3.receiveShadow = true;
+function crearEscalonDerecho(panteon, posX, posY, posZ, width, depth) {
+  const escalonCortoGeometry = new THREE.BoxGeometry(width, 0.05, depth);
+  const escalon = new THREE.Mesh(escalonCortoGeometry, escalonMaterial);
+  escalon.position.set(posX, posY, posZ);
+  panteon.add(escalon);
+  escalon.castShadow = true;
+  escalon.receiveShadow = true;
+}
 
-const escalonCortoGeometry4 = new THREE.BoxGeometry(1.65, 0.05, 1)
-const escalon4 = new THREE.Mesh(escalonCortoGeometry4, escalonMaterial)
-escalon4.position.set(0,-0.855,3.15);
-panteon.add(escalon4);
-escalon4.castShadow = true;
-escalon4.receiveShadow = true;
+// Llamadas individuales
+// Escalones principales
+crearEscalonPrincipal(panteon, 0, -0.705, 2.85, 1.75, 1);
+crearEscalonPrincipal(panteon, 0, -0.755, 2.95, 1.85, 1);
+crearEscalonPrincipal(panteon, 0, -0.805, 3.05, 1.55, 1);
+crearEscalonPrincipal(panteon, 0, -0.855, 3.15, 1.65, 1);
+crearEscalonPrincipal(panteon, 0, -0.905, 3.25, 1.75, 1);
+crearEscalonPrincipal(panteon, 0, -0.955, 3.35, 1.85, 1);
 
-const escalonCortoGeometry5 = new THREE.BoxGeometry(1.75, 0.05, 1)
-const escalon5 = new THREE.Mesh(escalonCortoGeometry5, escalonMaterial)
-escalon5.position.set(0,-0.905,3.25);
-panteon.add(escalon5);
-escalon5.castShadow = true;
-escalon5.receiveShadow = true;
+// Escalones izquierdos
+crearEscalonIzquierdo(panteon, -0.42, -0.755, 3.03, 1.45, 0.55);
+crearEscalonIzquierdo(panteon, -0.44, -0.805, 3.03, 1.55, 0.55);
+crearEscalonIzquierdo(panteon, -0.46, -0.855, 3.03, 1.65, 0.55);
+crearEscalonIzquierdo(panteon, -0.48, -0.905, 3.065, 1.75, 0.58);
+crearEscalonIzquierdo(panteon, -0.5, -0.955, 3.1, 1.85, 0.65);
 
-const escalonCortoGeometry6 = new THREE.BoxGeometry(1.85, 0.05, 1)
-const escalon6 = new THREE.Mesh(escalonCortoGeometry6, escalonMaterial)
-escalon6.position.set(0,-0.955,3.35);
-panteon.add(escalon6);
-escalon6.castShadow = true;
-escalon6.receiveShadow = true;
-
-// escalones izq
-
-const escalonCortoGeometry2a = new THREE.BoxGeometry(1.45, 0.05, 0.55)
-const escalon2a = new THREE.Mesh(escalonCortoGeometry2a, escalonMaterial)
-escalon2a.position.set(-0.42,-0.755,3.03);
-panteon.add(escalon2a);
-escalon2a.castShadow = true;
-escalon2a.receiveShadow = true;
-
-const escalonCortoGeometry3a = new THREE.BoxGeometry(1.55, 0.05,0.55)
-const escalon3a = new THREE.Mesh(escalonCortoGeometry3a, escalonMaterial)
-escalon3a.position.set(-0.44,-0.805,3.03);
-panteon.add(escalon3a);
-escalon3a.castShadow = true;
-escalon3a.receiveShadow = true;
-
-const escalonCortoGeometry4a = new THREE.BoxGeometry(1.65, 0.05, 0.55)
-const escalon4a = new THREE.Mesh(escalonCortoGeometry4a, escalonMaterial)
-escalon4a.position.set(-0.46,-0.855,3.03);
-panteon.add(escalon4a);
-escalon4a.castShadow = true;
-escalon4a.receiveShadow = true;
-
-const escalonCortoGeometry5a = new THREE.BoxGeometry(1.75, 0.05, 0.58)
-const escalon5a = new THREE.Mesh(escalonCortoGeometry5a, escalonMaterial)
-escalon5a.position.set(-0.48,-0.905,3.065);
-panteon.add(escalon5a);
-escalon5a.castShadow = true;
-escalon5a.receiveShadow = true;
-
-const escalonCortoGeometry6a = new THREE.BoxGeometry(1.85, 0.05, 0.65)
-const escalon6a = new THREE.Mesh(escalonCortoGeometry6a, escalonMaterial)
-escalon6a.position.set(-0.5,-0.955,3.1);
-panteon.add(escalon6a);
-escalon6a.castShadow = true;
-escalon6a.receiveShadow = true;
-
-// escalones der
-
-const escalonCortoGeometry2b = new THREE.BoxGeometry(1.45, 0.05, 0.55)
-const escalon2b = new THREE.Mesh(escalonCortoGeometry2b, escalonMaterial)
-escalon2b.position.set(0.42,-0.755,3.03);
-panteon.add(escalon2b);
-escalon2b.castShadow = true;
-escalon2b.receiveShadow = true;
-
-const escalonCortoGeometry3b = new THREE.BoxGeometry(1.55, 0.05,0.55)
-const escalon3b = new THREE.Mesh(escalonCortoGeometry3b, escalonMaterial)
-escalon3b.position.set(0.44,-0.805,3.03);
-panteon.add(escalon3b);
-escalon3b.castShadow = true;
-escalon3b.receiveShadow = true;
-
-const escalonCortoGeometry4b = new THREE.BoxGeometry(1.65, 0.05, 0.55)
-const escalon4b = new THREE.Mesh(escalonCortoGeometry4b, escalonMaterial)
-escalon4b.position.set(0.46,-0.855,3.03);
-panteon.add(escalon4b);
-escalon4b.castShadow = true;
-escalon4b.receiveShadow = true;
-
-const escalonCortoGeometry5b = new THREE.BoxGeometry(1.75, 0.05, 0.58)
-const escalon5b = new THREE.Mesh(escalonCortoGeometry5b, escalonMaterial)
-escalon5b.position.set(0.48,-0.905,3.065);
-panteon.add(escalon5b);
-escalon5b.castShadow = true;
-escalon5b.receiveShadow = true;
-
-const escalonCortoGeometry6b = new THREE.BoxGeometry(1.85, 0.05, 0.65)
-const escalon6b = new THREE.Mesh(escalonCortoGeometry6b, escalonMaterial)
-escalon6b.position.set(0.5,-0.955,3.1);
-panteon.add(escalon6b);
-escalon6b.castShadow = true;
-escalon6b.receiveShadow = true;
+// Escalones derechos
+crearEscalonDerecho(panteon, 0.42, -0.755, 3.03, 1.45, 0.55);
+crearEscalonDerecho(panteon, 0.44, -0.805, 3.03, 1.55, 0.55);
+crearEscalonDerecho(panteon, 0.46, -0.855, 3.03, 1.65, 0.55);
+crearEscalonDerecho(panteon, 0.48, -0.905, 3.065, 1.75, 0.58);
+crearEscalonDerecho(panteon, 0.5, -0.955, 3.1, 1.85, 0.65);
 
 //Techo
 const techoColGeometry6 = new THREE.BoxGeometry(2.2, 0.15, 0.95)
@@ -1110,6 +929,8 @@ const tierra4 = new THREE.Mesh(tierraGeometry3,tierraMaterial);
 tierra4.rotation.x=-Math.PI/2
 tierra4.position.set(-2.6,-0.98,-0.5)
 panteon.add(tierra4)
+
+
 //////////////// PASTO /////////////////////////////
 const simpleNoise = `
   float N(vec2 st) {
