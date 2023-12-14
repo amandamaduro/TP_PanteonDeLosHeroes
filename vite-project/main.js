@@ -89,7 +89,6 @@ baldosa.position.set(0, -1.02, 1.25);
 scene.add(baldosa);
 baldosa.castShadow = true;
 baldosa.receiveShadow = true;
-
 //Grupo panteon
 const panteon = new THREE.Group();
 scene.add(panteon); 
@@ -1101,7 +1100,16 @@ const tierra2 = new THREE.Mesh(tierraGeometry,tierraMaterial);
 tierra2.rotation.x=-Math.PI/2
 tierra2.position.set(-1.8,-0.98,4.1)
 panteon.add(tierra2)
-
+const tierraGeometry2 = new THREE.PlaneGeometry(0.5,2.99)
+const tierra3 = new THREE.Mesh(tierraGeometry2,tierraMaterial);
+tierra3.rotation.x=-Math.PI/2
+tierra3.position.set(-2.6,-0.98,2.95)
+panteon.add(tierra3)
+const tierraGeometry3 = new THREE.PlaneGeometry(0.5,1.6)
+const tierra4 = new THREE.Mesh(tierraGeometry3,tierraMaterial);
+tierra4.rotation.x=-Math.PI/2
+tierra4.position.set(-2.6,-0.98,-0.5)
+panteon.add(tierra4)
 //////////////// PASTO /////////////////////////////
 const simpleNoise = `
   float N(vec2 st) {
@@ -1199,61 +1207,112 @@ const grassLeavesMaterial = new THREE.ShaderMaterial({
 });
 
 // cuantos pastitos
-const grassInstanceNumber = 3000;
+const grassInstanceNumber = 3500;
 const grassDummy = new THREE.Object3D();
 
 // un psato individual geometria
 const grassGeometry = new THREE.PlaneGeometry(0.05, 0.2, 2, 2);
 
-const grassInstancedMesh1 = new THREE.InstancedMesh(grassGeometry, grassLeavesMaterial, grassInstanceNumber);
-panteon.add(grassInstancedMesh1);
-setupGrassInstance(grassInstancedMesh1, -1.78, 3.5);
+function createAndSetupGrassMesh(posX, posZ) {
+  const grassInstancedMesh = new THREE.InstancedMesh(grassGeometry, grassLeavesMaterial, grassInstanceNumber);
+  panteon.add(grassInstancedMesh);
+  setupGrassInstance(grassInstancedMesh, posX, posZ);
+}
 
-const grassInstancedMesh2 = new THREE.InstancedMesh(grassGeometry, grassLeavesMaterial, grassInstanceNumber);
-panteon.add(grassInstancedMesh2);
-setupGrassInstance(grassInstancedMesh2, 1.5, 3.5);
+createAndSetupGrassMesh(-1.78, 3.5);
+createAndSetupGrassMesh(1.5, 3.5);
+createAndSetupGrassMesh(-2.5, 3.5);
+createAndSetupGrassMesh(-2.5, 2.78);
+createAndSetupGrassMesh(-2.5, 2.1);
+createAndSetupGrassMesh(-2.5, 1.5);
+createAndSetupGrassMesh(-2.5, -0.3);
+createAndSetupGrassMesh(-2.5, -1);
 
+
+///////////////// BORDE /////////////////////////////////
+const bordeMaterial = new THREE.MeshStandardMaterial({
+  map: concreteTexture,
+  color: "#f4f4f4", // f4f4f4 dad2c5 #f4eadc
+  roughness: 0.5, // Adjust roughness
+  metalness: 0, // Adjust metalness
+});
 // borde de pasto der
 const bordePastoGeometria = new THREE.BoxGeometry(0.05, 0.05, 0.8);
-const bordePasto = new THREE.Mesh(bordePastoGeometria, cajaMaterial);
+const bordePasto = new THREE.Mesh(bordePastoGeometria, bordeMaterial);
 bordePasto.position.set(1.5,-0.95,4.05)
 panteon.add(bordePasto);
 
-const bordePastoGeometria2 = new THREE.BoxGeometry(0.05, 0.05, 0.8);
-const bordePasto2 = new THREE.Mesh(bordePastoGeometria2, cajaMaterial);
+const bordePasto2 = new THREE.Mesh(bordePastoGeometria, bordeMaterial);
 bordePasto2.position.set(2.1,-0.95,4.05)
 panteon.add(bordePasto2);
 
 const bordePastoGeometria3 = new THREE.BoxGeometry(0.05, 0.05, 0.65);
-const bordePasto3 = new THREE.Mesh(bordePastoGeometria3, cajaMaterial);
+const bordePasto3 = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
 bordePasto3.rotation.y = Math.PI / 2;
 bordePasto3.position.set(1.8,-0.95,3.65)
 panteon.add(bordePasto3);
 
-const bordePasto4 = new THREE.Mesh(bordePastoGeometria3, cajaMaterial);
+const bordePasto4 = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
 bordePasto4.rotation.y = Math.PI / 2;
 bordePasto4.position.set(1.8,-0.95,4.45)
 panteon.add(bordePasto4);
 
 // borde de pasto izq
-const bordePastoa = new THREE.Mesh(bordePastoGeometria, cajaMaterial);
+const bordePastoa = new THREE.Mesh(bordePastoGeometria, bordeMaterial);
 bordePastoa.position.set(-1.5,-0.95,4.05)
 panteon.add(bordePastoa);
 
-const bordePasto2a = new THREE.Mesh(bordePastoGeometria2, cajaMaterial);
+const bordePasto2a = new THREE.Mesh(bordePastoGeometria, bordeMaterial);
 bordePasto2a.position.set(-2.1,-0.95,4.05)
 panteon.add(bordePasto2a);
 
-const bordePasto3a = new THREE.Mesh(bordePastoGeometria3, cajaMaterial);
+const bordePasto3a = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
 bordePasto3a.rotation.y = Math.PI / 2;
 bordePasto3a.position.set(-1.8,-0.95,3.65)
 panteon.add(bordePasto3a);
 
-const bordePasto4a = new THREE.Mesh(bordePastoGeometria3, cajaMaterial);
+const bordePasto4a = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
 bordePasto4a.rotation.y = Math.PI / 2;
 bordePasto4a.position.set(-1.8,-0.95,4.45)
 panteon.add(bordePasto4a);
 
+const bordePastoLGeometria = new THREE.BoxGeometry(0.05, 0.05, 3);
+const bordePastoLat = new THREE.Mesh(bordePastoLGeometria, bordeMaterial);
+bordePastoLat.position.set(-2.9,-0.95,2.95)
+panteon.add(bordePastoLat)
+
+const bordePastoLat2 = new THREE.Mesh(bordePastoLGeometria, bordeMaterial);
+bordePastoLat2.position.set(-2.3,-0.95,2.95)
+panteon.add(bordePastoLat2)
+
+const bordePastoLat3 = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
+bordePastoLat3.rotation.y = Math.PI / 2;
+bordePastoLat3.position.set(-2.6,-0.95,1.45)
+panteon.add(bordePastoLat3);
+
+const bordePastoLat4 = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
+bordePastoLat4.rotation.y = Math.PI / 2;
+bordePastoLat4.position.set(-2.6,-0.95,4.45)
+panteon.add(bordePastoLat4);
+
+const bordePastoLat5 = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
+bordePastoLat5.rotation.y = Math.PI / 2;
+bordePastoLat5.position.set(-2.6,-0.95,-1.3)
+panteon.add(bordePastoLat5);
+
+const bordePastoLat6 = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
+bordePastoLat6.rotation.y = Math.PI / 2;
+bordePastoLat6.position.set(-2.6,-0.95,0.3)
+panteon.add(bordePastoLat6);
+
+const bordePastoLGeometria2 = new THREE.BoxGeometry(0.05, 0.05, 1.6);
+const bordePastoLat7 = new THREE.Mesh(bordePastoLGeometria2, bordeMaterial);
+bordePastoLat7.position.set(-2.9,-0.95,-0.5)
+panteon.add(bordePastoLat7)
+
+const bordePastoLat8 = new THREE.Mesh(bordePastoLGeometria2, bordeMaterial);
+bordePastoLat8.position.set(-2.3,-0.95,-0.5)
+panteon.add(bordePastoLat8)
 // REJAS
 const rejaGgeometry = new THREE.BoxGeometry(0.025, 0.29, 0.025);
 const rejaMaterial = new THREE.MeshStandardMaterial({ 
