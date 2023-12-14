@@ -708,6 +708,285 @@ banda8A.scale.set(0.053, 0.063, 0.053);
 panteon.add(banda8A);
 banda8A.rotation.y = Math.PI * 1.9;
 
+//Material tubos
+const materialTubo = new THREE.MeshStandardMaterial({
+  color: "#E2C799",
+  map: bandaColorTexture, // Textura de color
+  displacementMap: bandaDisplaymentTexture, // Textura de desplazamiento
+  normalMap: bandaNormalGLTexture, // Textura normal
+  roughnessMap: bandaRoughnessTexture, // Textura de rugosidad
+  aoMap: bandaAmbientOclussionTexture, // Textura de oclusión ambiental
+  displacementScale: 0.1, // Escala del desplazamiento (ajústalo según sea necesario)
+
+  // Ajustes adicionales para mejorar el realismo
+  envMapIntensity: 1, // Intensidad del mapa de entorno (ajusta según sea necesario)
+  side: THREE.DoubleSide, // Renderiza el material en ambas caras del objeto
+
+  // Ajustes para la opacidad
+  // transparent: true, // Habilita la transparencia
+  // opacity: 1, // Ajusta la opacidad según sea necesario (valor entre 0 y 1)
+});
+
+//tubitos de decoracion de las bandas de la cupula
+// Crear la geometría del toro
+const tuboGeometry = new THREE.TorusGeometry(15, 0.1, 6, 60, Math.PI/2);
+// Crear la malla
+const tubo1 = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo1.position.set(0, 2.51, 0)
+tubo1.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo1);
+tubo1.rotation.y = Math.PI * 0.04;
+
+// Crear la malla
+const tubo1a = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo1a.position.set(0, 2.51, 0)
+tubo1a.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo1a);
+tubo1a.rotation.y = Math.PI * 0.08;
+
+// Crear la malla
+const tubo1b = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo1b.position.set(0, 2.51, 0)
+tubo1b.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo1b);
+tubo1b.rotation.y = Math.PI * 0.12;
+
+
+// Crear la malla
+const tubo1c = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo1c.position.set(0, 2.51, 0)
+tubo1c.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo1c);
+tubo1c.rotation.y = Math.PI * 0.16;
+
+// Crear la malla
+const tubo2 = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo2.position.set(0, 2.51, 0)
+tubo2.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo2);
+tubo2.rotation.y = Math.PI * 0.30;
+
+// Crear la malla
+const tubo2a = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo2a.position.set(0, 2.51, 0)
+tubo2a.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo2a);
+tubo2a.rotation.y = Math.PI * 0.34;
+
+// Crear la malla
+const tubo2b = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo2b.position.set(0, 2.51, 0)
+tubo2b.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo2b);
+tubo2b.rotation.y = Math.PI * 0.38;
+
+// Crear la malla
+const tubo2c = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo2c.position.set(0, 2.51, 0)
+tubo2c.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo2c);
+tubo2c.rotation.y = Math.PI * 0.42;
+
+// Crear la malla
+const tubo3 = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo3.position.set(0, 2.51, 0)
+tubo3.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo3);
+tubo3.rotation.y = Math.PI * 0.56;
+
+// Crear la malla
+const tubo3a = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo3a.position.set(0, 2.51, 0)
+tubo3a.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo3a);
+tubo3a.rotation.y = Math.PI * 0.60;
+
+// Crear la malla
+const tubo3b = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo3b.position.set(0, 2.51, 0)
+tubo3b.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo3b);
+tubo3b.rotation.y = Math.PI * 0.64;
+
+// Crear la malla
+const tubo3c = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo3c.position.set(0, 2.51, 0)
+tubo3c.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo3c);
+tubo3c.rotation.y = Math.PI * 0.68;
+
+// Crear la malla
+const tubo4 = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo4.position.set(0, 2.51, 0)
+tubo4.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo4);
+tubo4.rotation.y = Math.PI * 0.82;
+
+// Crear la malla
+const tubo4a = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo4a.position.set(0, 2.51, 0)
+tubo4a.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo4a);
+tubo4a.rotation.y = Math.PI * 0.86;
+
+// Crear la malla
+const tubo4b = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo4b.position.set(0, 2.51, 0)
+tubo4b.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo4b);
+tubo4b.rotation.y = Math.PI * 0.90;
+
+// Crear la malla
+const tubo4c = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo4c.position.set(0, 2.51, 0)
+tubo4c.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo4c);
+tubo4c.rotation.y = Math.PI * 0.94;
+
+// Crear la malla
+const tubo5 = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo5.position.set(0, 2.51, 0)
+tubo5.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo5);
+tubo5.rotation.y = Math.PI * 1.06;
+
+// Crear la malla
+const tubo5a = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo5a.position.set(0, 2.51, 0)
+tubo5a.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo5a);
+tubo5a.rotation.y = Math.PI * 1.10;
+
+// Crear la malla
+const tubo5b = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo5b.position.set(0, 2.51, 0)
+tubo5b.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo5b);
+tubo5b.rotation.y = Math.PI * 1.13;
+
+// Crear la malla
+const tubo5c = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo5c.position.set(0, 2.51, 0)
+tubo5c.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo5c);
+tubo5c.rotation.y = Math.PI * 1.17;
+
+// Crear la malla
+const tubo6 = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo6.position.set(0, 2.51, 0)
+tubo6.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo6);
+tubo6.rotation.y = Math.PI * 1.28;
+
+// Crear la malla
+const tubo6a = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo6a.position.set(0, 2.51, 0)
+tubo6a.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo6a);
+tubo6a.rotation.y = Math.PI * 1.32;
+
+// Crear la malla
+const tubo6b = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo6b.position.set(0, 2.51, 0)
+tubo6b.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo6b);
+tubo6b.rotation.y = Math.PI * 1.35;
+
+// Crear la malla
+const tubo6c = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo6c.position.set(0, 2.51, 0)
+tubo6c.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo6c);
+tubo6c.rotation.y = Math.PI * 1.39;
+
+// Crear la malla
+const tubo7 = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo7.position.set(0, 2.51, 0)
+tubo7.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo7);
+tubo7.rotation.y = Math.PI * 1.51;
+
+// Crear la malla
+const tubo7a = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo7a.position.set(0, 2.51, 0)
+tubo7a.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo7a);
+tubo7a.rotation.y = Math.PI * 1.55;
+
+// Crear la malla
+const tubo7b = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo7b.position.set(0, 2.51, 0)
+tubo7b.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo7b);
+tubo7b.rotation.y = Math.PI * 1.60;
+
+// Crear la malla
+const tubo7c = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo7c.position.set(0, 2.51, 0)
+tubo7c.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo7c);
+tubo7c.rotation.y = Math.PI * 1.64;
+
+// Crear la malla
+const tubo8 = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo8.position.set(0, 2.51, 0)
+tubo8.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo8);
+tubo8.rotation.y = Math.PI * 1.78;
+
+// Crear la malla
+const tubo8a = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo8a.position.set(0, 2.51, 0)
+tubo8a.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo8a);
+tubo8a.rotation.y = Math.PI * 1.82;
+
+// Crear la malla
+const tubo8b = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo8b.position.set(0, 2.51, 0)
+tubo8b.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo8b);
+tubo8b.rotation.y = Math.PI * 1.86;
+
+// Crear la malla
+const tubo8c = new THREE.Mesh(tuboGeometry, materialTubo);
+// Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
+tubo8c.position.set(0, 2.51, 0)
+tubo8c.scale.set(0.053, 0.063, 0.053)
+panteon.add(tubo8c);
+tubo8c.rotation.y = Math.PI * 1.90;
+
 // Cupula Medio
 const cupulaMedioGeometry = new THREE.CylinderGeometry(0.8, 0.8, 1.2, 30); // R top, R bot, H, R Seg
 const cupulaMedio = new THREE.Mesh(cupulaMedioGeometry, cajaMaterial);
