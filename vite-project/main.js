@@ -8,8 +8,7 @@ import * as dat from 'dat.gui';
 
 // Create a scene
 const scene = new THREE.Scene();
-
-
+const clock = new THREE.Clock();
 
 // ARBOL
 const loader1 = new GLTFLoader();
@@ -59,8 +58,8 @@ scene.add(skyBox);
 // Concreto
 const concreteTexture = new THREE.TextureLoader().load('./pared.jpg');
 const escalonTexture = new THREE.TextureLoader().load('./concrete.jpg');
-const baldosaTexture = new THREE.TextureLoader().load('./baldosa.jpg');
-baldosaTexture.repeat.set(7,7)
+const baldosaTexture = new THREE.TextureLoader().load('./baldosa.png');
+baldosaTexture.repeat.set(1,1)
 // const cieloTexture = new THREE.TextureLoader().load('./cielo.jpg');
 // cieloTexture.repeat.set(3,3)
 
@@ -78,8 +77,8 @@ const bandaDisplaymentTexture = new THREE.TextureLoader().load('./texture/cupula
 const bandaNormalGLTexture = new THREE.TextureLoader().load('./texture/cupula/PaintedPlaster014_2K-JPG_NormalGL.jpg');
 const bandaRoughnessTexture = new THREE.TextureLoader().load('./texture/cupula/PaintedPlaster014_2K-JPG_Roughness.jpg');
 
-// Piso
-const baldosaGeometry = new THREE.BoxGeometry(6, 0.05, 6)  // Width, Height, Depth
+// Piso Panteon
+const baldosaGeometry = new THREE.BoxGeometry(6, 0.07, 7)  // Width, Height, Depth
 const baldosaMaterial = new THREE.MeshStandardMaterial({
   map: baldosaTexture,
   color: "#eeedeb",
@@ -87,7 +86,7 @@ const baldosaMaterial = new THREE.MeshStandardMaterial({
   metalness: 0.1, // Adjust metalness
 });
 const baldosa = new THREE.Mesh(baldosaGeometry, baldosaMaterial);
-baldosa.position.set(0, -1, 1);
+baldosa.position.set(0, -1.02, 1);
 scene.add(baldosa);
 baldosa.castShadow = true;
 baldosa.receiveShadow = true;
@@ -1089,6 +1088,177 @@ panteon.receiveShadow = true; // El grupo recibe sombras (ajusta según sea nece
 // panteon.scale.set(2, 2, 2); // Escalar el grupo
 
 ////////////////////////////////////////////////////////////////////////////////
+///////////// tierra /////////////////////
+const tierraGeometry = new THREE.PlaneGeometry(0.5,0.78)
+const tierraMaterial = new THREE.MeshStandardMaterial({
+  color: '#3b2d06',
+}
+)
+const tierra = new THREE.Mesh(tierraGeometry,tierraMaterial);
+tierra.rotation.x=-Math.PI/2
+tierra.position.set(1.8,-0.98,4.1)
+panteon.add(tierra)
+const tierra2 = new THREE.Mesh(tierraGeometry,tierraMaterial);
+tierra2.rotation.x=-Math.PI/2
+tierra2.position.set(-1.8,-0.98,4.1)
+panteon.add(tierra2)
+
+//////////////// PASTO /////////////////////////////
+const simpleNoise = `
+  float N(vec2 st) {
+    return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
+  }
+
+  float smoothNoise(vec2 uv) {
+    vec2 lv = fract(uv);
+    vec2 id = floor(uv);
+
+    lv = lv * lv * (3. - 2. * lv);
+
+    float bl = N(id);
+    float br = N(id + vec2(1, 0));
+    float b = mix(bl, br, lv.x);
+
+    float tl = N(id + vec2(0, 1));
+    float tr = N(id + vec2(1, 1));
+    float t = mix(tl, tr, lv.x);
+
+    return mix(b, t, lv.y);
+  }
+`;
+
+// Función para configurar una instancia de pasto
+function setupGrassInstance(mesh, x, z) {
+  mesh.scale.set(0.1, 0.1, 0.1);
+  mesh.position.set(x, -0.93, z);
+
+  // Posciion y escala
+  for (let i = 0; i < grassInstanceNumber; i++) {
+    grassDummy.position.set(
+      x + Math.random() * 6 - 1.5,
+      0,
+      z + Math.random() * 8 - 1.5
+    );
+
+    grassDummy.rotation.y = Math.random() * Math.PI;
+
+    grassDummy.updateMatrix();
+    mesh.setMatrixAt(i, grassDummy.matrix);
+  }
+}
+
+// creamos material de pasto
+const grassVertexShader = `
+  varying vec2 vUv;
+  uniform float time;
+
+  ${simpleNoise}
+
+  void main() {
+    vUv = uv;
+    float t = time * 2.;
+
+    vec4 mvPosition = vec4(position, 1.0);
+    #ifdef USE_INSTANCING
+      mvPosition = instanceMatrix * mvPosition;
+    #endif
+
+    float noise = smoothNoise(mvPosition.xz * 0.5 + vec2(0., t));
+    noise = pow(noise * 0.5 + 0.5, 2.) * 2.;
+
+    float dispPower = 1. - cos(uv.y * 3.1416 * 0.5);
+
+    float displacement = noise * (0.3 * dispPower);
+    mvPosition.z -= displacement;
+
+    vec4 modelViewPosition = modelViewMatrix * mvPosition;
+    gl_Position = projectionMatrix * modelViewPosition;
+  }
+`;
+
+const grassFragmentShader = `
+  varying vec2 vUv;
+
+  void main() {
+    vec3 baseColor = vec3(0.439, 0.557, 0.153);
+    float clarity = (vUv.y * 0.875) + 0.1;
+    gl_FragColor = vec4(baseColor * clarity, 1);
+  }
+`;
+
+const grassUniforms = {
+  time: {
+    value: 0,
+  },
+};
+
+const grassLeavesMaterial = new THREE.ShaderMaterial({
+  vertexShader: grassVertexShader,
+  fragmentShader: grassFragmentShader,
+  uniforms: grassUniforms,
+  side: THREE.DoubleSide,
+});
+
+// cuantos pastitos
+const grassInstanceNumber = 3000;
+const grassDummy = new THREE.Object3D();
+
+// un psato individual geometria
+const grassGeometry = new THREE.PlaneGeometry(0.05, 0.2, 2, 2);
+
+const grassInstancedMesh1 = new THREE.InstancedMesh(grassGeometry, grassLeavesMaterial, grassInstanceNumber);
+panteon.add(grassInstancedMesh1);
+setupGrassInstance(grassInstancedMesh1, -1.78, 3.5);
+
+const grassInstancedMesh2 = new THREE.InstancedMesh(grassGeometry, grassLeavesMaterial, grassInstanceNumber);
+panteon.add(grassInstancedMesh2);
+setupGrassInstance(grassInstancedMesh2, 1.5, 3.5);
+
+// borde de pasto der
+const bordePastoGeometria = new THREE.BoxGeometry(0.05, 0.05, 0.8);
+const bordePasto = new THREE.Mesh(bordePastoGeometria, cajaMaterial);
+bordePasto.position.set(1.5,-0.95,4.1)
+panteon.add(bordePasto);
+
+const bordePastoGeometria2 = new THREE.BoxGeometry(0.05, 0.05, 0.8);
+const bordePasto2 = new THREE.Mesh(bordePastoGeometria2, cajaMaterial);
+bordePasto2.position.set(2.1,-0.95,4.1)
+panteon.add(bordePasto2);
+
+const bordePastoGeometria3 = new THREE.BoxGeometry(0.05, 0.05, 0.65);
+const bordePasto3 = new THREE.Mesh(bordePastoGeometria3, cajaMaterial);
+bordePasto3.rotation.y = Math.PI / 2;
+bordePasto3.position.set(1.8,-0.95,3.7)
+panteon.add(bordePasto3);
+
+const bordePasto4 = new THREE.Mesh(bordePastoGeometria3, cajaMaterial);
+bordePasto4.rotation.y = Math.PI / 2;
+bordePasto4.position.set(1.8,-0.95,4.48)
+panteon.add(bordePasto4);
+
+// borde de pasto izq
+const bordePastoa = new THREE.Mesh(bordePastoGeometria, cajaMaterial);
+bordePastoa.position.set(-1.5,-0.95,4.1)
+panteon.add(bordePastoa);
+
+const bordePasto2a = new THREE.Mesh(bordePastoGeometria2, cajaMaterial);
+bordePasto2a.position.set(-2.1,-0.95,4.1)
+panteon.add(bordePasto2a);
+
+const bordePasto3a = new THREE.Mesh(bordePastoGeometria3, cajaMaterial);
+bordePasto3a.rotation.y = Math.PI / 2;
+bordePasto3a.position.set(-1.8,-0.95,3.7)
+panteon.add(bordePasto3a);
+
+const bordePasto4a = new THREE.Mesh(bordePastoGeometria3, cajaMaterial);
+bordePasto4a.rotation.y = Math.PI / 2;
+bordePasto4a.position.set(-1.8,-0.95,4.48)
+panteon.add(bordePasto4a);
+
+
+////////////////////////////////////////////////////
+
+
 //OPCIONES DE LUZ
 const lightProperties = {
   color: 0xffffff,
@@ -1131,10 +1301,6 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
-// Color fondo
-//renderer.setClearColor("#c2d7ea"); // Use any valid CSS color value
-
 
 // OrbitControls
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -1223,7 +1389,8 @@ function animate() {
   light.position.copy(lightProperties.position);
   light.target.position.copy(lightProperties.target);
   light.angle = lightProperties.angle;
-
+  // Pasto tiempo
+  grassLeavesMaterial.uniforms.time.value = clock.getElapsedTime()
    //Update helper
   lightHelper.update();
   // Render the scene with the updated camera and cube position
