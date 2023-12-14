@@ -9,6 +9,8 @@ import * as dat from 'dat.gui';
 // Create a scene
 const scene = new THREE.Scene();
 
+
+
 // ARBOL
 const loader1 = new GLTFLoader();
 loader1.load('./arbol.glb', (gltf1) => {
@@ -67,8 +69,14 @@ const cupulaAmbientOclussionTexture = new THREE.TextureLoader().load('./texture/
 const cupulaColorTexture = new THREE.TextureLoader().load('./texture/cupula/Tiles071_2K-JPG_Color.jpg');
 const cupulaDisplaymentTexture = new THREE.TextureLoader().load('./texture/cupula/Tiles071_2K-JPG_Displacement.jpg');
 const cupulaNormalDXTexture = new THREE.TextureLoader().load('./texture/cupula/Tiles071_2K-JPG_NormalDX.jpg');
-const cupulaNormalGLTexture = new THREE.TextureLoader().load('./texture/cupula/Tiles071_2K-JPG_NormalGL.jpg');
 const cupulaRoughnessTexture = new THREE.TextureLoader().load('./texture/cupula/Tiles071_2K-JPG_Roughness.jpg');
+
+//Textura bandas cupula 
+const bandaAmbientOclussionTexture = new THREE.TextureLoader().load('./texture/cupula/PaintedPlaster014_2K-JPG_AmbientOcclusion.jpg')
+const bandaColorTexture = new THREE.TextureLoader().load('./texture/cupula/PaintedPlaster014_2K-JPG_Color.jpg');
+const bandaDisplaymentTexture = new THREE.TextureLoader().load('./texture/cupula/PaintedPlaster014_2K-JPG_Displacement.jpg');
+const bandaNormalGLTexture = new THREE.TextureLoader().load('./texture/cupula/PaintedPlaster014_2K-JPG_NormalGL.jpg');
+const bandaRoughnessTexture = new THREE.TextureLoader().load('./texture/cupula/PaintedPlaster014_2K-JPG_Roughness.jpg');
 
 // Piso
 const baldosaGeometry = new THREE.BoxGeometry(6, 0.05, 6)  // Width, Height, Depth
@@ -470,75 +478,235 @@ panteon.add(techoCol);
 techoCol.castShadow = true;
 techoCol.receiveShadow = true;
 
+//------------CUPULA 1 (CUPULA MAS GRANDE)-----------------------
 //Material de cupula
 const cupulaMaterial = new THREE.MeshStandardMaterial({
+  color: 0xeeece4,
   map: cupulaColorTexture, // Textura de color
   displacementMap: cupulaDisplaymentTexture, // Textura de desplazamiento
-  normalMap: cupulaNormalGLTexture, // Textura normal
+  normalMap: cupulaNormalDXTexture, // Textura normal
   roughnessMap: cupulaRoughnessTexture, // Textura de rugosidad
   aoMap: cupulaAmbientOclussionTexture, // Textura de oclusión ambiental
 
-  //metalness: 0.5, // Controla el nivel de metalness (ajusta según sea necesario)
-  //roughness: 0.8, // Controla la rugosidad (ajusta según sea necesario)
+  // metalness: 0, // Controla el nivel de metalness (ajusta según sea necesario)
+  // roughness: 0.6, // Controla la rugosidad (ajusta según sea necesario)
   displacementScale: 0.1, // Escala del desplazamiento (ajústalo según sea necesario)
 
   // Ajustes adicionales para mejorar el realismo
   envMapIntensity: 1, // Intensidad del mapa de entorno (ajusta según sea necesario)
   side: THREE.DoubleSide, // Renderiza el material en ambas caras del objeto
+
+  // Ajustes para la opacidad
+  transparent: true, // Habilita la transparencia
+  opacity: 1, // Ajusta la opacidad según sea necesario (valor entre 0 y 1)
 });
 
 // Configura las propiedades de repetición de la textura
 cupulaMaterial.map.wrapS = THREE.RepeatWrapping;
 cupulaMaterial.map.wrapT = THREE.RepeatWrapping;
-cupulaMaterial.map.repeat.set(7, 7); // Ajusta el número de repeticiones en dirección S y T
+cupulaMaterial.map.repeat.set(6, 6); // Ajusta el número de repeticiones en dirección S y T
 
 // También configura las propiedades de repetición de otras texturas si es necesario
 cupulaMaterial.displacementMap.wrapS = THREE.RepeatWrapping;
 cupulaMaterial.displacementMap.wrapT = THREE.RepeatWrapping;
-cupulaMaterial.displacementMap.repeat.set(7, 7);
+cupulaMaterial.displacementMap.repeat.set(6, 6);
 
 cupulaMaterial.normalMap.wrapS = THREE.RepeatWrapping;
 cupulaMaterial.normalMap.wrapT = THREE.RepeatWrapping;
-cupulaMaterial.normalMap.repeat.set(7, 7);
+cupulaMaterial.normalMap.repeat.set(6, 6);
 
 cupulaMaterial.roughnessMap.wrapS = THREE.RepeatWrapping;
 cupulaMaterial.roughnessMap.wrapT = THREE.RepeatWrapping;
-cupulaMaterial.roughnessMap.repeat.set(7, 7);
+cupulaMaterial.roughnessMap.repeat.set(6, 6);
 
 cupulaMaterial.aoMap.wrapS = THREE.RepeatWrapping;
 cupulaMaterial.aoMap.wrapT = THREE.RepeatWrapping;
-cupulaMaterial.aoMap.repeat.set(7, 7);
-
-// Cupula
-// const points = [];
-// for ( let i = 0; i < 15; i ++ ) {
-// 	points.push( new THREE.Vector2( Math.sin( i * 0.2 ) * 10 + 5, ( i - 5 ) * 2 ) );
-// }
-// const cupulaGeometry = new THREE.LatheGeometry( points );
-// const cupula = new THREE.Mesh( cupulaGeometry, cupulaMaterial );
-// cupula.position.set(0, 3, 0);
-// cupula.scale.set(0.053, 0.053, 0.053);
-// cupula.rotation.z = Math.PI;  // 180 grados en radianes
-// panteon.add( cupula );
+cupulaMaterial.aoMap.repeat.set(6, 6);
 
 // Geometría de media esfera
 const radio = 15; // Radio de la esfera
 const anchoSegmento = 32; // Número de segmentos horizontales
 const altoSegmento = 16; // Número de segmentos verticales
 const phiStart = 0; // Ángulo inicial en radianes
-const phiLength = Math.PI; // Longitud del arco en radianes
-const cupulaGeometry = new THREE.SphereGeometry(radio, anchoSegmento, altoSegmento, phiStart, phiLength, 0, Math.PI);
+const phiLength = Math.PI * 2; // Longitud del arco en radianes
+const cupulaGeometry = new THREE.SphereGeometry(radio, anchoSegmento, altoSegmento, phiStart, phiLength, 0, Math.PI*0.5);
 const cupula = new THREE.Mesh(cupulaGeometry, cupulaMaterial);
 
 // Posición, escala y rotación
 cupula.position.set(0, 2.5, 0);
-cupula.scale.set(0.053, 0.053, 0.065);
-cupula.rotation.x = -Math.PI/2;
+cupula.scale.set(0.053, 0.063, 0.053);
+//cupula.rotation.x = -Math.PI/2;
 
 panteon.add(cupula);
 
 cupula.castShadow = true;
 cupula.receiveShadow = true;
+
+//detalles
+//bandas que tiene
+const radius =  15;  
+const widthSegments = 30;  
+const heightSegments = 16;  
+const phiStart1 = 0;  
+const phiLength1 = Math.PI * 0.04;  
+const thetaStart = Math.PI * 0.00;  
+const thetaLength = Math.PI/2;  
+const bandaGeometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments, phiStart1, phiLength1, thetaStart, thetaLength );
+
+const materialBanda = new THREE.MeshStandardMaterial({
+  color: 0xfbd5cb,
+  map: bandaColorTexture, // Textura de color
+  displacementMap: bandaDisplaymentTexture, // Textura de desplazamiento
+  normalMap: bandaNormalGLTexture, // Textura normal
+  roughnessMap: bandaRoughnessTexture, // Textura de rugosidad
+  aoMap: bandaAmbientOclussionTexture, // Textura de oclusión ambiental
+  displacementScale: 0.1, // Escala del desplazamiento (ajústalo según sea necesario)
+
+  // Ajustes adicionales para mejorar el realismo
+  envMapIntensity: 1, // Intensidad del mapa de entorno (ajusta según sea necesario)
+  side: THREE.DoubleSide, // Renderiza el material en ambas caras del objeto
+
+  // Ajustes para la opacidad
+  // transparent: true, // Habilita la transparencia
+  // opacity: 1, // Ajusta la opacidad según sea necesario (valor entre 0 y 1)
+});
+
+// Configura las propiedades de repetición de la textura
+materialBanda.map.wrapS = THREE.RepeatWrapping;
+materialBanda.map.wrapT = THREE.RepeatWrapping;
+materialBanda.map.repeat.set(2, 1); // Ajusta el número de repeticiones en dirección S y T
+
+// También configura las propiedades de repetición de otras texturas si es necesario
+materialBanda.displacementMap.wrapS = THREE.RepeatWrapping;
+materialBanda.displacementMap.wrapT = THREE.RepeatWrapping;
+materialBanda.displacementMap.repeat.set(2, 1);
+
+materialBanda.normalMap.wrapS = THREE.RepeatWrapping;
+materialBanda.normalMap.wrapT = THREE.RepeatWrapping;
+materialBanda.normalMap.repeat.set(2, 1);
+
+materialBanda.roughnessMap.wrapS = THREE.RepeatWrapping;
+materialBanda.roughnessMap.wrapT = THREE.RepeatWrapping;
+materialBanda.roughnessMap.repeat.set(2, 1);
+
+materialBanda.aoMap.wrapS = THREE.RepeatWrapping;
+materialBanda.aoMap.wrapT = THREE.RepeatWrapping;
+materialBanda.aoMap.repeat.set(2, 1);
+
+const banda1 = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda1.position.set(0, 2.51, 0);
+banda1.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda1);
+banda1.rotation.y = Math.PI * 0.06;
+
+
+const banda1A = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda1A.position.set(0, 2.51, 0);
+banda1A.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda1A);
+banda1A.rotation.y = Math.PI * 0.13;
+
+const banda2 = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda2.position.set(0, 2.51, 0);
+banda2.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda2);
+banda2.rotation.y = Math.PI * 0.28;
+
+const banda2A = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda2A.position.set(0, 2.51, 0);
+banda2A.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda2A);
+banda2A.rotation.y = Math.PI * 0.35;
+
+const banda3 = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda3.position.set(0, 2.51, 0);
+banda3.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda3);
+banda3.rotation.y = Math.PI * 0.51;
+
+const banda3A = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda3A.position.set(0, 2.51, 0);
+banda3A.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda3A);
+banda3A.rotation.y = Math.PI * 0.60;
+
+const banda4 = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda4.position.set(0, 2.51, 0);
+banda4.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda4);
+banda4.rotation.y = Math.PI * 0.78
+
+
+const banda4A = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda4A.position.set(0, 2.51, 0);
+banda4A.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda4A);
+banda4A.rotation.y = Math.PI * 0.86
+
+const banda5 = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda5.position.set(0, 2.51, 0);
+banda5.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda5);
+banda5.rotation.y = Math.PI * 1.04 
+
+const banda5A = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda5A.position.set(0, 2.51, 0);
+banda5A.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda5A);
+banda5A.rotation.y = Math.PI * 1.12;
+
+const banda6 = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda6.position.set(0, 2.51, 0);
+banda6.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda6);
+banda6.rotation.y = Math.PI * 1.30;
+
+const banda6A = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda6A.position.set(0, 2.51, 0);
+banda6A.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda6A);
+banda6A.rotation.y = Math.PI * 1.38;
+
+const banda7 = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda7.position.set(0, 2.51, 0);
+banda7.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda7);
+banda7.rotation.y = Math.PI * 1.56;
+
+
+const banda7A = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda7A.position.set(0, 2.51, 0);
+banda7A.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda7A);
+banda7A.rotation.y = Math.PI * 1.64;
+
+const banda8 = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda8.position.set(0, 2.51, 0);
+banda8.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda8);
+banda8.rotation.y = Math.PI * 1.82;
+
+const banda8A = new THREE.Mesh(bandaGeometry, materialBanda);
+// Posición, escala y rotación
+banda8A.position.set(0, 2.51, 0);
+banda8A.scale.set(0.053, 0.063, 0.053);
+panteon.add(banda8A);
+banda8A.rotation.y = Math.PI * 1.9;
 
 // Cupula Medio
 const cupulaMedioGeometry = new THREE.CylinderGeometry(0.8, 0.8, 1.2, 30); // R top, R bot, H, R Seg
@@ -548,6 +716,32 @@ panteon.add(cupulaMedio);
 cupulaMedio.castShadow = true;
 cupulaMedio.receiveShadow = true;
 
+
+
+//------------------------------CUPULA 2 PEQUEÑA---------------- 
+//Cupula Medio pequeña de arriba donde esta la cruz
+const cupulaMedioSmallGeometry = new THREE.CylinderGeometry(0.19, 0.19, 0.8, 30); // R top, R bot, H, R Seg
+const cupulaMedioSmall = new THREE.Mesh(cupulaMedioSmallGeometry, cajaMaterial);
+cupulaMedioSmall.position.set(0, 3.5, 0);
+panteon.add(cupulaMedioSmall);
+cupulaMedioSmall.castShadow = true;
+cupulaMedioSmall.receiveShadow = true;
+
+//Cupula donde va la cruz
+// Geometría de media esfera
+const cupulaSmallGeometry = new THREE.SphereGeometry(3.5, 32, 16, phiStart, phiLength, 0, Math.PI*0.5);
+const cupulaSmall = new THREE.Mesh(cupulaSmallGeometry, cupulaMaterial);
+
+// Posición, escala y rotación
+cupulaSmall.position.set(0, 3.9, 0);
+cupulaSmall.scale.set(0.053, 0.063, 0.053);
+//cupula.rotation.x = -Math.PI/2;
+
+panteon.add(cupulaSmall);
+
+cupulaSmall.castShadow = true;
+cupulaSmall.receiveShadow = true;
+
 // Cupula Base
 const cupulaBaseGeometry = new THREE.BoxGeometry(1.3,0.8,1.8) // Width, Height, Depth
 const cupulaBase = new THREE.Mesh(cupulaBaseGeometry, cajaMaterial)
@@ -555,18 +749,21 @@ cupulaBase.position.set(0,1,0);
 panteon.add(cupulaBase);
 cupulaBase.castShadow = true;
 cupulaBase.receiveShadow = true;
+
 const cupulaBaseGeometry2 = new THREE.BoxGeometry(1.8,0.8,1.3) // Width, Height, Depth
 const cupulaBase2 = new THREE.Mesh(cupulaBaseGeometry2, cajaMaterial)
 cupulaBase2.position.set(0,1,0);
 panteon.add(cupulaBase2);
 cupulaBase2.castShadow = true;
 cupulaBase2.receiveShadow = true;
+
 const cupulaBaseGeometry3 = new THREE.BoxGeometry(1.3,0.05,1.8) // Width, Height, Depth
 const cupulaBase3 = new THREE.Mesh(cupulaBaseGeometry3, baldosaMaterial)
 cupulaBase3.position.set(0,1.45,0);
 panteon.add(cupulaBase3);
 cupulaBase3.castShadow = true;
 cupulaBase3.receiveShadow = true;
+
 const cupulaBaseGeometry4 = new THREE.BoxGeometry(1.8,0.05,1.3) // Width, Height, Depth
 const cupulaBase4 = new THREE.Mesh(cupulaBaseGeometry4, baldosaMaterial)
 cupulaBase4.position.set(0,1.45,0);
@@ -593,6 +790,7 @@ triangle.position.set(0,0.955,2.5)
 panteon.add(triangle);
 triangle.castShadow = true;
 triangle.receiveShadow = true;
+
 const triangleGeometry2 = new THREE.ExtrudeGeometry(triangleShape, extrudeSettings);
 const triangle2 = new THREE.Mesh(triangleGeometry2, cajaMaterial);
 triangle2.rotation.y = Math.PI 
@@ -653,6 +851,7 @@ const renderer = new THREE.WebGLRenderer({ canvas });
 renderer.setSize( window.innerWidth, window.innerHeight );
 
 renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 // Color fondo
 //renderer.setClearColor("#c2d7ea"); // Use any valid CSS color value
@@ -719,15 +918,15 @@ const cupulaFolder = gui.addFolder('Cupula');
 //OPCIONES DE CUPULA
 // Funciones para ajustar el color y el brillo
 function updateColor(color) {
-  cupulaMaterial.color.set(color);
+  materialBanda.color.set(color);
 }
 
 function updateBrightness(brightness) {
-  cupulaMaterial.emissive.setRGB(brightness, brightness, brightness);
+  materialBanda.emissive.setRGB(brightness, brightness, brightness);
 }
 
 // Crear controles en GUI
-const colorControl = cupulaFolder.addColor({ color: 0xFFFFFF }, 'color').name('Color');
+const colorControl = cupulaFolder.addColor({ color: 0xeeece4 }, 'color').name('Color');
 colorControl.onChange(updateColor);
 
 const brightnessControl = cupulaFolder.add({ brightness: 1 }, 'brightness', 0, 2).name('Brillo');
