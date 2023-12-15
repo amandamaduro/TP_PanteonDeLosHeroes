@@ -1588,11 +1588,11 @@ crearEscaleraTecho(baseCupula, 13, -0.25, 1.15, 1.3);
 
 
 //Mover cupulas y base de cupula hacia la derecha 
-cupulas.position.set(0, 0.3, 0.4); // Mover el grupo
-baseCupula.position.set(0, -0.1, 0.4);
+cupulas.position.set(0, 0.55, 0.4); // Mover el grupo
+baseCupula.position.set(0, 0, 0.4);
 
-baseCupula.scale.set(1.1, 1, 1.1);
-cupulas.scale.set(0.9, 0.9, 0.9);
+//baseCupula.scale.set(1.1, 1, 1.1);
+cupulas.scale.set(0.85, 0.85, 0.85);
 ////////////////////////////////////////////////////
 
 
