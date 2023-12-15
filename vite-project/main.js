@@ -1448,35 +1448,65 @@ crearRejasFinasRangoLat2(panteon, 0.64, 1.55, -0.88, -0.60, 0.02); // tras lat d
 crearRejasFinasRangoLat2(panteon, 0.64, 1.55, 0.60, 0.88, 0.02); // del lat der
 crearRejasFinasRangoLat2(panteon, -0.88, 1.55, -0.60, 0.60, 0.02); // lateral izq
 crearRejasFinasRangoLat2(panteon, 0.88, 1.55, -0.60, 0.60, 0.02); // lateral der
-// barra reja techo
+// Barra reja techo
 const barraTGeometry = new THREE.BoxGeometry(0.008, 0.008, 0.52);
-// barra sup izq delantera
+
+// Delantera izquierda
 const barraTecho = new THREE.Mesh(barraTGeometry, rejaMaterial);
 barraTecho.position.set(-0.38, 1.646, 0.88);
 barraTecho.rotation.y = Math.PI / 2;
 panteon.add(barraTecho);
-// barra medio izq del
+
 const barraTechoa = new THREE.Mesh(barraTGeometry, rejaMaterial);
 barraTechoa.position.set(-0.38, 1.62, 0.88);
 barraTechoa.rotation.y = Math.PI / 2;
 panteon.add(barraTechoa);
-// barra sup der del
+
+// Delantera derecha
 const barraTecho2 = new THREE.Mesh(barraTGeometry, rejaMaterial);
 barraTecho2.position.set(0.38, 1.646, 0.88);
 barraTecho2.rotation.y = Math.PI / 2;
 panteon.add(barraTecho2);
-// barra medio der del
+
 const barraTecho2a = new THREE.Mesh(barraTGeometry, rejaMaterial);
 barraTecho2a.position.set(0.38, 1.62, 0.88);
 barraTecho2a.rotation.y = Math.PI / 2;
 panteon.add(barraTecho2a);
-// barra sup trasera
+
+// Trasera
 const barraTGeometry2 = new THREE.BoxGeometry(0.008, 0.008, 1.28);
-// barra sup izq delantera
+
 const barraTecho3 = new THREE.Mesh(barraTGeometry2, rejaMaterial);
 barraTecho3.position.set(0, 1.646, -0.88);
 barraTecho3.rotation.y = Math.PI / 2;
 panteon.add(barraTecho3);
+
+const barraTecho4 = new THREE.Mesh(barraTGeometry2, rejaMaterial);
+barraTecho4.position.set(0, 1.62, -0.88);
+barraTecho4.rotation.y = Math.PI / 2;
+panteon.add(barraTecho4);
+
+// Laterales largas
+const barraTGeometry3 = new THREE.BoxGeometry(0.008, 0.008, 1.2);
+
+// Izquierda
+const barraTecho5 = new THREE.Mesh(barraTGeometry3, rejaMaterial);
+barraTecho5.position.set(-0.88, 1.62, 0);
+panteon.add(barraTecho5);
+
+const barraTecho6 = new THREE.Mesh(barraTGeometry3, rejaMaterial);
+barraTecho6.position.set(-0.88, 1.646, 0);
+panteon.add(barraTecho6);
+
+// Derecha
+const barraTecho7 = new THREE.Mesh(barraTGeometry3, rejaMaterial);
+barraTecho7.position.set(0.88, 1.62, 0);
+panteon.add(barraTecho7);
+
+const barraTecho8 = new THREE.Mesh(barraTGeometry3, rejaMaterial);
+barraTecho8.position.set(0.88, 1.646, 0);
+panteon.add(barraTecho8);
+
 ////////////////////////////////////////////////////
 
 
