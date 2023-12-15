@@ -824,32 +824,36 @@ cupulas.position.set(0, 0.17, 0); // Mover el grupo
 
 //-------------------------TERMINO DE CUPULAS-----------------------------------------
 
+//-------------------------BASE DE CUPULAS--------------------------------------------
+const baseCupula = new THREE.Group(); 
+panteon.add(baseCupula);
+
 // Cupula Base
 const cupulaBaseGeometry = new THREE.BoxGeometry(1.3,0.8,1.8) // Width, Height, Depth
 const cupulaBase = new THREE.Mesh(cupulaBaseGeometry, cajaMaterial)
 cupulaBase.position.set(0,1,0);
-panteon.add(cupulaBase);
+baseCupula.add(cupulaBase);
 cupulaBase.castShadow = true;
 cupulaBase.receiveShadow = true;
 
 const cupulaBaseGeometry2 = new THREE.BoxGeometry(1.8,0.8,1.3) // Width, Height, Depth
 const cupulaBase2 = new THREE.Mesh(cupulaBaseGeometry2, cajaMaterial)
 cupulaBase2.position.set(0,1,0);
-panteon.add(cupulaBase2);
+baseCupula.add(cupulaBase2);
 cupulaBase2.castShadow = true;
 cupulaBase2.receiveShadow = true;
 
 const cupulaBaseGeometry3 = new THREE.BoxGeometry(1.3,0.05,1.8) // Width, Height, Depth
 const cupulaBase3 = new THREE.Mesh(cupulaBaseGeometry3, baldosaMaterial2)
 cupulaBase3.position.set(0,1.43,0);
-panteon.add(cupulaBase3);
+baseCupula.add(cupulaBase3);
 cupulaBase3.castShadow = true;
 cupulaBase3.receiveShadow = true;
 
 const cupulaBaseGeometry4 = new THREE.BoxGeometry(1.8,0.05,1.3) // Width, Height, Depth
 const cupulaBase4 = new THREE.Mesh(cupulaBaseGeometry4, baldosaMaterial2)
 cupulaBase4.position.set(0,1.43,0);
-panteon.add(cupulaBase4);
+baseCupula.add(cupulaBase4);
 cupulaBase4.castShadow = true;
 cupulaBase4.receiveShadow = true;
 
@@ -1325,25 +1329,25 @@ function crearRejasFinasRangoLat2(panteon, posX, posY, startPosZ, endPosZ, step)
     crearRejaFina2(panteon, posX, posY, posZ);
   }
 }
-crearRejasFinasRango2(cupulas, -0.64, -0.10, 1.55, 0.88, 0.02); // delantera izq
-crearRejasFinasRango2(cupulas, 0.10, 0.64, 1.55, 0.88, 0.02); // delantera der
-crearRejasFinasRango2(cupulas, -0.64, 0.64, 1.55, -0.88, 0.02); // trasera
-crearRejasFinasRango2(cupulas, -0.88, -0.64, 1.55, 0.60, 0.02); // del izq izq
-crearRejasFinasRango2(cupulas, 0.64, 0.88, 1.55, 0.60, 0.02); // del dere derecha
-crearRejasFinasRango2(cupulas, -0.88, -0.64, 1.55, -0.60, 0.02); // tras der derecha
-crearRejasFinasRango2(cupulas, 0.64, 0.88, 1.55, -0.60, 0.02); // tras izq izquierda
-crearRejasFinasRangoLat2(cupulas, -0.64, 1.55, -0.88, -0.60, 0.02); //  tras lat izq
-crearRejasFinasRangoLat2(cupulas, -0.64, 1.55, 0.60, 0.88, 0.02); // del lat izq
-crearRejasFinasRangoLat2(cupulas, 0.64, 1.55, -0.88, -0.60, 0.02); // tras lat der
-crearRejasFinasRangoLat2(cupulas, 0.64, 1.55, 0.60, 0.88, 0.02); // del lat der
-crearRejasFinasRangoLat2(cupulas, -0.88, 1.55, -0.60, 0.60, 0.02); // lateral izq
-crearRejasFinasRangoLat2(cupulas, 0.88, 1.55, -0.60, 0.60, 0.02); // lateral der
+crearRejasFinasRango2(baseCupula, -0.64, -0.10, 1.55, 0.88, 0.02); // delantera izq
+crearRejasFinasRango2(baseCupula, 0.10, 0.64, 1.55, 0.88, 0.02); // delantera der
+crearRejasFinasRango2(baseCupula, -0.64, 0.64, 1.55, -0.88, 0.02); // trasera
+crearRejasFinasRango2(baseCupula, -0.88, -0.64, 1.55, 0.60, 0.02); // del izq izq
+crearRejasFinasRango2(baseCupula, 0.64, 0.88, 1.55, 0.60, 0.02); // del dere derecha
+crearRejasFinasRango2(baseCupula, -0.88, -0.64, 1.55, -0.60, 0.02); // tras der derecha
+crearRejasFinasRango2(baseCupula, 0.64, 0.88, 1.55, -0.60, 0.02); // tras izq izquierda
+crearRejasFinasRangoLat2(baseCupula, -0.64, 1.55, -0.88, -0.60, 0.02); //  tras lat izq
+crearRejasFinasRangoLat2(baseCupula, -0.64, 1.55, 0.60, 0.88, 0.02); // del lat izq
+crearRejasFinasRangoLat2(baseCupula, 0.64, 1.55, -0.88, -0.60, 0.02); // tras lat der
+crearRejasFinasRangoLat2(baseCupula, 0.64, 1.55, 0.60, 0.88, 0.02); // del lat der
+crearRejasFinasRangoLat2(baseCupula, -0.88, 1.55, -0.60, 0.60, 0.02); // lateral izq
+crearRejasFinasRangoLat2(baseCupula, 0.88, 1.55, -0.60, 0.60, 0.02); // lateral der
 //////// BARRAS REJA TECHO /////////////////////////
 function crearBarraTecho(geometry, material, position, rotation) {
   const barraTecho = new THREE.Mesh(geometry, material);
   barraTecho.position.copy(position);
   barraTecho.rotation.y = rotation;
-  cupulas.add(barraTecho);
+  baseCupula.add(barraTecho);
 }
 
 // Barra reja techo
@@ -1395,7 +1399,9 @@ crearBarraTecho(barraTGeometry5, rejaMaterial, new THREE.Vector3(-0.76, 1.62, -0
 crearBarraTecho(barraTGeometry5, rejaMaterial, new THREE.Vector3(0.76, 1.646, -0.6), Math.PI / 2);
 crearBarraTecho(barraTGeometry5, rejaMaterial, new THREE.Vector3(0.76, 1.62, -0.6), Math.PI / 2);
 
-
+//Mover cupulas y base de cupula hacia la derecha 
+cupulas.position.z = 0.5;
+baseCupula.position.z = 0.5;
 ////////////////////////////////////////////////////
 
 
