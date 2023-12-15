@@ -55,6 +55,7 @@ for (let i=0; i<6; i++){
 const skyBox = new THREE.Mesh(skyBoxGeo, materialCielo);
 scene.add(skyBox);
 
+
 // Concreto
 const concreteTexture = new THREE.TextureLoader().load('./pared.jpg');
 const escalonTexture = new THREE.TextureLoader().load('./concrete.jpg');
@@ -76,6 +77,7 @@ const bandaColorTexture = new THREE.TextureLoader().load('./texture/cupula/Paint
 const bandaDisplaymentTexture = new THREE.TextureLoader().load('./texture/cupula/PaintedPlaster014_2K-JPG_Displacement.jpg');
 const bandaNormalGLTexture = new THREE.TextureLoader().load('./texture/cupula/PaintedPlaster014_2K-JPG_NormalGL.jpg');
 const bandaRoughnessTexture = new THREE.TextureLoader().load('./texture/cupula/PaintedPlaster014_2K-JPG_Roughness.jpg');
+
 
 // Piso Panteon
 const baldosaGeometry = new THREE.BoxGeometry(6, 0.07, 7)  // Width, Height, Depth
@@ -99,7 +101,7 @@ scene.add(panteon);
 const caja1Geometry = new THREE.BoxGeometry(3.2, 2, 3); // Width, Height, Depth
 const cajaMaterial = new THREE.MeshStandardMaterial({
   map: concreteTexture,
-  color: "#f4f4f4", // f4f4f4 dad2c5 #f4eadc
+  color: "#dad2c5", // f4f4f4 dad2c5 #f4eadc
   roughness: 0.5, // Adjust roughness
   metalness: 0, // Adjust metalness
 });
@@ -477,6 +479,10 @@ panteon.add(techoCol);
 techoCol.castShadow = true;
 techoCol.receiveShadow = true;
 
+//Grupo panteon
+const cupulas = new THREE.Group();
+panteon.add(cupulas); 
+//------------COMIENZO CUPULAS-----------------------------------
 //------------CUPULA 1 (CUPULA MAS GRANDE)-----------------------
 //Material de cupula
 const cupulaMaterial = new THREE.MeshStandardMaterial({
@@ -486,9 +492,6 @@ const cupulaMaterial = new THREE.MeshStandardMaterial({
   normalMap: cupulaNormalDXTexture, // Textura normal
   roughnessMap: cupulaRoughnessTexture, // Textura de rugosidad
   aoMap: cupulaAmbientOclussionTexture, // Textura de oclusión ambiental
-
-  // metalness: 0, // Controla el nivel de metalness (ajusta según sea necesario)
-  // roughness: 0.6, // Controla la rugosidad (ajusta según sea necesario)
   displacementScale: 0.1, // Escala del desplazamiento (ajústalo según sea necesario)
 
   // Ajustes adicionales para mejorar el realismo
@@ -536,7 +539,7 @@ cupula.position.set(0, 2.5, 0);
 cupula.scale.set(0.053, 0.063, 0.053);
 //cupula.rotation.x = -Math.PI/2;
 
-panteon.add(cupula);
+cupulas.add(cupula);
 
 cupula.castShadow = true;
 cupula.receiveShadow = true;
@@ -596,7 +599,7 @@ const banda1 = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda1.position.set(0, 2.51, 0);
 banda1.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda1);
+cupulas.add(banda1);
 banda1.rotation.y = Math.PI * 0.06;
 
 
@@ -604,42 +607,42 @@ const banda1A = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda1A.position.set(0, 2.51, 0);
 banda1A.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda1A);
+cupulas.add(banda1A);
 banda1A.rotation.y = Math.PI * 0.13;
 
 const banda2 = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda2.position.set(0, 2.51, 0);
 banda2.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda2);
+cupulas.add(banda2);
 banda2.rotation.y = Math.PI * 0.28;
 
 const banda2A = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda2A.position.set(0, 2.51, 0);
 banda2A.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda2A);
+cupulas.add(banda2A);
 banda2A.rotation.y = Math.PI * 0.35;
 
 const banda3 = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda3.position.set(0, 2.51, 0);
 banda3.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda3);
+cupulas.add(banda3);
 banda3.rotation.y = Math.PI * 0.51;
 
 const banda3A = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda3A.position.set(0, 2.51, 0);
 banda3A.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda3A);
+cupulas.add(banda3A);
 banda3A.rotation.y = Math.PI * 0.60;
 
 const banda4 = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda4.position.set(0, 2.51, 0);
 banda4.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda4);
+cupulas.add(banda4);
 banda4.rotation.y = Math.PI * 0.78
 
 
@@ -647,42 +650,42 @@ const banda4A = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda4A.position.set(0, 2.51, 0);
 banda4A.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda4A);
+cupulas.add(banda4A);
 banda4A.rotation.y = Math.PI * 0.86
 
 const banda5 = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda5.position.set(0, 2.51, 0);
 banda5.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda5);
-banda5.rotation.y = Math.PI * 1.04 
+cupulas.add(banda5);
+banda5.rotation.y = Math.PI * 1.06; 
 
 const banda5A = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda5A.position.set(0, 2.51, 0);
 banda5A.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda5A);
+cupulas.add(banda5A);
 banda5A.rotation.y = Math.PI * 1.12;
 
 const banda6 = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda6.position.set(0, 2.51, 0);
 banda6.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda6);
+cupulas.add(banda6);
 banda6.rotation.y = Math.PI * 1.30;
 
 const banda6A = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda6A.position.set(0, 2.51, 0);
 banda6A.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda6A);
+cupulas.add(banda6A);
 banda6A.rotation.y = Math.PI * 1.38;
 
 const banda7 = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda7.position.set(0, 2.51, 0);
 banda7.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda7);
+cupulas.add(banda7);
 banda7.rotation.y = Math.PI * 1.56;
 
 
@@ -690,21 +693,21 @@ const banda7A = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda7A.position.set(0, 2.51, 0);
 banda7A.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda7A);
+cupulas.add(banda7A);
 banda7A.rotation.y = Math.PI * 1.64;
 
 const banda8 = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda8.position.set(0, 2.51, 0);
 banda8.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda8);
+cupulas.add(banda8);
 banda8.rotation.y = Math.PI * 1.82;
 
 const banda8A = new THREE.Mesh(bandaGeometry, materialBanda);
 // Posición, escala y rotación
 banda8A.position.set(0, 2.51, 0);
 banda8A.scale.set(0.053, 0.063, 0.053);
-panteon.add(banda8A);
+cupulas.add(banda8A);
 banda8A.rotation.y = Math.PI * 1.9;
 
 //Material tubos
@@ -734,23 +737,23 @@ const tubo1 = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo1.position.set(0, 2.51, 0)
 tubo1.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo1);
-tubo1.rotation.y = Math.PI * 0.04;
+cupulas.add(tubo1);
+tubo1.rotation.y = Math.PI * 0.06;
 
 // Crear la malla
 const tubo1a = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo1a.position.set(0, 2.51, 0)
 tubo1a.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo1a);
-tubo1a.rotation.y = Math.PI * 0.08;
+cupulas.add(tubo1a);
+tubo1a.rotation.y = Math.PI * 0.1;
 
 // Crear la malla
 const tubo1b = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo1b.position.set(0, 2.51, 0)
 tubo1b.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo1b);
+cupulas.add(tubo1b);
 tubo1b.rotation.y = Math.PI * 0.12;
 
 
@@ -759,7 +762,7 @@ const tubo1c = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo1c.position.set(0, 2.51, 0)
 tubo1c.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo1c);
+cupulas.add(tubo1c);
 tubo1c.rotation.y = Math.PI * 0.16;
 
 // Crear la malla
@@ -767,7 +770,7 @@ const tubo2 = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo2.position.set(0, 2.51, 0)
 tubo2.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo2);
+cupulas.add(tubo2);
 tubo2.rotation.y = Math.PI * 0.30;
 
 // Crear la malla
@@ -775,7 +778,7 @@ const tubo2a = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo2a.position.set(0, 2.51, 0)
 tubo2a.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo2a);
+cupulas.add(tubo2a);
 tubo2a.rotation.y = Math.PI * 0.34;
 
 // Crear la malla
@@ -783,7 +786,7 @@ const tubo2b = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo2b.position.set(0, 2.51, 0)
 tubo2b.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo2b);
+cupulas.add(tubo2b);
 tubo2b.rotation.y = Math.PI * 0.38;
 
 // Crear la malla
@@ -791,7 +794,7 @@ const tubo2c = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo2c.position.set(0, 2.51, 0)
 tubo2c.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo2c);
+cupulas.add(tubo2c);
 tubo2c.rotation.y = Math.PI * 0.42;
 
 // Crear la malla
@@ -799,7 +802,7 @@ const tubo3 = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo3.position.set(0, 2.51, 0)
 tubo3.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo3);
+cupulas.add(tubo3);
 tubo3.rotation.y = Math.PI * 0.56;
 
 // Crear la malla
@@ -807,7 +810,7 @@ const tubo3a = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo3a.position.set(0, 2.51, 0)
 tubo3a.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo3a);
+cupulas.add(tubo3a);
 tubo3a.rotation.y = Math.PI * 0.60;
 
 // Crear la malla
@@ -815,7 +818,7 @@ const tubo3b = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo3b.position.set(0, 2.51, 0)
 tubo3b.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo3b);
+cupulas.add(tubo3b);
 tubo3b.rotation.y = Math.PI * 0.64;
 
 // Crear la malla
@@ -823,7 +826,7 @@ const tubo3c = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo3c.position.set(0, 2.51, 0)
 tubo3c.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo3c);
+cupulas.add(tubo3c);
 tubo3c.rotation.y = Math.PI * 0.68;
 
 // Crear la malla
@@ -831,7 +834,7 @@ const tubo4 = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo4.position.set(0, 2.51, 0)
 tubo4.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo4);
+cupulas.add(tubo4);
 tubo4.rotation.y = Math.PI * 0.82;
 
 // Crear la malla
@@ -839,7 +842,7 @@ const tubo4a = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo4a.position.set(0, 2.51, 0)
 tubo4a.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo4a);
+cupulas.add(tubo4a);
 tubo4a.rotation.y = Math.PI * 0.86;
 
 // Crear la malla
@@ -847,7 +850,7 @@ const tubo4b = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo4b.position.set(0, 2.51, 0)
 tubo4b.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo4b);
+cupulas.add(tubo4b);
 tubo4b.rotation.y = Math.PI * 0.90;
 
 // Crear la malla
@@ -855,7 +858,7 @@ const tubo4c = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo4c.position.set(0, 2.51, 0)
 tubo4c.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo4c);
+cupulas.add(tubo4c);
 tubo4c.rotation.y = Math.PI * 0.94;
 
 // Crear la malla
@@ -863,7 +866,7 @@ const tubo5 = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo5.position.set(0, 2.51, 0)
 tubo5.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo5);
+cupulas.add(tubo5);
 tubo5.rotation.y = Math.PI * 1.06;
 
 // Crear la malla
@@ -871,7 +874,7 @@ const tubo5a = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo5a.position.set(0, 2.51, 0)
 tubo5a.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo5a);
+cupulas.add(tubo5a);
 tubo5a.rotation.y = Math.PI * 1.10;
 
 // Crear la malla
@@ -879,7 +882,7 @@ const tubo5b = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo5b.position.set(0, 2.51, 0)
 tubo5b.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo5b);
+cupulas.add(tubo5b);
 tubo5b.rotation.y = Math.PI * 1.13;
 
 // Crear la malla
@@ -887,7 +890,7 @@ const tubo5c = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo5c.position.set(0, 2.51, 0)
 tubo5c.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo5c);
+cupulas.add(tubo5c);
 tubo5c.rotation.y = Math.PI * 1.17;
 
 // Crear la malla
@@ -895,7 +898,7 @@ const tubo6 = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo6.position.set(0, 2.51, 0)
 tubo6.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo6);
+cupulas.add(tubo6);
 tubo6.rotation.y = Math.PI * 1.28;
 
 // Crear la malla
@@ -903,7 +906,7 @@ const tubo6a = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo6a.position.set(0, 2.51, 0)
 tubo6a.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo6a);
+cupulas.add(tubo6a);
 tubo6a.rotation.y = Math.PI * 1.32;
 
 // Crear la malla
@@ -911,7 +914,7 @@ const tubo6b = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo6b.position.set(0, 2.51, 0)
 tubo6b.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo6b);
+cupulas.add(tubo6b);
 tubo6b.rotation.y = Math.PI * 1.35;
 
 // Crear la malla
@@ -919,7 +922,7 @@ const tubo6c = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo6c.position.set(0, 2.51, 0)
 tubo6c.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo6c);
+cupulas.add(tubo6c);
 tubo6c.rotation.y = Math.PI * 1.39;
 
 // Crear la malla
@@ -927,7 +930,7 @@ const tubo7 = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo7.position.set(0, 2.51, 0)
 tubo7.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo7);
+cupulas.add(tubo7);
 tubo7.rotation.y = Math.PI * 1.51;
 
 // Crear la malla
@@ -935,7 +938,7 @@ const tubo7a = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo7a.position.set(0, 2.51, 0)
 tubo7a.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo7a);
+cupulas.add(tubo7a);
 tubo7a.rotation.y = Math.PI * 1.55;
 
 // Crear la malla
@@ -943,7 +946,7 @@ const tubo7b = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo7b.position.set(0, 2.51, 0)
 tubo7b.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo7b);
+cupulas.add(tubo7b);
 tubo7b.rotation.y = Math.PI * 1.60;
 
 // Crear la malla
@@ -951,7 +954,7 @@ const tubo7c = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo7c.position.set(0, 2.51, 0)
 tubo7c.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo7c);
+cupulas.add(tubo7c);
 tubo7c.rotation.y = Math.PI * 1.64;
 
 // Crear la malla
@@ -959,7 +962,7 @@ const tubo8 = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo8.position.set(0, 2.51, 0)
 tubo8.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo8);
+cupulas.add(tubo8);
 tubo8.rotation.y = Math.PI * 1.78;
 
 // Crear la malla
@@ -967,7 +970,7 @@ const tubo8a = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo8a.position.set(0, 2.51, 0)
 tubo8a.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo8a);
+cupulas.add(tubo8a);
 tubo8a.rotation.y = Math.PI * 1.82;
 
 // Crear la malla
@@ -975,7 +978,7 @@ const tubo8b = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo8b.position.set(0, 2.51, 0)
 tubo8b.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo8b);
+cupulas.add(tubo8b);
 tubo8b.rotation.y = Math.PI * 1.86;
 
 // Crear la malla
@@ -983,25 +986,121 @@ const tubo8c = new THREE.Mesh(tuboGeometry, materialTubo);
 // Agregar la malla a la escena (asegúrate de tener una escena definida previamente)
 tubo8c.position.set(0, 2.51, 0)
 tubo8c.scale.set(0.053, 0.063, 0.053)
-panteon.add(tubo8c);
+cupulas.add(tubo8c);
 tubo8c.rotation.y = Math.PI * 1.90;
 
 // Cupula Medio
-const cupulaMedioGeometry = new THREE.CylinderGeometry(0.8, 0.8, 1.2, 30); // R top, R bot, H, R Seg
+const cupulaMedioGeometry = new THREE.CylinderGeometry(0.85, 0.85, 1.2, 30); // R top, R bot, H, R Seg
 const cupulaMedio = new THREE.Mesh(cupulaMedioGeometry, cajaMaterial);
 cupulaMedio.position.set(0, 1.9, 0);
-panteon.add(cupulaMedio);
+cupulas.add(cupulaMedio);
 cupulaMedio.castShadow = true;
 cupulaMedio.receiveShadow = true;
 
+//Textura banda Medio Superior
+const materialBandaMedioSup = new THREE.MeshStandardMaterial({
+  color: 0xfbd5cb,
+  map: bandaColorTexture, // Textura de color
+  //displacementMap: bandaDisplaymentTexture, // Textura de desplazamiento
+  normalMap: bandaNormalGLTexture, // Textura normal
+  roughnessMap: bandaRoughnessTexture, // Textura de rugosidad
+  aoMap: bandaAmbientOclussionTexture, // Textura de oclusión ambiental
+  //displacementScale: 0.05, // Escala del desplazamiento (ajústalo según sea necesario)
 
+  // Ajustes adicionales para mejorar el realismo
+  envMapIntensity: 1, // Intensidad del mapa de entorno (ajusta según sea necesario)
+  side: THREE.DoubleSide, // Renderiza el material en ambas caras del objeto
+
+  // Ajustes para la opacidad
+  // transparent: true, // Habilita la transparencia
+  // opacity: 1, // Ajusta la opacidad según sea necesario (valor entre 0 y 1)
+});
+
+const bandaMedioSupGeometry = new THREE.CylinderGeometry(0.82, 0.81, 0.1, 30); // R top, R bot, H, R Seg
+const bandaMedioSup = new THREE.Mesh(bandaMedioSupGeometry, materialBandaMedioSup);
+bandaMedioSup.position.set(0, 2.5, 0);
+cupulas.add(bandaMedioSup);
+bandaMedioSup.castShadow = true;
+bandaMedioSup.receiveShadow = true;
+
+const circuloMedioSupGeometry = new THREE.CylinderGeometry(0.86, 0.86, 0.05, 30); // R top, R bot, H, R Seg
+const circuloMedioSup = new THREE.Mesh(circuloMedioSupGeometry, materialBandaMedioSup);
+circuloMedioSup.position.set(0, 2.48, 0);
+cupulas.add(circuloMedioSup);
+circuloMedioSup.castShadow = true;
+circuloMedioSup.receiveShadow = true;
+
+const circuloMedioInfGeometry = new THREE.CylinderGeometry(0.95, 0.95, 0.05, 30); // R top, R bot, H, R Seg
+const circuloMedioInf = new THREE.Mesh(circuloMedioInfGeometry, materialBandaMedioSup);
+circuloMedioInf.position.set(0, 2.28, 0);
+cupulas.add(circuloMedioInf);
+circuloMedioInf.castShadow = true;
+circuloMedioInf.receiveShadow = true;
+
+//columnas superior
+const vigaSup1Geometry = new THREE.BoxGeometry(1.8, 0.2, 0.13); 
+const vigaSup1 = new THREE.Mesh(vigaSup1Geometry, cajaMaterial); 
+vigaSup1.position.set(0, 2.38, 0);
+cupulas.add(vigaSup1);
+vigaSup1.castShadow = true;
+vigaSup1.receiveShadow = true;
+vigaSup1.rotation.set(0, Math.PI * 0.08, 0)
+
+const vigaSup1A = new THREE.Mesh(vigaSup1Geometry, cajaMaterial); 
+vigaSup1A.position.set(0, 2.38, 0);
+cupulas.add(vigaSup1A);
+vigaSup1A.castShadow = true;
+vigaSup1A.receiveShadow = true;
+vigaSup1A.rotation.set(0, Math.PI * 0.15, 0)
+
+const vigaSup2 = new THREE.Mesh(vigaSup1Geometry, cajaMaterial); 
+vigaSup2.position.set(0, 2.38, 0);
+cupulas.add(vigaSup2);
+vigaSup2.castShadow = true;
+vigaSup2.receiveShadow = true;
+vigaSup2.rotation.set(0, Math.PI * 0.3, 0)
+
+const vigaSup2A = new THREE.Mesh(vigaSup1Geometry, cajaMaterial); 
+vigaSup2A.position.set(0, 2.38, 0);
+cupulas.add(vigaSup2A);
+vigaSup2A.castShadow = true;
+vigaSup2A.receiveShadow = true;
+vigaSup2A.rotation.set(0, Math.PI * 0.37, 0)
+
+const vigaSup3 = new THREE.Mesh(vigaSup1Geometry, cajaMaterial); 
+vigaSup3.position.set(0, 2.38, 0);
+cupulas.add(vigaSup3);
+vigaSup3.castShadow = true;
+vigaSup3.receiveShadow = true;
+vigaSup3.rotation.set(0, Math.PI * 0.53, 0)
+
+const vigaSup3A = new THREE.Mesh(vigaSup1Geometry, cajaMaterial); 
+vigaSup3A.position.set(0, 2.38, 0);
+cupulas.add(vigaSup3A);
+vigaSup3A.castShadow = true;
+vigaSup3A.receiveShadow = true;
+vigaSup3A.rotation.set(0, Math.PI * 0.62, 0)
+
+const vigaSup4 = new THREE.Mesh(vigaSup1Geometry, cajaMaterial); 
+vigaSup4.position.set(0, 2.38, 0);
+cupulas.add(vigaSup4);
+vigaSup4.castShadow = true;
+vigaSup4.receiveShadow = true;
+vigaSup4.rotation.set(0, Math.PI * 0.8, 0)
+
+const vigaSup4A = new THREE.Mesh(vigaSup1Geometry, cajaMaterial); 
+vigaSup4A.position.set(0, 2.38, 0);
+cupulas.add(vigaSup4A);
+vigaSup4A.castShadow = true;
+vigaSup4A.receiveShadow = true;
+vigaSup4A.rotation.set(0, Math.PI * 0.88, 0)
 
 //------------------------------CUPULA 2 PEQUEÑA---------------- 
 //Cupula Medio pequeña de arriba donde esta la cruz
 const cupulaMedioSmallGeometry = new THREE.CylinderGeometry(0.19, 0.19, 0.8, 30); // R top, R bot, H, R Seg
 const cupulaMedioSmall = new THREE.Mesh(cupulaMedioSmallGeometry, cajaMaterial);
 cupulaMedioSmall.position.set(0, 3.5, 0);
-panteon.add(cupulaMedioSmall);
+cupulas.add(cupulaMedioSmall);
 cupulaMedioSmall.castShadow = true;
 cupulaMedioSmall.receiveShadow = true;
 
@@ -1015,10 +1114,14 @@ cupulaSmall.position.set(0, 3.9, 0);
 cupulaSmall.scale.set(0.053, 0.063, 0.053);
 //cupula.rotation.x = -Math.PI/2;
 
-panteon.add(cupulaSmall);
+cupulas.add(cupulaSmall);
 
 cupulaSmall.castShadow = true;
 cupulaSmall.receiveShadow = true;
+
+cupulas.position.set(0, 0.17, 0); // Mover el grupo
+
+//-------------------------TERMINO DE CUPULAS-----------------------------------------
 
 // Cupula Base
 const cupulaBaseGeometry = new THREE.BoxGeometry(1.3,0.8,1.8) // Width, Height, Depth
@@ -1267,7 +1370,7 @@ const lightProperties = {
   position: { x: 2.2, y: 33.6, z: 11.2},
   target: {x: -2, y: -7, z: -2},
   angle: 1,
-  penumbra: 0
+  penumbra: 0.5
 };
 
 // Light
@@ -1275,8 +1378,16 @@ const light = new THREE.DirectionalLight(lightProperties.color, lightProperties.
 light.position.set(lightProperties.x, lightProperties.y, lightProperties.z);
 scene.add(light);
 light.castShadow = true;
-light.shadow.mapSize.width = 1024; // Resolución de sombra (ajusta según sea necesario)
-light.shadow.mapSize.height = 1024;
+light.shadow.camera.width = 100;
+light.shadow.camera.height = 100;
+light.shadow.mapSize.width = 2048; // Resolución de sombra (ajusta según sea necesario)
+light.shadow.mapSize.height = 2048;
+light.shadow.filter = THREE.PCFSoftShadowMap;  // Filtrado suave para las sombras
+//light.shadow.bias = 0.001;  // Ajusta según sea necesario
+
+//camara para shadows
+const dLightShadowHelper = new THREE.CameraHelper(light.shadow.camera);
+scene.add(dLightShadowHelper);
 
 //Ligth Helper
 const lightHelper = new THREE.DirectionalLightHelper(light, 1);
@@ -1301,6 +1412,7 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.antialias = true;
 
 // OrbitControls
 const controls = new OrbitControls(camera, renderer.domElement);
