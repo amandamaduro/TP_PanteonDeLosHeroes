@@ -308,6 +308,110 @@ panteon.add(techoCol);
 techoCol.castShadow = true;
 techoCol.receiveShadow = true;
 
+const techoColGeometry7 = new THREE.BoxGeometry(2.25, 0.02, 4)
+const techoCol2 = new THREE.Mesh(techoColGeometry7, cajaMaterial)
+techoCol2.position.set(0,0.83,1.5);
+panteon.add(techoCol2);
+techoCol2.castShadow = true;
+techoCol2.receiveShadow = true;
+
+const techoColGeometry8 = new THREE.BoxGeometry(2.25, 0.025, 4)
+const techoCol3 = new THREE.Mesh(techoColGeometry8, cajaMaterial)
+techoCol3.position.set(0,0.95,1.58);
+panteon.add(techoCol3);
+techoCol3.castShadow = true;
+techoCol3.receiveShadow = true;
+
+const techoColGeometry9 = new THREE.BoxGeometry(1.2, 0.025, 0.3)
+const techoCol4 = new THREE.Mesh(techoColGeometry9, cajaMaterial)
+techoCol4.position.set(-0.538,1.21,3.45);
+// Convertir grados a radianes
+const angleInRadians = (25 * Math.PI) / 180;
+// Aplicar rotación en el eje z
+techoCol4.rotation.set(0, 0, angleInRadians);
+panteon.add(techoCol4);
+techoCol4.castShadow = true;
+techoCol4.receiveShadow = true;
+
+const techoCol5 = new THREE.Mesh(techoColGeometry9, cajaMaterial)
+techoCol5.position.set(0.538,1.21,3.45);
+// Convertir grados a radianes
+const angleInRadians2 = (-25 * Math.PI) / 180;
+// Aplicar rotación en el eje z
+techoCol5.rotation.set(0, 0, angleInRadians2);
+panteon.add(techoCol5);
+techoCol5.castShadow = true;
+techoCol5.receiveShadow = true;
+
+const techoColGeometry10= new THREE.BoxGeometry(0.5, 0.25, 0.3)
+const techoCol6 = new THREE.Mesh(techoColGeometry10, cajaMaterial)
+techoCol6.position.set(-0.75,1.1,3.2);
+panteon.add(techoCol6);
+techoCol6.castShadow = true;
+techoCol6.receiveShadow = true;
+
+const techoColGeometry12 = new THREE.BoxGeometry(1.2, 0.05, 0.3)
+const techoCol7 = new THREE.Mesh(techoColGeometry12, cajaMaterial)
+techoCol7.position.set(-0.535,1.235,3.2);
+// Aplicar rotación en el eje z
+techoCol7.rotation.set(0, 0, angleInRadians);
+panteon.add(techoCol7);
+techoCol7.castShadow = true;
+techoCol7.receiveShadow = true;
+
+const techoCol8 = new THREE.Mesh(techoColGeometry12, cajaMaterial)
+techoCol8.position.set(0.535,1.235,3.2);
+techoCol8.rotation.set(0, 0, angleInRadians2);
+panteon.add(techoCol8);
+techoCol8.castShadow = true;
+techoCol8.receiveShadow = true;
+
+const techoColGeometry13= new THREE.BoxGeometry(0.2, 0.25, 0.75)
+const techoCol9 = new THREE.Mesh(techoColGeometry13, cajaMaterial)
+techoCol9.position.set(-0.9,1.1,2.85);
+panteon.add(techoCol9);
+techoCol9.castShadow = true;
+techoCol9.receiveShadow = true;
+
+const techoCol10 = new THREE.Mesh(techoColGeometry10, cajaMaterial)
+techoCol10.position.set(0.75,1.1,3.2);
+panteon.add(techoCol10);
+techoCol10.castShadow = true;
+techoCol10.receiveShadow = true;
+
+const techoCol11 = new THREE.Mesh(techoColGeometry13, cajaMaterial)
+techoCol11.position.set(0.9,1.1,2.85);
+panteon.add(techoCol11);
+techoCol11.castShadow = true;
+techoCol11.receiveShadow = true;
+
+
+const techoColGeometry14= new THREE.BoxGeometry(0.2, 0.25, 1.2)
+const techoCol12 = new THREE.Mesh(techoColGeometry14, cajaMaterial)
+techoCol12.position.set(0.9,1.1,1.9);
+panteon.add(techoCol12);
+techoCol12.castShadow = true;
+techoCol12.receiveShadow = true;
+
+const techoCol13 = new THREE.Mesh(techoColGeometry14, cajaMaterial)
+techoCol13.position.set(-0.9,1.1,1.9);
+panteon.add(techoCol13);
+techoCol13.castShadow = true;
+techoCol13.receiveShadow = true;
+
+const techoColGeometry15= new THREE.BoxGeometry(0.7, 0.25, 0.2)
+const techoCol14 = new THREE.Mesh(techoColGeometry15, cajaMaterial)
+techoCol14.position.set(-1.15,1.1,1.3);
+panteon.add(techoCol14);
+techoCol14.castShadow = true;
+techoCol14.receiveShadow = true;
+
+const techoCol15 = new THREE.Mesh(techoColGeometry15, cajaMaterial)
+techoCol15.position.set(1.15,1.1,1.3);
+panteon.add(techoCol15);
+techoCol15.castShadow = true;
+techoCol15.receiveShadow = true;
+
 //Grupo cupulas
 const cupulas = new THREE.Group();
 panteon.add(cupulas); 
