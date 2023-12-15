@@ -629,9 +629,9 @@ for (let i = 1; i <= numTubos; i++) {
 
 //----------------------CUPULA MEDIO------------------------------
 // Cupula Medio
-const cupulaMedioGeometry = new THREE.CylinderGeometry(0.85, 0.85, 1.2, 30); // R top, R bot, H, R Seg
+const cupulaMedioGeometry = new THREE.CylinderGeometry(0.85, 0.85, 1.3, 30); // R top, R bot, H, R Seg
 const cupulaMedio = new THREE.Mesh(cupulaMedioGeometry, cajaMaterial);
-cupulaMedio.position.set(0, 1.9, 0);
+cupulaMedio.position.set(0, 1.8, 0);
 cupulas.add(cupulaMedio);
 cupulaMedio.castShadow = true;
 cupulaMedio.receiveShadow = true;
@@ -655,6 +655,7 @@ const materialBandaMedioSup = new THREE.MeshStandardMaterial({
   // opacity: 1, // Ajusta la opacidad según sea necesario (valor entre 0 y 1)
 });
 
+//--------------------Detalles cupula medio superior-------------------------------------
 const bandaMedioSupGeometry = new THREE.CylinderGeometry(0.82, 0.81, 0.1, 30); // R top, R bot, H, R Seg
 const bandaMedioSup = new THREE.Mesh(bandaMedioSupGeometry, materialBandaMedioSup);
 bandaMedioSup.position.set(0, 2.5, 0);
@@ -800,6 +801,70 @@ for (let i = 0; i < 8; i++) {
   sobresaltadoViga.receiveShadow = true;
   sobresaltadoViga.rotation.set(0, (i-1) * angulo + 0.475 , 0);
 }
+//-------------------fin detalles cupula medio superior-------------------------
+
+//-------------------detalles cupula medio inferior-----------------------------
+//base superior de las columnas
+const baseInfColGeometry = new THREE.BoxGeometry(1.78, 0.2, 0.35); 
+for (let i = 0; i < 8; i++) {
+  const baseInfCol = new THREE.Mesh(baseInfColGeometry, cajaMaterial);
+  baseInfCol.position.set(0, 2.16, 0);
+  cupulas.add(baseInfCol);
+  baseInfCol.castShadow = true;
+  baseInfCol.receiveShadow = true;
+  baseInfCol.rotation.set(0, (i-1) * angulo + 0.735, 0);
+}
+
+const radioOrbita = 0.85;
+const cantidadCilindros = 8;
+
+//columnas inferior cupula medio 
+const colInfCupulaMedioGeometry = new THREE.CylinderGeometry(0.055, 0.075, 1, 30); // R top, R bot, H, R Seg
+
+for (let i = 0; i < cantidadCilindros; i++) {
+  const angulo = (Math.PI / 4) * i + 0.7;
+
+  const colInfCupulaMedio = new THREE.Mesh(colInfCupulaMedioGeometry, cajaMaterial);
+  const posX = radioOrbita * Math.cos(angulo);
+  const posY = 1.56;
+  const posZ = radioOrbita * Math.sin(angulo);
+
+  colInfCupulaMedio.position.set(posX, posY, posZ);
+  cupulas.add(colInfCupulaMedio);
+  colInfCupulaMedio.castShadow = true;
+  colInfCupulaMedio.receiveShadow = true;
+}
+
+for (let i = 0; i < cantidadCilindros; i++) {
+  const angulo = (Math.PI / 4) * i + 0.19;
+
+  const colInfCupulaMedioA = new THREE.Mesh(colInfCupulaMedioGeometry, cajaMaterial);
+  const posX = radioOrbita * Math.cos(angulo);
+  const posY = 1.56;
+  const posZ = radioOrbita * Math.sin(angulo);
+
+  colInfCupulaMedioA.position.set(posX, posY, posZ);
+  cupulas.add(colInfCupulaMedioA);
+  colInfCupulaMedioA.castShadow = true;
+  colInfCupulaMedioA.receiveShadow = true;
+}
+
+const detColInfCupulaMedioInfGeometry = new THREE.CylinderGeometry(0.87, 0.87, 0.03, 30); // R top, R bot, H, R Seg
+const detColInfCupulaMedioInfCirculo = new THREE.Mesh(detColInfCupulaMedioInfGeometry, detVigaMaterial);
+detColInfCupulaMedioInfCirculo.position.set(0, 2.22, 0);
+cupulas.add(detColInfCupulaMedioInfCirculo);
+detColInfCupulaMedioInfCirculo.castShadow = true;
+detColInfCupulaMedioInfCirculo.receiveShadow = true;
+
+const sobresaltadoColInfGeometry = new THREE.CylinderGeometry(0.95, 0.95 , 0.03, 30, 1,false , 0, Math.PI / 7); 
+for (let i = 0; i < 8; i++) {
+  const sobresaltadoColInf = new THREE.Mesh(sobresaltadoColInfGeometry, detVigaMaterial);
+  sobresaltadoColInf.position.set(0, 2.22, 0);
+  cupulas.add(sobresaltadoColInf);
+  sobresaltadoColInf.castShadow = true;
+  sobresaltadoColInf.receiveShadow = true;
+  sobresaltadoColInf.rotation.set(0, (i-1) * angulo + 0.55 , 0);
+}
 
 //------------------------------CUPULA 2 PEQUEÑA---------------- 
 //Cupula Medio pequeña de arriba donde esta la cruz
@@ -824,8 +889,6 @@ cupulas.add(cupulaSmall);
 
 cupulaSmall.castShadow = true;
 cupulaSmall.receiveShadow = true;
-
-cupulas.position.set(0, 0.17, 0); // Mover el grupo
 
 //-------------------------TERMINO DE CUPULAS-----------------------------------------
 
@@ -1525,8 +1588,11 @@ crearEscaleraTecho(baseCupula, 13, -0.25, 1.15, 1.3);
 
 
 //Mover cupulas y base de cupula hacia la derecha 
-cupulas.position.z = 0.5;
-baseCupula.position.z = 0.5;
+cupulas.position.set(0, 0.3, 0.4); // Mover el grupo
+baseCupula.position.set(0, -0.1, 0.4);
+
+baseCupula.scale.set(1.1, 1, 1.1);
+cupulas.scale.set(0.9, 0.9, 0.9);
 ////////////////////////////////////////////////////
 
 
