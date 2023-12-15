@@ -8,6 +8,9 @@ import * as dat from 'dat.gui';
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
+//Para figuras
+import { crearVentana } from './figuras.js';
+
 // Create a scene
 const scene = new THREE.Scene();
 const clock = new THREE.Clock();
@@ -1030,6 +1033,23 @@ panteon.receiveShadow = true; // El grupo recibe sombras (ajusta según sea nece
   );
 
 /////////////////////////////////////////////////////////////////////
+
+/// Ventanales laterales PRUEBA
+
+const ventanal = crearVentana();
+ventanal.position.set(-1.7, 0, -1)
+ventanal.rotation.y = Math.PI / 2;  // Rotar 45 grados
+panteon.add(ventanal);
+
+// const ventanal2 = crearVentana();
+// ventanal2.position.set(-1.7, 0.5, 0)
+// ventanal2.rotation.y = Math.PI / 2;  // Rotar 45 grados
+// panteon.add(ventanal2);
+
+
+///
+
+
 
 //prueba de grupo
 // Mover, rotar y escalar el grupo
