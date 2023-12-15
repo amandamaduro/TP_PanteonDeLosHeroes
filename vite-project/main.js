@@ -87,6 +87,12 @@ const baldosaMaterial = new THREE.MeshStandardMaterial({
   roughness: 0.9, // Adjust roughness
   metalness: 0.1, // Adjust metalness
 });
+const baldosaMaterial2 = new THREE.MeshStandardMaterial({
+  map: baldosaTexture,
+  color: "#91794c",
+  roughness: 0.9, // Adjust roughness
+  metalness: 0.1, // Adjust metalness
+});
 const baldosa = new THREE.Mesh(baldosaGeometry, baldosaMaterial);
 baldosa.position.set(0, -1.02, 1.25);
 scene.add(baldosa);
@@ -961,15 +967,15 @@ cupulaBase2.castShadow = true;
 cupulaBase2.receiveShadow = true;
 
 const cupulaBaseGeometry3 = new THREE.BoxGeometry(1.3,0.05,1.8) // Width, Height, Depth
-const cupulaBase3 = new THREE.Mesh(cupulaBaseGeometry3, baldosaMaterial)
-cupulaBase3.position.set(0,1.45,0);
+const cupulaBase3 = new THREE.Mesh(cupulaBaseGeometry3, baldosaMaterial2)
+cupulaBase3.position.set(0,1.43,0);
 panteon.add(cupulaBase3);
 cupulaBase3.castShadow = true;
 cupulaBase3.receiveShadow = true;
 
 const cupulaBaseGeometry4 = new THREE.BoxGeometry(1.8,0.05,1.3) // Width, Height, Depth
-const cupulaBase4 = new THREE.Mesh(cupulaBaseGeometry4, baldosaMaterial)
-cupulaBase4.position.set(0,1.45,0);
+const cupulaBase4 = new THREE.Mesh(cupulaBaseGeometry4, baldosaMaterial2)
+cupulaBase4.position.set(0,1.43,0);
 panteon.add(cupulaBase4);
 cupulaBase4.castShadow = true;
 cupulaBase4.receiveShadow = true;
@@ -1267,7 +1273,8 @@ panteon.add(bordePastoLat7)
 const bordePastoLat8 = new THREE.Mesh(bordePastoLGeometria2, bordeMaterial);
 bordePastoLat8.position.set(-2.3,-0.95,-0.5)
 panteon.add(bordePastoLat8)
-// REJAS
+
+/////////////////////// REJAS /////////////////////// 
 const rejaGgeometry = new THREE.BoxGeometry(0.025, 0.29, 0.025);
 const rejaMaterial = new THREE.MeshStandardMaterial({ 
   color: '#424242', 
@@ -1410,7 +1417,66 @@ const barra2Infbb = new THREE.Mesh(barra2Geometry, rejaMaterial);
 barra2Infbb.position.set(1.95, -0.95, -2.02);
 barra2Infbb.rotation.y = Math.PI / 2;
 panteon.add(barra2Infbb);
-
+// rejas techo
+const rejaFgeometry2 = new THREE.BoxGeometry(0.008, 0.2, 0.008);
+function crearRejaFina2(panteon, posX, posY, posZ) {
+  const rejaFina = new THREE.Mesh(rejaFgeometry2, rejaMaterial);
+  rejaFina.position.set(posX, posY, posZ);
+  panteon.add(rejaFina);
+}
+// Función para crear rejas finas en un rango
+function crearRejasFinasRango2(panteon, startPosX, endPosX, posY, posZ, step) {
+  for (let posX = startPosX; posX <= endPosX; posX += step) {
+    crearRejaFina2(panteon, posX, posY, posZ);
+  }
+}
+function crearRejasFinasRangoLat2(panteon, posX, posY, startPosZ, endPosZ, step) {
+  for (let posZ = startPosZ; posZ <= endPosZ; posZ += step) {
+    crearRejaFina2(panteon, posX, posY, posZ);
+  }
+}
+crearRejasFinasRango2(panteon, -0.64, -0.10, 1.55, 0.88, 0.02); // delantera izq
+crearRejasFinasRango2(panteon, 0.10, 0.64, 1.55, 0.88, 0.02); // delantera der
+crearRejasFinasRango2(panteon, -0.64, 0.64, 1.55, -0.88, 0.02); // trasera
+crearRejasFinasRango2(panteon, -0.88, -0.64, 1.55, 0.60, 0.02); // del izq izq
+crearRejasFinasRango2(panteon, 0.64, 0.88, 1.55, 0.60, 0.02); // del dere derecha
+crearRejasFinasRango2(panteon, -0.88, -0.64, 1.55, -0.60, 0.02); // tras der derecha
+crearRejasFinasRango2(panteon, 0.64, 0.88, 1.55, -0.60, 0.02); // tras izq izquierda
+crearRejasFinasRangoLat2(panteon, -0.64, 1.55, -0.88, -0.60, 0.02); //  tras lat izq
+crearRejasFinasRangoLat2(panteon, -0.64, 1.55, 0.60, 0.88, 0.02); // del lat izq
+crearRejasFinasRangoLat2(panteon, 0.64, 1.55, -0.88, -0.60, 0.02); // tras lat der
+crearRejasFinasRangoLat2(panteon, 0.64, 1.55, 0.60, 0.88, 0.02); // del lat der
+crearRejasFinasRangoLat2(panteon, -0.88, 1.55, -0.60, 0.60, 0.02); // lateral izq
+crearRejasFinasRangoLat2(panteon, 0.88, 1.55, -0.60, 0.60, 0.02); // lateral der
+// barra reja techo
+const barraTGeometry = new THREE.BoxGeometry(0.008, 0.008, 0.52);
+// barra sup izq delantera
+const barraTecho = new THREE.Mesh(barraTGeometry, rejaMaterial);
+barraTecho.position.set(-0.38, 1.646, 0.88);
+barraTecho.rotation.y = Math.PI / 2;
+panteon.add(barraTecho);
+// barra medio izq del
+const barraTechoa = new THREE.Mesh(barraTGeometry, rejaMaterial);
+barraTechoa.position.set(-0.38, 1.62, 0.88);
+barraTechoa.rotation.y = Math.PI / 2;
+panteon.add(barraTechoa);
+// barra sup der del
+const barraTecho2 = new THREE.Mesh(barraTGeometry, rejaMaterial);
+barraTecho2.position.set(0.38, 1.646, 0.88);
+barraTecho2.rotation.y = Math.PI / 2;
+panteon.add(barraTecho2);
+// barra medio der del
+const barraTecho2a = new THREE.Mesh(barraTGeometry, rejaMaterial);
+barraTecho2a.position.set(0.38, 1.62, 0.88);
+barraTecho2a.rotation.y = Math.PI / 2;
+panteon.add(barraTecho2a);
+// barra sup trasera
+const barraTGeometry2 = new THREE.BoxGeometry(0.008, 0.008, 1.28);
+// barra sup izq delantera
+const barraTecho3 = new THREE.Mesh(barraTGeometry2, rejaMaterial);
+barraTecho3.position.set(0, 1.646, -0.88);
+barraTecho3.rotation.y = Math.PI / 2;
+panteon.add(barraTecho3);
 ////////////////////////////////////////////////////
 
 
