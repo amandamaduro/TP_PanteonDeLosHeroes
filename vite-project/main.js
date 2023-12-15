@@ -15,33 +15,7 @@ import { crearVentana } from './figuras.js';
 const scene = new THREE.Scene();
 const clock = new THREE.Clock();
 
-// ARBOL
-const loader1 = new GLTFLoader();
-loader1.load('./arbol.glb', (gltf1) => {
-  gltf1.scene.position.set(2, -1, 2);
-  gltf1.scene.scale.set(0.6, 0.6, 0.5);
-  gltf1.scene.castShadow = true;
-  gltf1.scene.receiveShadow = true;
-  scene.add(gltf1.scene);
-  
-});
-// ARBUSTO
-const loader2 = new GLTFLoader();
-loader1.load('./arbusto.glb', (gltf2) => {
-  // Adjust the position, rotation, and scale as needed
-  gltf2.scene.position.set(1.90, -1, 2);
-  gltf2.scene.scale.set(0.1, 0.1, 0.1);
-  gltf2.scene.receiveShadow = true;
-  gltf2.scene.castShadow = true;
-  // Add the Blender model to the scene
-  scene.add(gltf2.scene);
-});
-// Color de resalte
-const colorMaterial = new THREE.MeshStandardMaterial({
-  color: "#000000", // f4f4f4 dad2c5
-  roughness: 0.5, // Adjust roughness
-  metalness: 0, // Adjust metalness
-});
+
 
 //cielo 
 const skyBoxGeo = new THREE.BoxGeometry(1000, 1000, 1000);
@@ -148,7 +122,41 @@ const bordeP4Geometry = new THREE.BoxGeometry(1, 0.15, 1.5);
 crearBordePanteon(panteon, bordeP4Geometry, cajaMaterial, new THREE.Vector3(-0.62, -0.8, 2));
 crearBordePanteon(panteon, bordeP3Geometry, cajaMaterial, new THREE.Vector3(0.66, -0.9, 2));
 crearBordePanteon(panteon, bordeP4Geometry, cajaMaterial, new THREE.Vector3(0.62, -0.8, 2));
+///////////// COLUMNAS CUADRADAS ////////////////////////
+function crearColumnaCuadrada(panteon, posX, posY, posZ) {
+  const columnaGeometry = new THREE.BoxGeometry(0.18, 1.6, 0.18);
+  const columna = new THREE.Mesh(columnaGeometry, cajaMaterial);
+  columna.position.set(posX, posY, posZ);
+  panteon.add(columna);
+  columna.castShadow = true;
+  columna.receiveShadow = true;
+}
 
+crearColumnaCuadrada(panteon, -1.03, 0.076, 2.2);
+crearColumnaCuadrada(panteon, 1.03, 0.076, 2.2);
+
+crearColumnaCuadrada(panteon, -1.03, 0.076, 1.52);
+crearColumnaCuadrada(panteon, 1.03, 0.076, 1.52);
+
+crearColumnaCuadrada(panteon, -1.13, 0.076, 1.43);
+crearColumnaCuadrada(panteon, 1.13, 0.076, 1.43);
+
+crearColumnaCuadrada(panteon, -1.52, 0.076, 1.43);
+crearColumnaCuadrada(panteon, 1.52, 0.076, 1.43);
+
+crearColumnaCuadrada(panteon, -1.52, 0.076, 0);
+crearColumnaCuadrada(panteon, 1.52, 0.076, 0);
+
+crearColumnaCuadrada(panteon, -1.52, 0.076, -1.43);
+crearColumnaCuadrada(panteon, 1.52, 0.076, -1.43);
+
+crearColumnaCuadrada(panteon, -1, 0.076, -1.43);
+crearColumnaCuadrada(panteon, 1, 0.076, -1.43);
+
+crearColumnaCuadrada(panteon, -0.5, 0.076, -1.43);
+crearColumnaCuadrada(panteon, 0.5, 0.076, -1.43);
+
+/////////////////////////////////////////////////////////
 //////////// COLUMNAS CILINDRICAS ////////////////////////////
 function crearColumna(panteon, posX, posY, posZ) {
   const columnaGeometry = new THREE.CylinderGeometry(0.06, 0.06, 1.95, 16);
@@ -238,6 +246,32 @@ crearTorusSmall(panteon, -1, -0.62, 2.8);
 
 crearTorus(panteon, 1, -0.64, 2.8);
 crearTorusSmall(panteon, 1, -0.62, 2.8);
+
+// Detalles Columna superior
+crearTorus(panteon, -1, 0.69, 3.4);
+crearTorusSmall(panteon, -1, 0.67, 3.4);
+
+crearTorus(panteon, -0.8, 0.69, 3.4);
+crearTorusSmall(panteon, -0.8, 0.67, 3.4);
+
+crearTorus(panteon, 0.8, 0.69, 3.4);
+crearTorusSmall(panteon, 0.8, 0.67, 3.4);
+
+crearTorus(panteon, 1, 0.69, 3.4);
+crearTorusSmall(panteon, 1, 0.67, 3.4);
+
+crearTorus(panteon, 0.3, 0.69, 3.4);
+crearTorusSmall(panteon, 0.3, 0.67, 3.4);
+
+crearTorus(panteon, -0.3, 0.69, 3.4);
+crearTorusSmall(panteon, -0.3, 0.67, 3.4);
+
+crearTorus(panteon, -1, 0.69, 2.8);
+crearTorusSmall(panteon, -1, 0.67, 2.8);
+
+crearTorus(panteon, 1, 0.69, 2.8);
+crearTorusSmall(panteon, 1, 0.67, 2.8);
+
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -1370,64 +1404,63 @@ crearRejasFinasRangoLat2(panteon, 0.64, 1.55, -0.88, -0.60, 0.02); // tras lat d
 crearRejasFinasRangoLat2(panteon, 0.64, 1.55, 0.60, 0.88, 0.02); // del lat der
 crearRejasFinasRangoLat2(panteon, -0.88, 1.55, -0.60, 0.60, 0.02); // lateral izq
 crearRejasFinasRangoLat2(panteon, 0.88, 1.55, -0.60, 0.60, 0.02); // lateral der
+//////// BARRAS REJA TECHO /////////////////////////
+function crearBarraTecho(geometry, material, position, rotation) {
+  const barraTecho = new THREE.Mesh(geometry, material);
+  barraTecho.position.copy(position);
+  barraTecho.rotation.y = rotation;
+  panteon.add(barraTecho);
+}
+
 // Barra reja techo
 const barraTGeometry = new THREE.BoxGeometry(0.008, 0.008, 0.52);
+const barraTGeometryb = new THREE.BoxGeometry(0.008, 0.008, 0.54);
+const barraTGeometry2 = new THREE.BoxGeometry(0.008, 0.008, 1.28);
+const barraTGeometry3 = new THREE.BoxGeometry(0.008, 0.008, 1.2);
+const barraTGeometry4 = new THREE.BoxGeometry(0.008, 0.008, 0.28);
+const barraTGeometry5 = new THREE.BoxGeometry(0.008, 0.008, 0.25);
 
 // Delantera izquierda
-const barraTecho = new THREE.Mesh(barraTGeometry, rejaMaterial);
-barraTecho.position.set(-0.38, 1.646, 0.88);
-barraTecho.rotation.y = Math.PI / 2;
-panteon.add(barraTecho);
-
-const barraTechoa = new THREE.Mesh(barraTGeometry, rejaMaterial);
-barraTechoa.position.set(-0.38, 1.62, 0.88);
-barraTechoa.rotation.y = Math.PI / 2;
-panteon.add(barraTechoa);
+crearBarraTecho(barraTGeometry, rejaMaterial, new THREE.Vector3(-0.38, 1.646, 0.88), Math.PI / 2);
+crearBarraTecho(barraTGeometry, rejaMaterial, new THREE.Vector3(-0.38, 1.62, 0.88), Math.PI / 2);
 
 // Delantera derecha
-const barraTecho2 = new THREE.Mesh(barraTGeometry, rejaMaterial);
-barraTecho2.position.set(0.38, 1.646, 0.88);
-barraTecho2.rotation.y = Math.PI / 2;
-panteon.add(barraTecho2);
-
-const barraTecho2a = new THREE.Mesh(barraTGeometry, rejaMaterial);
-barraTecho2a.position.set(0.38, 1.62, 0.88);
-barraTecho2a.rotation.y = Math.PI / 2;
-panteon.add(barraTecho2a);
+crearBarraTecho(barraTGeometryb, rejaMaterial, new THREE.Vector3(0.37, 1.646, 0.88), Math.PI / 2);
+crearBarraTecho(barraTGeometryb, rejaMaterial, new THREE.Vector3(0.37, 1.62, 0.88), Math.PI / 2);
 
 // Trasera
-const barraTGeometry2 = new THREE.BoxGeometry(0.008, 0.008, 1.28);
-
-const barraTecho3 = new THREE.Mesh(barraTGeometry2, rejaMaterial);
-barraTecho3.position.set(0, 1.646, -0.88);
-barraTecho3.rotation.y = Math.PI / 2;
-panteon.add(barraTecho3);
-
-const barraTecho4 = new THREE.Mesh(barraTGeometry2, rejaMaterial);
-barraTecho4.position.set(0, 1.62, -0.88);
-barraTecho4.rotation.y = Math.PI / 2;
-panteon.add(barraTecho4);
+crearBarraTecho(barraTGeometry2, rejaMaterial, new THREE.Vector3(0, 1.646, -0.88), Math.PI / 2);
+crearBarraTecho(barraTGeometry2, rejaMaterial, new THREE.Vector3(0, 1.62, -0.88), Math.PI / 2);
 
 // Laterales largas
-const barraTGeometry3 = new THREE.BoxGeometry(0.008, 0.008, 1.2);
+crearBarraTecho(barraTGeometry3, rejaMaterial, new THREE.Vector3(-0.88, 1.62, 0), 0);
+crearBarraTecho(barraTGeometry3, rejaMaterial, new THREE.Vector3(-0.88, 1.646, 0), 0);
+crearBarraTecho(barraTGeometry3, rejaMaterial, new THREE.Vector3(0.88, 1.62, 0), 0);
+crearBarraTecho(barraTGeometry3, rejaMaterial, new THREE.Vector3(0.88, 1.646, 0), 0);
 
-// Izquierda
-const barraTecho5 = new THREE.Mesh(barraTGeometry3, rejaMaterial);
-barraTecho5.position.set(-0.88, 1.62, 0);
-panteon.add(barraTecho5);
+// Lateral corta
+crearBarraTecho(barraTGeometry4, rejaMaterial, new THREE.Vector3(-0.64, 1.646, 0.74), 0);
+crearBarraTecho(barraTGeometry4, rejaMaterial, new THREE.Vector3(-0.64, 1.62, 0.74), 0);
+crearBarraTecho(barraTGeometry4, rejaMaterial, new THREE.Vector3(0.64, 1.646, 0.74), 0);
+crearBarraTecho(barraTGeometry4, rejaMaterial, new THREE.Vector3(0.64, 1.62, 0.74), 0);
+crearBarraTecho(barraTGeometry4, rejaMaterial, new THREE.Vector3(-0.64, 1.646, -0.74), 0);
+crearBarraTecho(barraTGeometry4, rejaMaterial, new THREE.Vector3(-0.64, 1.62, -0.74), 0);
+crearBarraTecho(barraTGeometry4, rejaMaterial, new THREE.Vector3(0.64, 1.646, -0.74), 0);
+crearBarraTecho(barraTGeometry4, rejaMaterial, new THREE.Vector3(0.64, 1.62, -0.74), 0);
 
-const barraTecho6 = new THREE.Mesh(barraTGeometry3, rejaMaterial);
-barraTecho6.position.set(-0.88, 1.646, 0);
-panteon.add(barraTecho6);
+// Izq Izq Frente
+crearBarraTecho(barraTGeometry5, rejaMaterial, new THREE.Vector3(-0.76, 1.646, 0.6), Math.PI / 2);
+crearBarraTecho(barraTGeometry5, rejaMaterial, new THREE.Vector3(-0.76, 1.62, 0.6), Math.PI / 2);
+// Der Der Frente
+crearBarraTecho(barraTGeometry5, rejaMaterial, new THREE.Vector3(0.76, 1.646, 0.6), Math.PI / 2);
+crearBarraTecho(barraTGeometry5, rejaMaterial, new THREE.Vector3(0.76, 1.62, 0.6), Math.PI / 2);
+// Izq Izq Tras
+crearBarraTecho(barraTGeometry5, rejaMaterial, new THREE.Vector3(-0.76, 1.646, -0.6), Math.PI / 2);
+crearBarraTecho(barraTGeometry5, rejaMaterial, new THREE.Vector3(-0.76, 1.62, -0.6), Math.PI / 2);
+// Der Der Tras
+crearBarraTecho(barraTGeometry5, rejaMaterial, new THREE.Vector3(0.76, 1.646, -0.6), Math.PI / 2);
+crearBarraTecho(barraTGeometry5, rejaMaterial, new THREE.Vector3(0.76, 1.62, -0.6), Math.PI / 2);
 
-// Derecha
-const barraTecho7 = new THREE.Mesh(barraTGeometry3, rejaMaterial);
-barraTecho7.position.set(0.88, 1.62, 0);
-panteon.add(barraTecho7);
-
-const barraTecho8 = new THREE.Mesh(barraTGeometry3, rejaMaterial);
-barraTecho8.position.set(0.88, 1.646, 0);
-panteon.add(barraTecho8);
 
 ////////////////////////////////////////////////////
 
