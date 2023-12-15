@@ -863,9 +863,15 @@ for (let i = 0; i < 8; i++) {
   cupulas.add(sobresaltadoColInf);
   sobresaltadoColInf.castShadow = true;
   sobresaltadoColInf.receiveShadow = true;
-  sobresaltadoColInf.rotation.set(0, (i-1) * angulo + 0.55 , 0);
+  sobresaltadoColInf.rotation.set(0, (i-1) * angulo + 0.52 , 0);
 }
 
+const detColInf2CupulaMedioInfGeometry = new THREE.CylinderGeometry(0.86, 0.86, 0.02, 30); // R top, R bot, H, R Seg
+const detColInfCupula2MedioInfCirculo = new THREE.Mesh(detColInf2CupulaMedioInfGeometry, cajaMaterial);
+detColInfCupula2MedioInfCirculo.position.set(0, 2.12, 0);
+cupulas.add(detColInfCupula2MedioInfCirculo);
+detColInfCupula2MedioInfCirculo.castShadow = true;
+detColInfCupula2MedioInfCirculo.receiveShadow = true;
 //------------------------------CUPULA 2 PEQUEÑA---------------- 
 //Cupula Medio pequeña de arriba donde esta la cruz
 const cupulaMedioSmallGeometry = new THREE.CylinderGeometry(0.19, 0.19, 0.8, 30); // R top, R bot, H, R Seg
