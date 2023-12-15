@@ -377,8 +377,13 @@ const techoColGeometry15 = new THREE.BoxGeometry(0.7, 0.25, 0.2);
 agregarTechoCol(techoColGeometry15, new THREE.Vector3(-1.15, 1.1, 1.3), 0);
 agregarTechoCol(techoColGeometry15, new THREE.Vector3(1.15, 1.1, 1.3), 0);
 
-const techoColGeometry16 = new THREE.BoxGeometry(0.2, 0.25, 1.55);
-agregarTechoCol(techoColGeometry16, new THREE.Vector3(-1.4, 1.1, -0.65), 0);
+const techoColGeometry16 = new THREE.BoxGeometry(0.2, 0.25, 1.25);
+agregarTechoCol(techoColGeometry16, new THREE.Vector3(-1.4, 1.1, -0.775), 0);
+agregarTechoCol(techoColGeometry16, new THREE.Vector3(1.4, 1.1, -0.775), 0);
+
+const techoColGeometry17 = new THREE.BoxGeometry(1, 0.25, 0.2);
+agregarTechoCol(techoColGeometry17, new THREE.Vector3(-0.9, 1.1, -1.3), 0);
+agregarTechoCol(techoColGeometry17, new THREE.Vector3(0.9, 1.1, -1.3), 0);
 
 //Grupo cupulas
 const cupulas = new THREE.Group();
@@ -1146,90 +1151,55 @@ createAndSetupGrassMesh(-2.5, -0.3);
 createAndSetupGrassMesh(-2.5, -1);
 
 
-///////////////// BORDE /////////////////////////////////
+///////////////// BORDE PASTO /////////////////////////////////
 const bordeMaterial = new THREE.MeshStandardMaterial({
   map: concreteTexture,
   color: "#f4f4f4", // f4f4f4 dad2c5 #f4eadc
   roughness: 0.5, // Adjust roughness
   metalness: 0, // Adjust metalness
 });
-// borde de pasto der
+function crearBordePasto(geometry, position, rotation) {
+  const bordePasto = new THREE.Mesh(geometry, bordeMaterial);
+  bordePasto.position.copy(position);
+  bordePasto.rotation.y = rotation;
+  panteon.add(bordePasto);
+  bordePasto.castShadow = true;
+  bordePasto.receiveShadow = true;
+}
+
+function crearBordePastoL(geometry, position) {
+  const bordePastoLat = new THREE.Mesh(geometry, bordeMaterial);
+  bordePastoLat.position.copy(position);
+  panteon.add(bordePastoLat);
+  bordePastoLat.castShadow = true;
+  bordePastoLat.receiveShadow = true;
+}
+
 const bordePastoGeometria = new THREE.BoxGeometry(0.05, 0.05, 0.8);
-const bordePasto = new THREE.Mesh(bordePastoGeometria, bordeMaterial);
-bordePasto.position.set(1.5,-0.95,4.05)
-panteon.add(bordePasto);
-
-const bordePasto2 = new THREE.Mesh(bordePastoGeometria, bordeMaterial);
-bordePasto2.position.set(2.1,-0.95,4.05)
-panteon.add(bordePasto2);
-
 const bordePastoGeometria3 = new THREE.BoxGeometry(0.05, 0.05, 0.65);
-const bordePasto3 = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
-bordePasto3.rotation.y = Math.PI / 2;
-bordePasto3.position.set(1.8,-0.95,3.65)
-panteon.add(bordePasto3);
-
-const bordePasto4 = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
-bordePasto4.rotation.y = Math.PI / 2;
-bordePasto4.position.set(1.8,-0.95,4.45)
-panteon.add(bordePasto4);
-
-// borde de pasto izq
-const bordePastoa = new THREE.Mesh(bordePastoGeometria, bordeMaterial);
-bordePastoa.position.set(-1.5,-0.95,4.05)
-panteon.add(bordePastoa);
-
-const bordePasto2a = new THREE.Mesh(bordePastoGeometria, bordeMaterial);
-bordePasto2a.position.set(-2.1,-0.95,4.05)
-panteon.add(bordePasto2a);
-
-const bordePasto3a = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
-bordePasto3a.rotation.y = Math.PI / 2;
-bordePasto3a.position.set(-1.8,-0.95,3.65)
-panteon.add(bordePasto3a);
-
-const bordePasto4a = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
-bordePasto4a.rotation.y = Math.PI / 2;
-bordePasto4a.position.set(-1.8,-0.95,4.45)
-panteon.add(bordePasto4a);
-
 const bordePastoLGeometria = new THREE.BoxGeometry(0.05, 0.05, 3);
-const bordePastoLat = new THREE.Mesh(bordePastoLGeometria, bordeMaterial);
-bordePastoLat.position.set(-2.9,-0.95,2.95)
-panteon.add(bordePastoLat)
-
-const bordePastoLat2 = new THREE.Mesh(bordePastoLGeometria, bordeMaterial);
-bordePastoLat2.position.set(-2.3,-0.95,2.95)
-panteon.add(bordePastoLat2)
-
-const bordePastoLat3 = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
-bordePastoLat3.rotation.y = Math.PI / 2;
-bordePastoLat3.position.set(-2.6,-0.95,1.45)
-panteon.add(bordePastoLat3);
-
-const bordePastoLat4 = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
-bordePastoLat4.rotation.y = Math.PI / 2;
-bordePastoLat4.position.set(-2.6,-0.95,4.45)
-panteon.add(bordePastoLat4);
-
-const bordePastoLat5 = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
-bordePastoLat5.rotation.y = Math.PI / 2;
-bordePastoLat5.position.set(-2.6,-0.95,-1.3)
-panteon.add(bordePastoLat5);
-
-const bordePastoLat6 = new THREE.Mesh(bordePastoGeometria3, bordeMaterial);
-bordePastoLat6.rotation.y = Math.PI / 2;
-bordePastoLat6.position.set(-2.6,-0.95,0.3)
-panteon.add(bordePastoLat6);
-
 const bordePastoLGeometria2 = new THREE.BoxGeometry(0.05, 0.05, 1.6);
-const bordePastoLat7 = new THREE.Mesh(bordePastoLGeometria2, bordeMaterial);
-bordePastoLat7.position.set(-2.9,-0.95,-0.5)
-panteon.add(bordePastoLat7)
 
-const bordePastoLat8 = new THREE.Mesh(bordePastoLGeometria2, bordeMaterial);
-bordePastoLat8.position.set(-2.3,-0.95,-0.5)
-panteon.add(bordePastoLat8)
+// Borde de pasto derecho
+crearBordePasto(bordePastoGeometria, new THREE.Vector3(1.5, -0.95, 4.05), 0);
+crearBordePasto(bordePastoGeometria, new THREE.Vector3(2.1, -0.95, 4.05), 0);
+crearBordePasto(bordePastoGeometria3, new THREE.Vector3(1.8, -0.95, 3.65), Math.PI / 2);
+crearBordePasto(bordePastoGeometria3, new THREE.Vector3(1.8, -0.95, 4.45), Math.PI / 2);
+
+// Borde de pasto izquierdo
+crearBordePasto(bordePastoGeometria, new THREE.Vector3(-1.5, -0.95, 4.05), 0);
+crearBordePasto(bordePastoGeometria, new THREE.Vector3(-2.1, -0.95, 4.05), 0);
+crearBordePasto(bordePastoGeometria3, new THREE.Vector3(-1.8, -0.95, 3.65), Math.PI / 2);
+crearBordePasto(bordePastoGeometria3, new THREE.Vector3(-1.8, -0.95, 4.45), Math.PI / 2);
+crearBordePastoL(bordePastoLGeometria, new THREE.Vector3(-2.9, -0.95, 2.95));
+crearBordePastoL(bordePastoLGeometria, new THREE.Vector3(-2.3, -0.95, 2.95));
+crearBordePasto(bordePastoGeometria3, new THREE.Vector3(-2.6, -0.95, 1.45), Math.PI / 2);
+crearBordePasto(bordePastoGeometria3, new THREE.Vector3(-2.6, -0.95, 4.45), Math.PI / 2);
+crearBordePasto(bordePastoGeometria3, new THREE.Vector3(-2.6, -0.95, -1.3), Math.PI / 2);
+crearBordePasto(bordePastoGeometria3, new THREE.Vector3(-2.6, -0.95, 0.3), Math.PI / 2);
+crearBordePastoL(bordePastoLGeometria2, new THREE.Vector3(-2.9, -0.95, -0.5));
+crearBordePastoL(bordePastoLGeometria2, new THREE.Vector3(-2.3, -0.95, -0.5));
+
 
 /////////////////////// REJAS /////////////////////// 
 const rejaGgeometry = new THREE.BoxGeometry(0.025, 0.29, 0.025);
@@ -1248,6 +1218,8 @@ function crearRejaFina(panteon, posX, posY, posZ) {
   const rejaFina = new THREE.Mesh(rejaFgeometry, rejaMaterial);
   rejaFina.position.set(posX, posY, posZ);
   panteon.add(rejaFina);
+  rejaFina.castShadow = true;
+  rejaFina.receiveShadow = true;
 }
 // Función para crear rejas finas en un rango
 function crearRejasFinasRango(panteon, startPosX, endPosX, posY, posZ, step) {
@@ -1266,6 +1238,8 @@ function crearRejaLateral(panteon, posX, posY, posZ) {
   const rejaLateral = new THREE.Mesh(rejaGgeometry, rejaMaterial);
   rejaLateral.position.set(posX, posY, posZ);
   panteon.add(rejaLateral);
+  rejaLateral.castShadow = true;
+  rejaLateral.receiveShadow = true;
 }
 // Llamadas a la función para crear rejas delanteras
 // Rejas gordas delanteras
@@ -1374,12 +1348,15 @@ const barra2Infbb = new THREE.Mesh(barra2Geometry, rejaMaterial);
 barra2Infbb.position.set(1.95, -0.95, -2.02);
 barra2Infbb.rotation.y = Math.PI / 2;
 panteon.add(barra2Infbb);
-/////////////////// rejas techo ////////////////////////////
+
+/////////////////// REJAS DEL TECHO ////////////////////////////
 const rejaFgeometry2 = new THREE.BoxGeometry(0.008, 0.2, 0.008);
 function crearRejaFina2(panteon, posX, posY, posZ) {
   const rejaFina = new THREE.Mesh(rejaFgeometry2, rejaMaterial);
   rejaFina.position.set(posX, posY, posZ);
   panteon.add(rejaFina);
+  rejaFina.castShadow = true;
+  rejaFina.receiveShadow = true;
 }
 // Función para crear rejas finas en un rango
 function crearRejasFinasRango2(panteon, startPosX, endPosX, posY, posZ, step) {
@@ -1392,6 +1369,7 @@ function crearRejasFinasRangoLat2(panteon, posX, posY, startPosZ, endPosZ, step)
     crearRejaFina2(panteon, posX, posY, posZ);
   }
 }
+
 crearRejasFinasRango2(baseCupula, -0.64, -0.10, 1.55, 0.88, 0.02); // delantera izq
 crearRejasFinasRango2(baseCupula, 0.10, 0.64, 1.55, 0.88, 0.02); // delantera der
 crearRejasFinasRango2(baseCupula, -0.64, 0.64, 1.55, -0.88, 0.02); // trasera
@@ -1399,12 +1377,39 @@ crearRejasFinasRango2(baseCupula, -0.88, -0.64, 1.55, 0.60, 0.02); // del izq iz
 crearRejasFinasRango2(baseCupula, 0.64, 0.88, 1.55, 0.60, 0.02); // del dere derecha
 crearRejasFinasRango2(baseCupula, -0.88, -0.64, 1.55, -0.60, 0.02); // tras der derecha
 crearRejasFinasRango2(baseCupula, 0.64, 0.88, 1.55, -0.60, 0.02); // tras izq izquierda
+
+//escaleras camino
+crearRejasFinasRangoLat2(baseCupula, -0.10, 1.55, 0.88, 1.2, 0.02); // del lat izq
+crearRejasFinasRangoLat2(baseCupula, 0.10, 1.55, 0.88, 1.39, 0.02); // del lat der
+crearRejasFinasRango2(baseCupula, -0.30, -0.10, 1.55, 1.2, 0.02); // del izq izq
+crearRejasFinasRango2(baseCupula, -0.30, 0.10, 1.55, 1.39, 0.02); // del izq izq
+// escaleras subida
+const positions = [
+  { x: -0.30, y: 1.55 },
+  { x: -0.32, y: 1.51 },
+  { x: -0.34, y: 1.48 },
+  { x: -0.36, y: 1.44 },
+  { x: -0.38, y: 1.40 },
+  { x: -0.4, y: 1.36 },
+  { x: -0.42, y: 1.32 },
+  { x: -0.44, y: 1.28 },
+  { x: -0.46, y: 1.24 },
+  { x: -0.48, y: 1.2 },
+  { x: -0.5, y: 1.16 },
+  { x: -0.52, y: 1.12 },
+  { x: -0.54, y: 1.08 },
+];
+
+positions.forEach(pos => crearRejaFina2(baseCupula, pos.x, pos.y, 1.2));
+positions.forEach(pos => crearRejaFina2(baseCupula, pos.x, pos.y, 1.39));
+
 crearRejasFinasRangoLat2(baseCupula, -0.64, 1.55, -0.88, -0.60, 0.02); //  tras lat izq
 crearRejasFinasRangoLat2(baseCupula, -0.64, 1.55, 0.60, 0.88, 0.02); // del lat izq
 crearRejasFinasRangoLat2(baseCupula, 0.64, 1.55, -0.88, -0.60, 0.02); // tras lat der
 crearRejasFinasRangoLat2(baseCupula, 0.64, 1.55, 0.60, 0.88, 0.02); // del lat der
 crearRejasFinasRangoLat2(baseCupula, -0.88, 1.55, -0.60, 0.60, 0.02); // lateral izq
 crearRejasFinasRangoLat2(baseCupula, 0.88, 1.55, -0.60, 0.60, 0.02); // lateral der
+
 //////// BARRAS REJA TECHO /////////////////////////
 function crearBarraTecho(geometry, material, position, rotation) {
   const barraTecho = new THREE.Mesh(geometry, material);
@@ -1420,6 +1425,9 @@ const barraTGeometry2 = new THREE.BoxGeometry(0.008, 0.008, 1.28);
 const barraTGeometry3 = new THREE.BoxGeometry(0.008, 0.008, 1.2);
 const barraTGeometry4 = new THREE.BoxGeometry(0.008, 0.008, 0.28);
 const barraTGeometry5 = new THREE.BoxGeometry(0.008, 0.008, 0.25);
+
+// barra escalera
+// falta
 
 // Delantera izquierda
 crearBarraTecho(barraTGeometry, rejaMaterial, new THREE.Vector3(-0.38, 1.646, 0.88), Math.PI / 2);
