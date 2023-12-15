@@ -334,7 +334,7 @@ crearEscalonDerecho(panteon, 0.46, -0.855, 3.03, 1.65, 0.55);
 crearEscalonDerecho(panteon, 0.48, -0.905, 3.065, 1.75, 0.58);
 crearEscalonDerecho(panteon, 0.5, -0.955, 3.1, 1.85, 0.65);
 
-//Techo
+///////////// DETALLE TECHO /////////////////////////
 function agregarTechoCol(geometry, position, rotation) {
   const techoCol = new THREE.Mesh(geometry, cajaMaterial);
   techoCol.position.copy(position);
@@ -862,7 +862,7 @@ baseCupula.add(cupulaBase4);
 cupulaBase4.castShadow = true;
 cupulaBase4.receiveShadow = true;
 
-// Techo triangular ///////////////////////////////////////////////
+//////// TECHO TRIANGULAR PIRAMIDE ///////////////////////////////////////////////
 
 const triangleShape = new THREE.Shape();
 triangleShape.moveTo(0, 0);
@@ -1318,24 +1318,42 @@ crearRejasFinasRango2(baseCupula, 0.64, 0.88, 1.55, -0.60, 0.02); // tras izq iz
 //escaleras camino
 crearRejasFinasRangoLat2(baseCupula, -0.10, 1.55, 0.88, 1.2, 0.02); // del lat izq
 crearRejasFinasRangoLat2(baseCupula, 0.10, 1.55, 0.88, 1.39, 0.02); // del lat der
-crearRejasFinasRango2(baseCupula, -0.30, -0.10, 1.55, 1.2, 0.02); // del izq izq
-crearRejasFinasRango2(baseCupula, -0.30, 0.10, 1.55, 1.39, 0.02); // del izq izq
+crearRejasFinasRango2(baseCupula, -0.20, -0.10, 1.55, 1.2, 0.02); // del izq izq
+crearRejasFinasRango2(baseCupula, -0.20, 0.10, 1.55, 1.39, 0.02); // del izq izq
 // escaleras subida
 const positions = [
-  { x: -0.30, y: 1.55 },
-  { x: -0.32, y: 1.51 },
-  { x: -0.34, y: 1.48 },
-  { x: -0.36, y: 1.44 },
-  { x: -0.38, y: 1.40 },
-  { x: -0.4, y: 1.36 },
-  { x: -0.42, y: 1.32 },
-  { x: -0.44, y: 1.28 },
-  { x: -0.46, y: 1.24 },
-  { x: -0.48, y: 1.2 },
-  { x: -0.5, y: 1.16 },
-  { x: -0.52, y: 1.12 },
-  { x: -0.54, y: 1.08 },
+  { x: -0.20, y: 1.55 },
+  { x: -0.22, y: 1.533 },
+  { x: -0.24, y: 1.516 },
+  { x: -0.26, y: 1.499 },
+  { x: -0.28, y: 1.481 },
+  { x: -0.30, y: 1.464 },
+  { x: -0.32, y: 1.446 },
+  { x: -0.34, y: 1.429 },
+  { x: -0.36, y: 1.411 },
+  { x: -0.38, y: 1.394 },
+  { x: -0.40, y: 1.377 },
+  { x: -0.42, y: 1.359 },
+  { x: -0.44, y: 1.342 },
+  { x: -0.46, y: 1.324 },
+  { x: -0.48, y: 1.307 },
+  { x: -0.50, y: 1.290 },
+  { x: -0.52, y: 1.272 },
+  { x: -0.54, y: 1.255 },
+  { x: -0.56, y: 1.237 },
+  { x: -0.58, y: 1.220 },
+  { x: -0.60, y: 1.203 },
+  { x: -0.62, y: 1.185 },
+  { x: -0.64, y: 1.168 },
+  { x: -0.66, y: 1.150 },
+  { x: -0.68, y: 1.133 },
+  { x: -0.70, y: 1.115 },
+  { x: -0.72, y: 1.098 },
+  { x: -0.74, y: 1.081 },
 ];
+
+
+
 
 positions.forEach(pos => crearRejaFina2(baseCupula, pos.x, pos.y, 1.2));
 positions.forEach(pos => crearRejaFina2(baseCupula, pos.x, pos.y, 1.39));
@@ -1356,19 +1374,17 @@ function crearBarraTecho(geometry, material, position, rotation) {
 }
 
 // Barra reja techo
-const barraTGeometry = new THREE.BoxGeometry(0.008, 0.008, 0.52);
+const barraTGeometry = new THREE.BoxGeometry(0.008, 0.008, 0.54);
 const barraTGeometryb = new THREE.BoxGeometry(0.008, 0.008, 0.54);
 const barraTGeometry2 = new THREE.BoxGeometry(0.008, 0.008, 1.28);
 const barraTGeometry3 = new THREE.BoxGeometry(0.008, 0.008, 1.2);
 const barraTGeometry4 = new THREE.BoxGeometry(0.008, 0.008, 0.28);
 const barraTGeometry5 = new THREE.BoxGeometry(0.008, 0.008, 0.25);
 
-// barra escalera
-// falta
 
 // Delantera izquierda
-crearBarraTecho(barraTGeometry, rejaMaterial, new THREE.Vector3(-0.38, 1.646, 0.88), Math.PI / 2);
-crearBarraTecho(barraTGeometry, rejaMaterial, new THREE.Vector3(-0.38, 1.62, 0.88), Math.PI / 2);
+crearBarraTecho(barraTGeometry, rejaMaterial, new THREE.Vector3(-0.37, 1.646, 0.88), Math.PI / 2);
+crearBarraTecho(barraTGeometry, rejaMaterial, new THREE.Vector3(-0.37, 1.62, 0.88), Math.PI / 2);
 
 // Delantera derecha
 crearBarraTecho(barraTGeometryb, rejaMaterial, new THREE.Vector3(0.37, 1.646, 0.88), Math.PI / 2);
@@ -1406,6 +1422,107 @@ crearBarraTecho(barraTGeometry5, rejaMaterial, new THREE.Vector3(-0.76, 1.62, -0
 // Der Der Tras
 crearBarraTecho(barraTGeometry5, rejaMaterial, new THREE.Vector3(0.76, 1.646, -0.6), Math.PI / 2);
 crearBarraTecho(barraTGeometry5, rejaMaterial, new THREE.Vector3(0.76, 1.62, -0.6), Math.PI / 2);
+
+//////// BARRA ESCALERA /////////////
+const barraTGeometry6 = new THREE.BoxGeometry(0.7, 0.008, 0.008);
+const barraEscaleraTecho = new THREE.Mesh(barraTGeometry6, rejaMaterial);
+barraEscaleraTecho.position.set(-0.48, 1.41, 1.2);
+barraEscaleraTecho.rotation.set(0, 0,(41 * Math.PI) / 180)
+baseCupula.add(barraEscaleraTecho);
+
+const barraEscaleraTecho2 = new THREE.Mesh(barraTGeometry6, rejaMaterial);
+barraEscaleraTecho2.position.set(-0.48, 1.41, 1.39);
+barraEscaleraTecho2.rotation.set(0, 0,(41 * Math.PI) / 180)
+baseCupula.add(barraEscaleraTecho2);
+
+const barraEscaleraTechoa = new THREE.Mesh(barraTGeometry6, rejaMaterial);
+barraEscaleraTechoa.position.set(-0.48, 1.384, 1.2);
+barraEscaleraTechoa.rotation.set(0, 0,(41 * Math.PI) / 180)
+baseCupula.add(barraEscaleraTechoa);
+
+const barraEscaleraTecho2a = new THREE.Mesh(barraTGeometry6, rejaMaterial);
+barraEscaleraTecho2a.position.set(-0.48, 1.384, 1.39);
+barraEscaleraTecho2a.rotation.set(0, 0,(41 * Math.PI) / 180)
+baseCupula.add(barraEscaleraTecho2a);
+
+const barraTGeometry7 = new THREE.BoxGeometry(0.3, 0.008, 0.008);
+const barraEscaleraTecho3 = new THREE.Mesh(barraTGeometry7, rejaMaterial);
+barraEscaleraTecho3.position.set(-0.05, 1.646, 1.39);
+baseCupula.add(barraEscaleraTecho3);
+const barraEscaleraTecho3a = new THREE.Mesh(barraTGeometry7, rejaMaterial);
+barraEscaleraTecho3a.position.set(-0.05, 1.62, 1.39);
+baseCupula.add(barraEscaleraTecho3a);
+
+const barraTGeometry8 = new THREE.BoxGeometry(0.008, 0.008, 0.511);
+const barraEscaleraTecho4 = new THREE.Mesh(barraTGeometry8, rejaMaterial);
+barraEscaleraTecho4.position.set(0.1, 1.646, 1.135);
+baseCupula.add(barraEscaleraTecho4);
+const barraEscaleraTecho4a = new THREE.Mesh(barraTGeometry8, rejaMaterial);
+barraEscaleraTecho4a.position.set(0.1, 1.62, 1.135);
+baseCupula.add(barraEscaleraTecho4a);
+
+const barraTGeometry9 = new THREE.BoxGeometry(0.008, 0.008, 0.32);
+const barraEscaleraTecho5 = new THREE.Mesh(barraTGeometry9, rejaMaterial);
+barraEscaleraTecho5.position.set(-0.1, 1.646, 1.04);
+baseCupula.add(barraEscaleraTecho5);
+const barraEscaleraTecho5a = new THREE.Mesh(barraTGeometry9, rejaMaterial);
+barraEscaleraTecho5a.position.set(-0.1, 1.62, 1.04);
+baseCupula.add(barraEscaleraTecho5a);
+
+const barraTGeometry10 = new THREE.BoxGeometry(0.11, 0.008, 0.008);
+const barraEscaleraTecho6 = new THREE.Mesh(barraTGeometry10, rejaMaterial);
+barraEscaleraTecho6.position.set(-0.15, 1.646, 1.2);
+baseCupula.add(barraEscaleraTecho6);
+
+const barraEscaleraTecho6a = new THREE.Mesh(barraTGeometry10, rejaMaterial);
+barraEscaleraTecho6a.position.set(-0.15, 1.62, 1.2);
+baseCupula.add(barraEscaleraTecho6a);
+
+/////////   BASE ESCALERA ////////////
+const baseEscaleraTechoGeometry = new THREE.BoxGeometry(0.2, 0.5, 0.8);
+const baseEscaleraTecho = new THREE.Mesh(baseEscaleraTechoGeometry, cajaMaterial);
+baseEscaleraTecho.position.set(0,1.15,1);
+baseEscaleraTecho.castShadow = true;
+baseEscaleraTecho.receiveShadow = true;
+baseCupula.add(baseEscaleraTecho);
+const baseEscaleraTechoGeometry2 = new THREE.BoxGeometry(0.2, 0.055, 0.8);
+const baseEscaleraTecho2 = new THREE.Mesh(baseEscaleraTechoGeometry2, baldosaMaterial2);
+baseEscaleraTecho2.position.set(0,1.43,1);
+baseEscaleraTecho2.castShadow = true;
+baseEscaleraTecho2.receiveShadow = true;
+baseCupula.add(baseEscaleraTecho2);
+const baseEscaleraTechoGeometry3 = new THREE.BoxGeometry(0.15, 0.055, 0.2);
+const baseEscaleraTecho3 = new THREE.Mesh(baseEscaleraTechoGeometry3, baldosaMaterial2);
+baseEscaleraTecho3.position.set(-0.15,1.43,1.3);
+baseEscaleraTecho3.castShadow = true;
+baseEscaleraTecho3.receiveShadow = true;
+baseCupula.add(baseEscaleraTecho3);
+const baseEscaleraTechoGeometry4 = new THREE.BoxGeometry(0.15, 0.5, 0.2);
+const baseEscaleraTecho4 = new THREE.Mesh(baseEscaleraTechoGeometry4, cajaMaterial);
+baseEscaleraTecho4.position.set(-0.15,1.15,1.3);
+baseEscaleraTecho4.castShadow = true;
+baseEscaleraTecho4.receiveShadow = true;
+baseCupula.add(baseEscaleraTecho4);
+
+function crearEscaleraTecho(baseCupula, cantidad, posX, posY, posZ) {
+  const baseEscaleraTechoGeometry3 = new THREE.BoxGeometry(0.05, 0.5, 0.2);
+  for (let i = 0; i < cantidad; i++) {
+    const baseEscaleraTecho = new THREE.Mesh(baseEscaleraTechoGeometry3, cajaMaterial);
+    baseEscaleraTecho.position.set(posX, posY, posZ);
+    baseEscaleraTecho.castShadow = true;
+    baseEscaleraTecho.receiveShadow = true;
+    baseCupula.add(baseEscaleraTecho);
+
+    // Actualizar las posiciones para el siguiente elemento en el patrón
+    posX -= 0.04;
+    posY -= 0.03;
+    posZ = 1.3; // Ajusta esto según tu necesidad
+  }
+}
+
+// Llamada a la función
+crearEscaleraTecho(baseCupula, 13, -0.25, 1.15, 1.3);
+
 
 //Mover cupulas y base de cupula hacia la derecha 
 cupulas.position.z = 0.5;
