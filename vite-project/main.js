@@ -88,6 +88,7 @@ const cajaMaterial = new THREE.MeshStandardMaterial({
   color: "#dad2c5", // f4f4f4 dad2c5 #f4eadc
   roughness: 0.5, // Adjust roughness
   metalness: 0, // Adjust metalness
+  side: THREE.DoubleSide,
 });
 const caja1 = new THREE.Mesh(caja1Geometry, cajaMaterial);
 caja1.position.set(0, 0, 0);
@@ -752,9 +753,9 @@ for (let i = 1; i <= numTubos; i++) {
 
 //----------------------CUPULA MEDIO------------------------------
 // Cupula Medio
-const cupulaMedioGeometry = new THREE.CylinderGeometry(0.85, 0.85, 1.3, 30); // R top, R bot, H, R Seg
+const cupulaMedioGeometry = new THREE.CylinderGeometry(0.85, 0.85, 1.45, 30); // R top, R bot, H, R Seg
 const cupulaMedio = new THREE.Mesh(cupulaMedioGeometry, cajaMaterial);
-cupulaMedio.position.set(0, 1.8, 0);
+cupulaMedio.position.set(0, 1.76, 0);
 cupulas.add(cupulaMedio);
 cupulaMedio.castShadow = true;
 cupulaMedio.receiveShadow = true;
@@ -972,8 +973,14 @@ for (let i = 0; i < cantidadCilindros; i++) {
   colInfCupulaMedioA.receiveShadow = true;
 }
 
+
+// Clona el material original para cada objeto
+const bandaInfCupMedioMaterial = cajaMaterial.clone();
+// Cambia el color del material clonado
+bandaInfCupMedioMaterial.color.set("#c4c0b9"); 
+
 const detColInfCupulaMedioInfGeometry = new THREE.CylinderGeometry(0.87, 0.87, 0.03, 30); // R top, R bot, H, R Seg
-const detColInfCupulaMedioInfCirculo = new THREE.Mesh(detColInfCupulaMedioInfGeometry, detVigaMaterial);
+const detColInfCupulaMedioInfCirculo = new THREE.Mesh(detColInfCupulaMedioInfGeometry, bandaInfCupMedioMaterial);
 detColInfCupulaMedioInfCirculo.position.set(0, 2.22, 0);
 cupulas.add(detColInfCupulaMedioInfCirculo);
 detColInfCupulaMedioInfCirculo.castShadow = true;
@@ -981,7 +988,7 @@ detColInfCupulaMedioInfCirculo.receiveShadow = true;
 
 const sobresaltadoColInfGeometry = new THREE.CylinderGeometry(0.95, 0.95 , 0.03, 30, 1,false , 0, Math.PI / 7); 
 for (let i = 0; i < 8; i++) {
-  const sobresaltadoColInf = new THREE.Mesh(sobresaltadoColInfGeometry, detVigaMaterial);
+  const sobresaltadoColInf = new THREE.Mesh(sobresaltadoColInfGeometry,  bandaInfCupMedioMaterial);
   sobresaltadoColInf.position.set(0, 2.22, 0);
   cupulas.add(sobresaltadoColInf);
   sobresaltadoColInf.castShadow = true;
@@ -989,12 +996,81 @@ for (let i = 0; i < 8; i++) {
   sobresaltadoColInf.rotation.set(0, (i-1) * angulo + 0.52 , 0);
 }
 
-const detColInf2CupulaMedioInfGeometry = new THREE.CylinderGeometry(0.86, 0.86, 0.02, 30); // R top, R bot, H, R Seg
+// Clona el material original para cada objeto
+const detColInfCupMedioMaterial = cajaMaterial.clone();
+// Cambia el color del material clonado
+detColInfCupMedioMaterial.color.set("#DAD6CE"); 
+
+const detColInf2CupulaMedioInfGeometry = new THREE.CylinderGeometry(0.88, 0.88, 0.02, 30); // R top, R bot, H, R Seg
 const detColInfCupula2MedioInfCirculo = new THREE.Mesh(detColInf2CupulaMedioInfGeometry, cajaMaterial);
 detColInfCupula2MedioInfCirculo.position.set(0, 2.12, 0);
 cupulas.add(detColInfCupula2MedioInfCirculo);
 detColInfCupula2MedioInfCirculo.castShadow = true;
 detColInfCupula2MedioInfCirculo.receiveShadow = true;
+
+const sobresaltadoColInf2CupMedioGeometry = new THREE.BoxGeometry(1.81, 0.02, 0.38); 
+for (let i = 0; i < 8; i++) {
+  const sobresaltadoColInf2CupMedio = new THREE.Mesh(sobresaltadoColInf2CupMedioGeometry, cajaMaterial);
+  sobresaltadoColInf2CupMedio.position.set(0, 2.12, 0);
+  cupulas.add(sobresaltadoColInf2CupMedio);
+  sobresaltadoColInf2CupMedio.castShadow = true;
+  sobresaltadoColInf2CupMedio.receiveShadow = true;
+  sobresaltadoColInf2CupMedio.rotation.set(0, i * angulo - 0.05, 0);
+}
+
+const detColInf3CupulaMedioGeometry = new THREE.CylinderGeometry(0.87, 0.87, 0.02, 30); // R top, R bot, H, R Seg
+const detColInfCupula3MedioInfCirculo = new THREE.Mesh(detColInf3CupulaMedioGeometry, cajaMaterial);
+detColInfCupula3MedioInfCirculo.position.set(0, 2.1, 0);
+cupulas.add(detColInfCupula3MedioInfCirculo);
+detColInfCupula3MedioInfCirculo.castShadow = true;
+detColInfCupula3MedioInfCirculo.receiveShadow = true;
+
+const sobresaltadoColInf3CupMedioGeometry = new THREE.BoxGeometry(1.8, 0.02, 0.37);  
+for (let i = 0; i < 8; i++) {
+  const sobresaltadoColInf3CupMedio = new THREE.Mesh(sobresaltadoColInf3CupMedioGeometry, cajaMaterial);
+  sobresaltadoColInf3CupMedio.position.set(0, 2.1, 0);
+  cupulas.add(sobresaltadoColInf3CupMedio);
+  sobresaltadoColInf3CupMedio.castShadow = true;
+  sobresaltadoColInf3CupMedio.receiveShadow = true;
+  sobresaltadoColInf3CupMedio.rotation.set(0, i * angulo- 0.05, 0);
+}
+
+const detColInf4CupulaMedioInfGeometry = new THREE.CylinderGeometry(0.86, 0.86, 0.02, 30); // R top, R bot, H, R Seg
+const detColInf4CupulaMedioInfCirculo = new THREE.Mesh(detColInf4CupulaMedioInfGeometry, cajaMaterial);
+detColInf4CupulaMedioInfCirculo.position.set(0, 2.08, 0);
+cupulas.add(detColInf4CupulaMedioInfCirculo);
+detColInf4CupulaMedioInfCirculo.castShadow = true;
+detColInf4CupulaMedioInfCirculo.receiveShadow = true;
+
+const sobresaltadoColInf4CupMedioGeometry = new THREE.BoxGeometry(1.795, 0.02, 0.36);  
+for (let i = 0; i < 8; i++) {
+  const sobresaltadoColInf4CupMedio = new THREE.Mesh(sobresaltadoColInf4CupMedioGeometry, cajaMaterial);
+  sobresaltadoColInf4CupMedio.position.set(0, 2.08, 0);
+  cupulas.add(sobresaltadoColInf4CupMedio);
+  sobresaltadoColInf4CupMedio.castShadow = true;
+  sobresaltadoColInf4CupMedio.receiveShadow = true;
+  sobresaltadoColInf4CupMedio.rotation.set(0, i * angulo- 0.05, 0);
+}
+
+//Base superior de las columnas de cupula medio, el detalle que tiene bajo los sobresaltados
+const baseColInfGeometry = new THREE.BoxGeometry(1.82, 0.02, 0.15); 
+for (let i = 0; i < numVigas; i++) {
+  const baseViga = new THREE.Mesh(baseColInfGeometry, cajaMaterial);
+  baseViga.position.set(0, 2.05, 0);
+  cupulas.add(baseViga);
+  baseViga.castShadow = true;
+  baseViga.receiveShadow = true;
+  baseViga.rotation.set(0, i * angulo + 0.08, 0);
+}
+for (let i = 0; i < numVigas; i++) {
+  const baseVigaA = new THREE.Mesh(baseColInfGeometry, cajaMaterial);
+  baseVigaA.position.set(0, 2.05, 0);
+  cupulas.add(baseVigaA);
+  baseVigaA.castShadow = true;
+  baseVigaA.receiveShadow = true;
+  baseVigaA.rotation.set(0, i * angulo + 0.6, 0);
+}
+
 //------------------------------CUPULA 2 PEQUEÑA---------------- 
 //Cupula Medio pequeña de arriba donde esta la cruz
 const cupulaMedioSmallGeometry = new THREE.CylinderGeometry(0.19, 0.19, 0.8, 30); // R top, R bot, H, R Seg
@@ -1003,6 +1079,7 @@ cupulaMedioSmall.position.set(0, 3.5, 0);
 cupulas.add(cupulaMedioSmall);
 cupulaMedioSmall.castShadow = true;
 cupulaMedioSmall.receiveShadow = true;
+
 
 //Cupula donde va la cruz
 // Geometría de media esfera
