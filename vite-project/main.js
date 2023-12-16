@@ -132,7 +132,7 @@ function crearColumnaCuadrada(panteon, posX, posY, posZ) {
   columna.receiveShadow = true;
 }
 
-crearColumnaCuadrada(panteon, -1.03, 0.076, 2.2);
+crearColumnaCuadrada(panteon, -1.03, 0.076, 2.2); // columna cua
 crearColumnaCuadrada(panteon, 1.03, 0.076, 2.2);
 
 crearColumnaCuadrada(panteon, -1.03, 0.076, 1.52);
@@ -201,6 +201,129 @@ crearBaseColumna(panteon, 0.3, -0.85, 3.4);
 crearColumna(panteon, -0.3, 0, 3.4);
 crearBaseColumna(panteon, -0.3, -0.85, 3.4);
 
+
+////////////////// DETALLES COLUMNA CUADRADA //////////////////////
+// Parámetros
+const ancho2 = 0.2;
+const altura2 = 0.01;
+const profundidad2 = 0.2;
+const radio2 = 0.02;
+
+// Crear forma de rectángulo redondeado
+const forma = new THREE.Shape();
+forma.moveTo(-ancho2 / 2 + radio2, -altura2 / 2);
+forma.lineTo(ancho2 / 2 - radio2, -altura2 / 2);
+forma.quadraticCurveTo(ancho2 / 2, -altura2 / 2, ancho2 / 2, -altura2 / 2 + radio2);
+forma.lineTo(ancho2 / 2, altura2 / 2 - radio2);
+forma.quadraticCurveTo(ancho2 / 2, altura2 / 2, ancho2 / 2 - radio2, altura2 / 2);
+forma.lineTo(-ancho2 / 2 + radio2, altura2 / 2);
+forma.quadraticCurveTo(-ancho2 / 2, altura2 / 2, -ancho2 / 2, altura2 / 2 - radio2);
+forma.lineTo(-ancho2 / 2, -altura2 / 2 + radio2);
+forma.quadraticCurveTo(-ancho2 / 2, -altura2 / 2, -ancho2 / 2 + radio2, -altura2 / 2);
+
+// Extruir geometría desde la forma
+const opcionesExtrusion = {
+  steps: 1,
+  depth: profundidad2,
+  bevelEnabled: true, // Establecer en true para bordes biselados
+  bevelSize: radio2,
+  bevelSegments: 5, // Puedes ajustar la cantidad de segmentos del biselado
+  bevelThickness: radio2,
+};
+
+const bordeDullGeometria = new THREE.ExtrudeGeometry(forma, opcionesExtrusion);
+const bordeDull = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDull.position.set(-1.01, -0.7, 2.1) 
+panteon.add(bordeDull);
+bordeDull.castShadow = true;
+bordeDull.receiveShadow = true;
+
+const bordeDull2 = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDull2.position.set(-1.01, -0.7, 1.4) // aca es
+panteon.add(bordeDull2);
+bordeDull2.castShadow = true;
+bordeDull2.receiveShadow = true;
+
+const bordeDullb = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDullb.position.set(1.01, -0.7, 2.1) 
+panteon.add(bordeDullb);
+bordeDullb.castShadow = true;
+bordeDullb.receiveShadow = true;
+const bordeDull2b = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDull2b.position.set(1.01, -0.7, 1.4) 
+panteon.add(bordeDull2b);
+bordeDull2b.castShadow = true;
+bordeDull2b.receiveShadow = true;
+
+const bordeDullc = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDullc.position.set(1.05, -0.7, 1.41) 
+bordeDullc.rotation.y = Math.PI / 2;
+panteon.add(bordeDullc);
+bordeDullc.castShadow = true;
+bordeDullc.receiveShadow = true;
+const bordeDullc2 = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDullc2.position.set(-1.05, -0.7, 1.41) 
+bordeDullc.rotation.y = Math.PI / 2;
+panteon.add(bordeDullc2);
+bordeDullc2.castShadow = true;
+bordeDullc2.receiveShadow = true;
+const bordeDullc3 = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDullc3.position.set(-0.6, -0.7, -1.438) 
+bordeDullc3.rotation.y = Math.PI / 2;
+panteon.add(bordeDullc3);
+bordeDullc3.castShadow = true;
+bordeDullc3.receiveShadow = true;
+const bordeDullc3a = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDullc3a.position.set(0.4, -0.7, -1.438) 
+bordeDullc3a.rotation.y = Math.PI / 2;
+panteon.add(bordeDullc3a);
+bordeDullc3a.castShadow = true;
+bordeDullc3a.receiveShadow = true;
+const bordeDullc4 = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDullc4.position.set(-1.1, -0.7, -1.438) 
+bordeDullc4.rotation.y = Math.PI / 2;
+panteon.add(bordeDullc4);
+bordeDullc4.castShadow = true;
+bordeDullc4.receiveShadow = true;
+const bordeDullc4a = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDullc4a.position.set(0.9, -0.7, -1.438) 
+bordeDullc4a.rotation.y = Math.PI / 2;
+panteon.add(bordeDullc4a);
+bordeDullc4a.castShadow = true;
+bordeDullc4a.receiveShadow = true;
+
+const bordeDull3 = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDull3.position.set(-1.5, -0.7, 1.31) // aca es
+panteon.add(bordeDull3);
+bordeDull3.castShadow = true;
+bordeDull3.receiveShadow = true;
+const bordeDull3a = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDull3a.position.set(1.5, -0.7, 1.31) // aca es
+panteon.add(bordeDull3a);
+bordeDull3a.castShadow = true;
+bordeDull3a.receiveShadow = true;
+
+const bordeDull4 = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDull4.position.set(-1.5, -0.7, -0.1) // aca es
+panteon.add(bordeDull4);
+bordeDull4.castShadow = true;
+bordeDull4.receiveShadow = true;
+const bordeDull4a = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDull4a.position.set(1.5, -0.7, -0.1) // aca es
+panteon.add(bordeDull4a);
+bordeDull4a.castShadow = true;
+bordeDull4a.receiveShadow = true;
+
+const bordeDull5 = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDull5.position.set(-1.5, -0.7, -1.51) // aca es
+panteon.add(bordeDull5);
+bordeDull5.castShadow = true;
+bordeDull5.receiveShadow = true;
+const bordeDull5a = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+bordeDull5a.position.set(1.5, -0.7, -1.51) // aca es
+panteon.add(bordeDull5a);
+bordeDull5a.castShadow = true;
+bordeDull5a.receiveShadow = true;
 ///////////////// DETALLES COLUMNA CILINDRICA ////////////////////////////
 function crearTorus(panteon, posX, posY, posZ) {
   const torusGeometry = new THREE.TorusGeometry(0.067, 0.012, 16, 50);
