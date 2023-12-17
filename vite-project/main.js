@@ -9,7 +9,7 @@ import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 //Para figuras
-import { crearVentana } from './figuras.js';
+import { crearVentana, crearArco, crearBordeSemi, crearVentanaCupula } from './figuras.js';
 
 // Create a scene
 const scene = new THREE.Scene();
@@ -921,18 +921,48 @@ panteon.receiveShadow = true; // El grupo recibe sombras (ajusta según sea nece
 
 /// Ventanales laterales PRUEBA
 
+//Lado Izquierdo
+
 const ventanal = crearVentana();
-ventanal.position.set(-1.7, 0, -1)
-ventanal.rotation.y = Math.PI / 2;  // Rotar 45 grados
+ventanal.position.set(-1.63, -0.42, -1.1)
+ventanal.rotation.y = Math.PI / 2;  // Rotar 90 grados
 panteon.add(ventanal);
 
-// const ventanal2 = crearVentana();
-// ventanal2.position.set(-1.7, 0.5, 0)
-// ventanal2.rotation.y = Math.PI / 2;  // Rotar 45 grados
-// panteon.add(ventanal2);
+const ventanal2 = crearVentana();
+ventanal2.position.set(-1.63, -0.42, -0.4)
+ventanal2.rotation.y = Math.PI / 2;  // Rotar 90 grados
+panteon.add(ventanal2);
+
+const ventanal3 = crearVentana();
+ventanal3.position.set(-1.15, -0.42, 2.55)
+ventanal3.rotation.y = Math.PI / 2;  // Rotar 90 grados
+panteon.add(ventanal3);
+
+const ventanal4 = crearVentana();
+ventanal4.position.set(-1.15, 0.42, 2.55)
+ventanal4.rotation.y = Math.PI / 2;  // Rotar 90 grados
+panteon.add(ventanal4);
+
+//Cupula
+const ventanalCupula = crearVentanaCupula();
+ventanalCupula.position.set(-0.87, 2, 0.54)
+ventanalCupula.rotation.y = Math.PI / 2;  // Rotar 90 grados
+panteon.add(ventanalCupula);
 
 
 ///
+
+const arco1 = crearArco();
+arco1.position.set(-1.6, 1, 0.5)
+arco1.rotation.y = Math.PI / 2;  // Rotar 90 grados
+panteon.add(arco1);
+
+const arco1Borde = crearBordeSemi();
+arco1Borde.position.set(-1.6, 1, 0.5)
+arco1Borde.rotation.y = Math.PI / 2;  // Rotar 90 grados
+//arco1Borde.scale.set(1, 1, 10);
+panteon.add(arco1Borde);
+
 
 
 
