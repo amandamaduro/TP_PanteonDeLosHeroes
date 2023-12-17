@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 export function crearVentana() {
 
-    console.log("Hola");
+    //console.log("Hola");
     // Crear la geometría del rectángulo
 const ancho = 0.25;  //
 const alto = 0.5;  //2
@@ -88,7 +88,7 @@ return grupoVentana;
 
 export function crearVentanaCupula() {
 
-  console.log("Hola");
+  //console.log("Hola");
   // Crear la geometría del rectángulo
 const ancho = 0.25;  //
 const alto = 0.5;  //2

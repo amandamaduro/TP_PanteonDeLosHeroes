@@ -1335,14 +1335,55 @@ ventanal4.position.set(-1.15, 0.42, 2.55)
 ventanal4.rotation.y = Math.PI / 2;  // Rotar 90 grados
 panteon.add(ventanal4);
 
-//Cupula
+//Cupula Ventanas
 const ventanalCupula = crearVentanaCupula();
-ventanalCupula.position.set(-0.87, 2, 0.54)
-ventanalCupula.rotation.y = Math.PI / 2;  // Rotar 90 grados
+ventanalCupula.position.set(-0.73, 1.9, 0.7)
+ventanalCupula.rotation.y = Math.PI /1.7;  // Rotar 90 grados
 panteon.add(ventanalCupula);
 
+const ventanalCupula2 = crearVentanaCupula();
+ventanalCupula2.position.set(-0.45, 1.9, 1.1)
+ventanalCupula2.rotation.y = Math.PI /1.2;  // Rotar 90 grados
+panteon.add(ventanalCupula2);
 
-///
+// function calcularPuntosEquidistantes(puntoInicial, radio, cantidadPuntos) {
+//   const puntos = [];
+
+//   for (let i = 0; i < cantidadPuntos; i++) {
+//     const angulo = (i / cantidadPuntos) * Math.PI * 2;
+//     const x = puntoInicial.x + radio * Math.cos(angulo);
+//     const z = puntoInicial.z + radio * Math.sin(angulo);
+//     puntos.push(new THREE.Vector3(x, puntoInicial.y, z));
+//   }
+
+//   return puntos;
+// }
+
+
+// const puntoInicial = new THREE.Vector3(-0.73, 1.9, 0.7);
+// const radioVentanas = 0.85;
+// const cantidadVentanas = 6;
+
+// const coordenadasVentanas = calcularPuntosEquidistantes(puntoInicial, radioVentanas, cantidadVentanas);
+
+// // Crear y posicionar las ventanas en las coordenadas calculadas
+// for (const coordenada of coordenadasVentanas) {
+//   const ventana = crearVentanaCupula();
+//   ventana.position.copy(coordenada);
+
+//   // Calcular el ángulo de rotación en función de la posición relativa al punto inicial
+//   const deltaX = coordenada.x - puntoInicial.x;
+//   const deltaZ = coordenada.z - puntoInicial.z;
+//   const anguloRotacion = Math.atan2(deltaZ, deltaX);
+
+//   // Aplicar la rotación alrededor del eje Y
+//   ventana.rotation.y = anguloRotacion;
+
+//   panteon.add(ventana);
+// }
+
+
+/// Arcos Semicirlculo Techo
 
 const arco1 = crearArco();
 arco1.position.set(-1.6, 1, 0.5)
@@ -1354,6 +1395,16 @@ arco1Borde.position.set(-1.6, 1, 0.5)
 arco1Borde.rotation.y = Math.PI / 2;  // Rotar 90 grados
 //arco1Borde.scale.set(1, 1, 10);
 panteon.add(arco1Borde);
+
+const arco2 = crearArco();
+arco2.position.set(-0.1, 1, -1.5)
+//arco1.rotation.y = Math.PI / 2;  // Rotar 90 grados
+panteon.add(arco2);
+
+const arco3 = crearArco();
+arco3.position.set(1.3, 1, 0.5)
+arco3.rotation.y = Math.PI / 2;  // Rotar 90 grados
+panteon.add(arco3);
 
 
 
