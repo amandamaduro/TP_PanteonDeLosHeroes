@@ -1176,24 +1176,98 @@ for (let i = 0; i < 8; i++) {
 }
 
 //Base superior de las columnas de cupula medio, el detalle que tiene bajo los sobresaltados
-const baseColInfGeometry = new THREE.BoxGeometry(1.82, 0.02, 0.15); 
-for (let i = 0; i < numVigas; i++) {
-  const baseViga = new THREE.Mesh(baseColInfGeometry, cajaMaterial);
-  baseViga.position.set(0, 2.05, 0);
-  cupulas.add(baseViga);
-  baseViga.castShadow = true;
-  baseViga.receiveShadow = true;
-  baseViga.rotation.set(0, i * angulo + 0.08, 0);
-}
-for (let i = 0; i < numVigas; i++) {
-  const baseVigaA = new THREE.Mesh(baseColInfGeometry, cajaMaterial);
-  baseVigaA.position.set(0, 2.05, 0);
-  cupulas.add(baseVigaA);
-  baseVigaA.castShadow = true;
-  baseVigaA.receiveShadow = true;
-  baseVigaA.rotation.set(0, i * angulo + 0.6, 0);
+const r = 0.86;
+const numObjetos = 8;
+const anguloInicial = Math.PI / 4;
+
+function crearDetalleColumna(geometry, material, height, rotationOffset) {
+  for (let i = 0; i < numObjetos; i++) {
+    const angulo = anguloInicial * i + rotationOffset;
+
+    const x = r * Math.cos(angulo);
+    const y = height;
+    const z = r * Math.sin(angulo);
+
+    const detalleColumna = new THREE.Mesh(geometry, material);
+    detalleColumna.position.set(x, y, z);
+    if (i % 2 !== 0) {
+      detalleColumna.rotation.set(Math.PI / 2, 0, Math.PI / 2);
+    } else {
+      detalleColumna.rotation.set(Math.PI / 2, 0, Math.PI / 4);
+    }
+    cupulas.add(detalleColumna);
+    detalleColumna.castShadow = true;
+    detalleColumna.receiveShadow = true;
+  }
 }
 
+// Llamar a la función con diferentes geometrías y ajustes
+const torusCuadrado1ColInfcupMedioGeometry = new THREE.TorusGeometry(0.09, 0.015, 3, 4, Math.PI * 2);
+crearDetalleColumna(torusCuadrado1ColInfcupMedioGeometry, cajaMaterial, 2.06, -0.08);
+crearDetalleColumna(torusCuadrado1ColInfcupMedioGeometry, cajaMaterial, 2.06, 0.19);
+
+const torusCuadrado2ColInfcupMedioGeometry = new THREE.TorusGeometry(0.080, 0.015, 3, 4, Math.PI * 2);
+crearDetalleColumna(torusCuadrado2ColInfcupMedioGeometry, cajaMaterial, 2.04, -0.08);
+crearDetalleColumna(torusCuadrado2ColInfcupMedioGeometry, cajaMaterial, 2.04,  0.19);
+
+const torusCuadrado3ColInfcupMedioGeometry = new THREE.TorusGeometry(0.075, 0.015, 3, 4, Math.PI * 2);
+crearDetalleColumna(torusCuadrado3ColInfcupMedioGeometry, cajaMaterial, 2.02, -0.08);
+crearDetalleColumna(torusCuadrado3ColInfcupMedioGeometry, cajaMaterial, 2.02,  0.19);
+
+const torusCuadrado4ColInfcupMedioGeometry = new THREE.TorusGeometry(0.072, 0.015, 3, 4, Math.PI * 2);
+crearDetalleColumna(torusCuadrado4ColInfcupMedioGeometry, cajaMaterial, 2, -0.08);
+crearDetalleColumna(torusCuadrado4ColInfcupMedioGeometry, cajaMaterial, 2,  0.19);
+
+const torusCuadrado5ColInfcupMedioGeometry = new THREE.TorusGeometry(0.055, 0.010, 3, 10, Math.PI * 2);
+crearDetalleColumna(torusCuadrado5ColInfcupMedioGeometry, cajaMaterial, 1.98, -0.08);
+crearDetalleColumna(torusCuadrado5ColInfcupMedioGeometry, cajaMaterial, 1.98,  0.19);
+
+const detBandaColInfCupulaMedioInfGeometry = new THREE.CylinderGeometry(0.86, 0.86, 0.01, 30); // R top, R bot, H, R Seg
+const detBandaColInfCupulaMedioInfCirculo = new THREE.Mesh(detBandaColInfCupulaMedioInfGeometry, cajaMaterial);
+detBandaColInfCupulaMedioInfCirculo.position.set(0, 1.98, 0);
+cupulas.add(detBandaColInfCupulaMedioInfCirculo);
+detBandaColInfCupulaMedioInfCirculo.castShadow = true;
+detBandaColInfCupulaMedioInfCirculo.receiveShadow = true;
+
+const baseCircularCupulaMedioInfGeometry = new THREE.CylinderGeometry(1, 1, 0.1, 30); // R top, R bot, H, R Seg
+const baseCircularCupulaMedioInf = new THREE.Mesh(baseCircularCupulaMedioInfGeometry, cajaMaterial);
+baseCircularCupulaMedioInf.position.set(0, 0.96, 0);
+cupulas.add(baseCircularCupulaMedioInf);
+baseCircularCupulaMedioInf.castShadow = true;
+baseCircularCupulaMedioInf.receiveShadow = true;
+
+const baseCircular2CupulaMedioInfGeometry = new THREE.CylinderGeometry(0.95, 0.95, 0.15, 30); // R top, R bot, H, R Seg
+const baseCircular2CupulaMedioInf = new THREE.Mesh(baseCircular2CupulaMedioInfGeometry, cajaMaterial);
+baseCircular2CupulaMedioInf.position.set(0, 1.02, 0);
+cupulas.add(baseCircular2CupulaMedioInf);
+baseCircular2CupulaMedioInf.castShadow = true;
+baseCircular2CupulaMedioInf.receiveShadow = true;
+
+const torusCuadradoInfColInfcupMedioGeometry = new THREE.TorusGeometry(0.1, 0.03, 10, 4, Math.PI * 2);
+crearDetalleColumna(torusCuadradoInfColInfcupMedioGeometry, cajaMaterial, 1.1, -0.08);
+crearDetalleColumna(torusCuadradoInfColInfcupMedioGeometry, cajaMaterial, 1.1, 0.19);
+
+const torusCircularInfColInfcupMedioGeometry = new THREE.TorusGeometry(0.07, 0.015, 10, 30, Math.PI * 2);
+crearDetalleColumna(torusCircularInfColInfcupMedioGeometry, cajaMaterial, 1.13, -0.08);
+crearDetalleColumna(torusCircularInfColInfcupMedioGeometry, cajaMaterial, 1.13, 0.19);
+
+const torusCircularInf1ColInfcupMedioGeometry = new THREE.TorusGeometry(0.065, 0.01, 10, 30, Math.PI * 2);
+crearDetalleColumna(torusCircularInf1ColInfcupMedioGeometry, cajaMaterial, 1.15, -0.08);
+crearDetalleColumna(torusCircularInf1ColInfcupMedioGeometry, cajaMaterial, 1.15, 0.19);
+
+const baseCircular3CupulaMedioInfGeometry = new THREE.CylinderGeometry(0.88, 0.88, 0.09, 30); // R top, R bot, H, R Seg
+const baseCircular3CupulaMedioInf = new THREE.Mesh(baseCircular3CupulaMedioInfGeometry, cajaMaterial);
+baseCircular3CupulaMedioInf.position.set(0, 1.11, 0);
+cupulas.add(baseCircular3CupulaMedioInf);
+baseCircular3CupulaMedioInf.castShadow = true;
+baseCircular3CupulaMedioInf.receiveShadow = true;
+
+const baseCircular4CupulaMedioInfGeometry = new THREE.CylinderGeometry(0.885, 0.885, 0.01, 30); // R top, R bot, H, R Seg
+const baseCircular4CupulaMedioInf = new THREE.Mesh(baseCircular4CupulaMedioInfGeometry, cajaMaterial);
+baseCircular4CupulaMedioInf.position.set(0, 1.15, 0);
+cupulas.add(baseCircular4CupulaMedioInf);
+baseCircular4CupulaMedioInf.castShadow = true;
+baseCircular4CupulaMedioInf.receiveShadow = true;
 //------------------------------CUPULA 2 PEQUEÑA---------------- 
 //Cupula Medio pequeña de arriba donde esta la cruz
 const cupulaMedioSmallGeometry = new THREE.CylinderGeometry(0.19, 0.19, 0.8, 30); // R top, R bot, H, R Seg
@@ -1917,11 +1991,13 @@ crearEscaleraTecho(baseCupula, 13, -0.25, 1.15, 1.3);
 
 
 //Mover cupulas y base de cupula hacia la derecha 
-cupulas.position.set(0, 0.55, 0.4); // Mover el grupo
+cupulas.position.set(0, 0.65, 0.4); // Mover el grupo
 baseCupula.position.set(0, 0, 0.4);
 
 //baseCupula.scale.set(1.1, 1, 1.1);
 cupulas.scale.set(0.85, 0.85, 0.85);
+
+cupulas.rotation.set(0, Math.PI*(1/7), 0);
 ////////////////////////////////////////////////////
 
 
