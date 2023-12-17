@@ -7,7 +7,8 @@
 
 ## Trabajando en (Amanda):
 ![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70444688/077adc0b-0982-4768-8066-1112f9a29835)
-![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70444688/596db375-4cc7-4bb7-8d87-df7d104861bd)
+![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70444688/0d01d5c7-495a-4d10-96d9-d90cdb8aff0f)
+
 
 
 
