@@ -1339,12 +1339,12 @@ panteon.add(ventanal4);
 const ventanalCupula = crearVentanaCupula();
 ventanalCupula.position.set(-0.73, 1.9, 0.7)
 ventanalCupula.rotation.y = Math.PI /1.7;  // Rotar 90 grados
-panteon.add(ventanalCupula);
+cupulas.add(ventanalCupula);
 
 const ventanalCupula2 = crearVentanaCupula();
 ventanalCupula2.position.set(-0.45, 1.9, 1.1)
 ventanalCupula2.rotation.y = Math.PI /1.2;  // Rotar 90 grados
-panteon.add(ventanalCupula2);
+cupulas.add(ventanalCupula2);
 
 // function calcularPuntosEquidistantes(puntoInicial, radio, cantidadPuntos) {
 //   const puntos = [];

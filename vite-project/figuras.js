@@ -190,11 +190,12 @@ const arcoGeometry = new THREE.ExtrudeGeometry(arcoShape, extrusionSettings);
 // Crear el material del arco
 const concreteTexture = new THREE.TextureLoader().load('./pared.jpg');
 //const arcoMaterial = new THREE.MeshBasicMaterial({ color: 0x00ffff }); // Puedes ajustar el color
-const arcoMaterial = new THREE.MeshBasicMaterial({
+const arcoMaterial = new THREE.MeshStandardMaterial({
   map: concreteTexture,
   color: "#dad2c5", // f4f4f4 dad2c5 #f4eadc
   roughness: 0.5, // Adjust roughness
   metalness: 0, // Adjust metalness
+  side: THREE.DoubleSide,
 });
 
 // Crear la malla del arco
