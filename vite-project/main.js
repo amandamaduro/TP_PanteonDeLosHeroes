@@ -1286,288 +1286,110 @@ crearBandaCupula(cajaMaterial, new THREE.Vector3(0, 3.75, 0), 0.185, 0.185, 0.01
 const columnasCupulaSmall = new THREE.Group();
 cupulas.add(columnasCupulaSmall);
 
-// function crearColumnasCupulaSmall(geometry, position, material){
-//   const rCupSmall = 0.175;
-//   for (let i = 0; i < 4; i++) {
-//     const angulo = (Math.PI / 2) * i;
+function crearColumnasCupulaSmall(geometry, position, material){
+  const rCupSmall = 0.175;
+  for (let i = 0; i < 4; i++) {
+    const angulo = (Math.PI / 2) * i;
 
-//     const colInfCupulaMedio = new THREE.Mesh(geometry, material);
-//     const posX = rCupSmall * Math.cos(angulo);
-//     const posY = position.y;
-//     const posZ = rCupSmall * Math.sin(angulo);
+    const colInfCupulaMedio = new THREE.Mesh(geometry, material);
+    const posX = rCupSmall * Math.cos(angulo);
+    const posY = position.y;
+    const posZ = rCupSmall * Math.sin(angulo);
 
-//     colInfCupulaMedio.position.set(posX, posY, posZ);
-//     colInfCupulaMedio.rotation.set(0, Math.PI/4, 0);
-//     columnasCupulaSmall.add(colInfCupulaMedio);
-//     colInfCupulaMedio.castShadow = true;
-//     colInfCupulaMedio.receiveShadow = true;
-//   }
+    colInfCupulaMedio.position.set(posX, posY, posZ);
+    colInfCupulaMedio.rotation.set(0, Math.PI/4, 0);
+    columnasCupulaSmall.add(colInfCupulaMedio);
+    colInfCupulaMedio.castShadow = true;
+    colInfCupulaMedio.receiveShadow = true;
+  }
 
-//   for (let i = 0; i < 4; i++) {
-//     const angulo = (Math.PI / 2) * i + 0.35;
+  for (let i = 0; i < 4; i++) {
+    const angulo = (Math.PI / 2) * i + 0.35;
 
-//     const colInfCupulaMedioA = new THREE.Mesh(geometry, material);
-//     const posX = rCupSmall * Math.cos(angulo);
-//     const posY = position.y;
-//     const posZ = rCupSmall * Math.sin(angulo);
+    const colInfCupulaMedioA = new THREE.Mesh(geometry, material);
+    const posX = rCupSmall * Math.cos(angulo);
+    const posY = position.y;
+    const posZ = rCupSmall * Math.sin(angulo);
 
-//     colInfCupulaMedioA.position.set(posX, posY, posZ);
-//     colInfCupulaMedioA.rotation.set(0, Math.PI/6, 0);
-//     columnasCupulaSmall.add(colInfCupulaMedioA);
-//     colInfCupulaMedioA.castShadow = true;
-//     colInfCupulaMedioA.receiveShadow = true;
-//   }
-// }
+    colInfCupulaMedioA.position.set(posX, posY, posZ);
+    colInfCupulaMedioA.rotation.set(0, Math.PI/6, 0);
+    columnasCupulaSmall.add(colInfCupulaMedioA);
+    colInfCupulaMedioA.castShadow = true;
+    colInfCupulaMedioA.receiveShadow = true;
+  }
+}
 //columnas inferior cupula medio small
 const colCupMedioSmallGeometry = new THREE.CylinderGeometry(0.03, 0.03, 0.5, 4); // R top, R bot, H, R Seg
-// crearColumnasCupulaSmall(colCupMedioSmallGeometry, new THREE.Vector3(0, 3.6, 0), cajaMaterial);
-
-const rCupSmall = 0.175;
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i;
-
-  const colInfCupulaMedio = new THREE.Mesh(colCupMedioSmallGeometry, cajaMaterial);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY = 3.6;
-  const posZ = rCupSmall * Math.sin(angulo);
-
-  colInfCupulaMedio.position.set(posX, posY, posZ);
-  colInfCupulaMedio.rotation.set(0, Math.PI/4, 0);
-  columnasCupulaSmall.add(colInfCupulaMedio);
-  colInfCupulaMedio.castShadow = true;
-  colInfCupulaMedio.receiveShadow = true;
-}
-
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i + 0.35;
-
-  const colInfCupulaMedioA = new THREE.Mesh(colCupMedioSmallGeometry, cajaMaterial);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY = 3.6;
-  const posZ = rCupSmall * Math.sin(angulo);
-
-  colInfCupulaMedioA.position.set(posX, posY, posZ);
-  colInfCupulaMedioA.rotation.set(0, Math.PI/6, 0);
-  columnasCupulaSmall.add(colInfCupulaMedioA);
-  colInfCupulaMedioA.castShadow = true;
-  colInfCupulaMedioA.receiveShadow = true;
-}
+crearColumnasCupulaSmall(colCupMedioSmallGeometry, new THREE.Vector3(0, 3.6, 0), cajaMaterial);
 
 //base columnas inferior cupula medio small
 const baseColCupMedioSmallGeometry = new THREE.CylinderGeometry(0.04, 0.04, 0.2, 4); // R top, R bot, H, R Seg
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i;
+crearColumnasCupulaSmall(baseColCupMedioSmallGeometry, new THREE.Vector3(0, 3.42, 0), cajaMaterial);
 
-  const colInfCupulaMedio = new THREE.Mesh(baseColCupMedioSmallGeometry, cajaMaterial);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY = 3.42;
-  const posZ = rCupSmall * Math.sin(angulo);
-
-  colInfCupulaMedio.position.set(posX, posY, posZ);
-  colInfCupulaMedio.rotation.set(0, Math.PI/4, 0);
-  columnasCupulaSmall.add(colInfCupulaMedio);
-  colInfCupulaMedio.castShadow = true;
-  colInfCupulaMedio.receiveShadow = true;
-}
-
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i + 0.35;
-
-  const colInfCupulaMedioA = new THREE.Mesh(baseColCupMedioSmallGeometry, cajaMaterial);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY = 3.42;
-  const posZ = rCupSmall * Math.sin(angulo);
-
-  colInfCupulaMedioA.position.set(posX, posY, posZ);
-  colInfCupulaMedioA.rotation.set(0, Math.PI/6, 0);
-  columnasCupulaSmall.add(colInfCupulaMedioA);
-  colInfCupulaMedioA.castShadow = true;
-  colInfCupulaMedioA.receiveShadow = true;
-}
-
+//detalle despues de banda gris
 const detColCupMedioSmallGeometry = new THREE.CylinderGeometry(0.04, 0.04, 0.01, 4); // R top, R bot, H, R Seg
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i;
-
-  const colInfCupulaMedio = new THREE.Mesh(detColCupMedioSmallGeometry, cajaMaterial);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY = 3.835;
-  const posZ = rCupSmall * Math.sin(angulo);
-
-  colInfCupulaMedio.position.set(posX, posY, posZ);
-  colInfCupulaMedio.rotation.set(0, Math.PI/4, 0);
-  columnasCupulaSmall.add(colInfCupulaMedio);
-  colInfCupulaMedio.castShadow = true;
-  colInfCupulaMedio.receiveShadow = true;
-}
-
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i + 0.35;
-
-  const colInfCupulaMedioA = new THREE.Mesh(detColCupMedioSmallGeometry, cajaMaterial);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY = 3.835;
-  const posZ = rCupSmall * Math.sin(angulo);
-
-  colInfCupulaMedioA.position.set(posX, posY, posZ);
-  colInfCupulaMedioA.rotation.set(0, Math.PI/6, 0);
-  columnasCupulaSmall.add(colInfCupulaMedioA);
-  colInfCupulaMedioA.castShadow = true;
-  colInfCupulaMedioA.receiveShadow = true;
-}
+crearColumnasCupulaSmall(detColCupMedioSmallGeometry, new THREE.Vector3(0, 3.835, 0), cajaMaterial);
 const detCol2CupMedioSmallGeometry = new THREE.CylinderGeometry(0.035, 0.035, 0.01, 4); // R top, R bot, H, R Seg
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i;
-
-  const colInfCupulaMedio = new THREE.Mesh(detCol2CupMedioSmallGeometry, cajaMaterial);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY = 3.825;
-  const posZ = rCupSmall * Math.sin(angulo);
-
-  colInfCupulaMedio.position.set(posX, posY, posZ);
-  colInfCupulaMedio.rotation.set(0, Math.PI/4, 0);
-  columnasCupulaSmall.add(colInfCupulaMedio);
-  colInfCupulaMedio.castShadow = true;
-  colInfCupulaMedio.receiveShadow = true;
-}
-
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i + 0.35;
-
-  const colInfCupulaMedioA = new THREE.Mesh(detCol2CupMedioSmallGeometry, cajaMaterial);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY = 3.825;
-  const posZ = rCupSmall * Math.sin(angulo);
-
-  colInfCupulaMedioA.position.set(posX, posY, posZ);
-  colInfCupulaMedioA.rotation.set(0, Math.PI/6, 0);
-  columnasCupulaSmall.add(colInfCupulaMedioA);
-  colInfCupulaMedioA.castShadow = true;
-  colInfCupulaMedioA.receiveShadow = true;
-}
+crearColumnasCupulaSmall(detCol2CupMedioSmallGeometry, new THREE.Vector3(0, 3.825, 0), cajaMaterial);
 const detCol3CupMedioSmallGeometry = new THREE.CylinderGeometry(0.0325, 0.0325, 0.01, 4); // R top, R bot, H, R Seg
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i;
+crearColumnasCupulaSmall(detCol3CupMedioSmallGeometry, new THREE.Vector3(0,3.815,0), cajaMaterial);
 
-  const colInfCupulaMedio = new THREE.Mesh(detCol3CupMedioSmallGeometry, cajaMaterial);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY =3.815;
-  const posZ = rCupSmall * Math.sin(angulo);
-
-  colInfCupulaMedio.position.set(posX, posY, posZ);
-  colInfCupulaMedio.rotation.set(0, Math.PI/4, 0);
-  columnasCupulaSmall.add(colInfCupulaMedio);
-  colInfCupulaMedio.castShadow = true;
-  colInfCupulaMedio.receiveShadow = true;
-}
-
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i + 0.35;
-
-  const colInfCupulaMedioA = new THREE.Mesh(detCol3CupMedioSmallGeometry, cajaMaterial);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY = 3.815;
-  const posZ = rCupSmall * Math.sin(angulo);
-
-  colInfCupulaMedioA.position.set(posX, posY, posZ);
-  colInfCupulaMedioA.rotation.set(0, Math.PI/6, 0);
-  columnasCupulaSmall.add(colInfCupulaMedioA);
-  colInfCupulaMedioA.castShadow = true;
-  colInfCupulaMedioA.receiveShadow = true;
-}
-
+//detalles del medio de las columnas
 const detColMedioCupMedioSmallGeometry = new THREE.CylinderGeometry(0.04, 0.04, 0.015, 4); // R top, R bot, H, R Seg
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i;
-
-  const colInfCupulaMedio = new THREE.Mesh(detColMedioCupMedioSmallGeometry, cajaMaterial);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY =3.785;
-  const posZ = rCupSmall * Math.sin(angulo);
-
-  colInfCupulaMedio.position.set(posX, posY, posZ);
-  colInfCupulaMedio.rotation.set(0, Math.PI/4, 0);
-  columnasCupulaSmall.add(colInfCupulaMedio);
-  colInfCupulaMedio.castShadow = true;
-  colInfCupulaMedio.receiveShadow = true;
-}
-
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i + 0.35;
-
-  const colInfCupulaMedioA = new THREE.Mesh(detColMedioCupMedioSmallGeometry, cajaMaterial);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY = 3.785;
-  const posZ = rCupSmall * Math.sin(angulo);
-
-  colInfCupulaMedioA.position.set(posX, posY, posZ);
-  colInfCupulaMedioA.rotation.set(0, Math.PI/6, 0);
-  columnasCupulaSmall.add(colInfCupulaMedioA);
-  colInfCupulaMedioA.castShadow = true;
-  colInfCupulaMedioA.receiveShadow = true;
-}
+crearColumnasCupulaSmall(detColMedioCupMedioSmallGeometry, new THREE.Vector3(0, 3.785, 0), cajaMaterial);
 const detColMedio2CupMedioSmallGeometry = new THREE.CylinderGeometry(0.035, 0.035, 0.005, 4); // R top, R bot, H, R Seg
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i;
-
-  const colInfCupulaMedio = new THREE.Mesh(detColMedio2CupMedioSmallGeometry, materialBaseCupulaSmall);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY =3.775;
-  const posZ = rCupSmall * Math.sin(angulo);
-
-  colInfCupulaMedio.position.set(posX, posY, posZ);
-  colInfCupulaMedio.rotation.set(0, Math.PI/4, 0);
-  columnasCupulaSmall.add(colInfCupulaMedio);
-  colInfCupulaMedio.castShadow = true;
-  colInfCupulaMedio.receiveShadow = true;
-}
-
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i + 0.35;
-
-  const colInfCupulaMedioA = new THREE.Mesh(detColMedio2CupMedioSmallGeometry, materialBaseCupulaSmall);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY = 3.775;
-  const posZ = rCupSmall * Math.sin(angulo);
-
-  colInfCupulaMedioA.position.set(posX, posY, posZ);
-  colInfCupulaMedioA.rotation.set(0, Math.PI/6, 0);
-  columnasCupulaSmall.add(colInfCupulaMedioA);
-  colInfCupulaMedioA.castShadow = true;
-  colInfCupulaMedioA.receiveShadow = true;
-}
+crearColumnasCupulaSmall(detColMedio2CupMedioSmallGeometry, new THREE.Vector3(0, 3.775, 0), materialBaseCupulaSmall);
 const detColMedio3CupMedioSmallGeometry = new THREE.CylinderGeometry(0.0345, 0.0345, 0.01, 4); // R top, R bot, H, R Seg
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i;
+crearColumnasCupulaSmall(detColMedio3CupMedioSmallGeometry, new THREE.Vector3(0,3.77,0), cajaMaterial);
+const detColMedio4CupMedioSmallGeometry = new THREE.CylinderGeometry(0.0335, 0.0335, 0.01, 4); // R top, R bot, H, R Seg
+crearColumnasCupulaSmall(detColMedio4CupMedioSmallGeometry, new THREE.Vector3(0,3.76,0), cajaMaterial);
+const detColMedio5CupMedioSmallGeometry = new THREE.CylinderGeometry(0.0325, 0.0325, 0.01, 4); // R top, R bot, H, R Seg
+crearColumnasCupulaSmall(detColMedio5CupMedioSmallGeometry, new THREE.Vector3(0,3.75,0), cajaMaterial);
 
-  const colInfCupulaMedio = new THREE.Mesh(detColMedio3CupMedioSmallGeometry, cajaMaterial);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY =3.77;
-  const posZ = rCupSmall * Math.sin(angulo);
+//Detalles justo debajo del medio de las columnas
+const detColMedio6CupMedioSmallGeometry = new THREE.CylinderGeometry(0.0345, 0.0345, 0.01, 4); // R top, R bot, H, R Seg
+crearColumnasCupulaSmall(detColMedio6CupMedioSmallGeometry, new THREE.Vector3(0,3.74,0), materialBaseCupulaSmall);
+const detColMedio7CupMedioSmallGeometry = new THREE.CylinderGeometry(0.0335, 0.0335, 0.01, 4); // R top, R bot, H, R Seg
+crearColumnasCupulaSmall(detColMedio7CupMedioSmallGeometry, new THREE.Vector3(0,3.73,0), materialBaseCupulaSmall);
+const detColMedio8CupMedioSmallGeometry = new THREE.CylinderGeometry(0.0325, 0.0325, 0.01, 4); // R top, R bot, H, R Seg
+crearColumnasCupulaSmall(detColMedio8CupMedioSmallGeometry, new THREE.Vector3(0,3.72,0), materialBaseCupulaSmall);
+const detColMedio9CupMedioSmallGeometry = new THREE.CylinderGeometry(0.0315, 0.0315, 0.01, 4); // R top, R bot, H, R Seg
+crearColumnasCupulaSmall(detColMedio9CupMedioSmallGeometry, new THREE.Vector3(0,3.71,0), materialBaseCupulaSmall);
 
-  colInfCupulaMedio.position.set(posX, posY, posZ);
-  colInfCupulaMedio.rotation.set(0, Math.PI/4, 0);
-  columnasCupulaSmall.add(colInfCupulaMedio);
-  colInfCupulaMedio.castShadow = true;
-  colInfCupulaMedio.receiveShadow = true;
-}
+//Detalle mitad de columna, sobresaltado
+const detMitadCupMedioGeometry = new THREE.CylinderGeometry(0.195, 0.185, 0.005, 30);
+const detMitadCupMedio = new THREE.Mesh(detMitadCupMedioGeometry, materialBaseCupulaSmall);
+detMitadCupMedio.position.set(0, 3.65, 0);
+columnasCupulaSmall.add(detMitadCupMedio);
+detMitadCupMedio.castShadow = true;
+detMitadCupMedio.receiveShadow = true;
+const det2MitadCupMedioGeometry = new THREE.CylinderGeometry(0.185, 0.185, 0.008, 30);
+const det2MitadCupMedio = new THREE.Mesh(det2MitadCupMedioGeometry, materialBaseCupulaSmall);
+det2MitadCupMedio.position.set(0, 3.645, 0);
+columnasCupulaSmall.add(det2MitadCupMedio);
+det2MitadCupMedio.castShadow = true;
+det2MitadCupMedio.receiveShadow = true;
 
-for (let i = 0; i < 4; i++) {
-  const angulo = (Math.PI / 2) * i + 0.35;
-
-  const colInfCupulaMedioA = new THREE.Mesh(detColMedio3CupMedioSmallGeometry, cajaMaterial);
-  const posX = rCupSmall * Math.cos(angulo);
-  const posY = 3.77;
-  const posZ = rCupSmall * Math.sin(angulo);
-
-  colInfCupulaMedioA.position.set(posX, posY, posZ);
-  colInfCupulaMedioA.rotation.set(0, Math.PI/6, 0);
-  columnasCupulaSmall.add(colInfCupulaMedioA);
-  colInfCupulaMedioA.castShadow = true;
-  colInfCupulaMedioA.receiveShadow = true;
-}
+const detAbajoCupMedio = new THREE.CylinderGeometry(0.042, 0.042, 0.008, 4);
+crearColumnasCupulaSmall(detAbajoCupMedio, new THREE.Vector3(0, 3.52, 0), materialBaseCupulaSmall);
+const detArribaCupMedio = new THREE.CylinderGeometry(0.043, 0.043, 0.04, 4);
+crearColumnasCupulaSmall(detArribaCupMedio, new THREE.Vector3(0, 3.89, 0), materialBaseCupulaSmall);
 
 columnasCupulaSmall.rotation.set(0, Math.PI/6, 0);
+
+//cupula final donde va la cruz
+// Geometría de media esfera
+const cupulaSmall2Geometry = new THREE.SphereGeometry(3.5, 32, 16, phiStart, phiLength, 0, Math.PI*0.5);
+const cupulaSmall2 = new THREE.Mesh(cupulaSmall2Geometry, materialBaseCupulaSmall);
+// Posición, escala y rotación
+cupulaSmall2.position.set(0, 4.1, 0);
+cupulaSmall2.scale.set(0.0176, 0.021, 0.0176);
+//cupula.rotation.x = -Math.PI/2;
+cupulas.add(cupulaSmall2);
+cupulaSmall2.castShadow = true;
+cupulaSmall2.receiveShadow = true;
+
+crearBandaCupula(materialBaseCupulaSmall, new THREE.Vector3(0, 4.1, 0), 0.07, 0.05, 0.04);
 
 //-------------------------TERMINO DE CUPULAS-----------------------------------------
 
