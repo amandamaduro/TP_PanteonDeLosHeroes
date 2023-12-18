@@ -21,6 +21,7 @@ Asegúrate de tener [Node.js](https://nodejs.org/) instalado en tu sistema.
     ```bash
     npm install three
     npm install vite
+    npm install dat.gui
     ```
 
 4. Cambia al directorio del proyecto Vite:
