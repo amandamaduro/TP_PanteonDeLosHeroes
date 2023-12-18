@@ -2221,6 +2221,24 @@ function crearEscaleraTecho(baseCupula, cantidad, posX, posY, posZ) {
 // Llamada a la función
 crearEscaleraTecho(baseCupula, 13, -0.25, 1.15, 1.3);
 
+/////////////// REJAS CUPULA PEQUENA ////////////
+const rejaFgeometry3 = new THREE.BoxGeometry(0.007, 0.1, 0.007);
+function crearRejaFinaCupula(grupo, posX, posY, posZ) {
+  const rejaFina = new THREE.Mesh(rejaFgeometry3, rejaMaterial);
+  rejaFina.position.set(posX, posY, posZ);
+  grupo.add(rejaFina);
+  rejaFina.castShadow = true;
+  rejaFina.receiveShadow = true;
+}
+crearRejaFinaCupula(cupulas, -0.25, 3.53, -0.005); //si
+crearRejaFinaCupula(cupulas, -0.18, 3.53, -0.17); //si
+crearRejaFinaCupula(cupulas, 0.18, 3.53, -0.17); //si
+crearRejaFinaCupula(cupulas, 0.0, 3.53, -0.25); // si
+crearRejaFinaCupula(cupulas, 0.0, 3.53, 0.25);
+crearRejaFinaCupula(cupulas, 0.25, 3.53, 0.005);
+crearRejaFinaCupula(cupulas, -0.18, 3.53, 0.17);
+crearRejaFinaCupula(cupulas, 0.18, 3.53, 0.17);
+/////////////////////////////////////////////////
 
 //Mover cupulas y base de cupula hacia la derecha 
 cupulas.position.set(0, 0.65, 0.4); // Mover el grupo
