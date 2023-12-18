@@ -2016,6 +2016,7 @@ crearBordePastoL(bordePastoLGeometria2, new THREE.Vector3(-2.9, -0.95, -0.5));
 crearBordePastoL(bordePastoLGeometria2, new THREE.Vector3(-2.3, -0.95, -0.5));
 
 
+
 /////////////////////// REJAS /////////////////////// 
 const rejaGgeometry = new THREE.BoxGeometry(0.025, 0.29, 0.025);
 const rejaMaterial = new THREE.MeshStandardMaterial({ 
@@ -2450,8 +2451,8 @@ function crearRejaCruz2(grupo, posX, posY, posZ, geometria) {
 const rejaFgeometry4 = new THREE.BoxGeometry(0.008, 0.16, 0.008);
 const rejaFgeometry5 = new THREE.BoxGeometry(0.008, 0.05, 0.008);
 crearRejaCruz2(cupulas, 0, 4.27, 0, rejaFgeometry2);
-//crearRejaCruz2(cupulas, 0.03, 4.27, 0.01, rejaFgeometry5);
-//crearRejaCruz2(cupulas, -0.03, 4.27, -0.01, rejaFgeometry5);
+crearRejaCruz2(cupulas, 0.03, 4.27, 0.01, rejaFgeometry5);
+crearRejaCruz2(cupulas, -0.03, 4.27, -0.01, rejaFgeometry5);
 crearRejaCruz(cupulas, 0, 4.27, 0, rejaFgeometry4, (Math.PI/2),  0);
 crearRejaCruz(cupulas, 0, 4.29, 0, rejaFgeometry5, (Math.PI/2),  0);
 crearRejaCruz(cupulas, 0, 4.25, 0, rejaFgeometry5, (Math.PI/2),  0);
@@ -2569,24 +2570,132 @@ lightTargetFolder.add(lightProperties.target, 'z', -200, 200).onChange(function 
 });
 
 
-const cupulaFolder = gui.addFolder('Cupula');
-//OPCIONES DE CUPULA
-// Funciones para ajustar el color y el brillo
-function updateColor(color) {
-  materialBanda.color.set(color);
-}
+// const cupulaFolder = gui.addFolder('Cupula');
+// //OPCIONES DE CUPULA
+// // Funciones para ajustar el color y el brillo
+// function updateColor(color) {
+//   materialBanda.color.set(color);
+// }
 
-function updateBrightness(brightness) {
-  materialBanda.emissive.setRGB(brightness, brightness, brightness);
-}
+// function updateBrightness(brightness) {
+//   materialBanda.emissive.setRGB(brightness, brightness, brightness);
+// }
 
-// Crear controles en GUI
-const colorControl = cupulaFolder.addColor({ color: 0xeeece4 }, 'color').name('Color');
-colorControl.onChange(updateColor);
+// // Crear controles en GUI
+// const colorControl = cupulaFolder.addColor({ color: 0xeeece4 }, 'color').name('Color');
+// colorControl.onChange(updateColor);
 
-const brightnessControl = cupulaFolder.add({ brightness: 1 }, 'brightness', 0, 2).name('Brillo');
-brightnessControl.onChange(updateBrightness);
+// const brightnessControl = cupulaFolder.add({ brightness: 1 }, 'brightness', 0, 2).name('Brillo');
+// brightnessControl.onChange(updateBrightness);
 
+////////////// BANDERAAAA ////////////////////
+const banderaPaloGeometry = new THREE.CylinderGeometry(0.015,0.015,2,30)
+const paloBanderaMaterial = new THREE.MeshStandardMaterial({ 
+  color: '#f4f4f4', 
+});
+const banderaPalo = new THREE.Mesh(banderaPaloGeometry, paloBanderaMaterial);
+banderaPalo.position.set(-1.8, 0.05, 3.85);
+panteon.add(banderaPalo)
+banderaPalo.receiveShadow = true;
+banderaPalo.castShadow = true;
+const flagTexture = new THREE.TextureLoader().load('./bandera.jpg');
+// Vertex Shader
+const flagVertexShader = `
+  varying vec2 vUv;
+  uniform float time;
+
+  ${simpleNoise}
+
+  void main() {
+    vUv = uv;
+    float t = time * 2.;
+
+    vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+    
+    // Definir un rango para aplicar el desplazamiento
+    float displacementRange = 0.15; // Ajusta según sea necesario
+    if (position.x > -displacementRange) {
+      mvPosition.z += sin(mvPosition.x * 3.0 + t) * 0.1;
+    }
+
+    gl_Position = projectionMatrix * mvPosition;
+  }
+`;
+
+
+// Fragment Shader
+const flagFragmentShader = `
+  varying vec2 vUv;
+  uniform sampler2D uTexture; // Add this line to declare the texture uniform
+
+  void main() {
+    vec3 baseColor = vec3(0.5, 0.5, 0.95); // Adjust the color as needed
+    vec4 textureColor = texture2D(uTexture, vUv); // Sample the texture
+
+    // Aclarar la textura multiplicándola por un factor
+    //float brightnessFactor = 1.7; // Ajusta este valor según sea necesario
+    //vec4 finalColor = textureColor * brightnessFactor;
+
+    // Deformar las coordenadas de textura con una función seno
+    float distortion = sin(vUv.x * 10.0) * 0.05; // Ajusta la frecuencia y la amplitud según sea necesario
+    vec2 distortedUV = vec2(vUv.x, vUv.y + distortion);
+
+    // Use la textura deformada como el color final
+    gl_FragColor = vec4(texture2D(uTexture, distortedUV).rgb * baseColor, 1.0);
+  }
+`;
+
+// // Fragment Shader
+// const flagFragmentShader = `
+//   varying vec2 vUv;
+//   uniform sampler2D uTexture; // Add this line to declare the texture uniform
+
+//   void main() {
+//     vec3 baseColor = vec3(0.5, 0.5, 0.95); // Adjust the color as needed
+//     vec4 textureColor = texture2D(uTexture, vUv); // Sample the texture
+
+//     // Aclarar la textura multiplicándola por un factor
+//     float brightnessFactor = 1.5; // Ajusta este valor según sea necesario
+//     vec4 finalColor = textureColor * brightnessFactor;
+
+//     // Deformar las coordenadas de textura con una función seno
+//     float distortion = sin(vUv.x * 10.0) * 0.05; // Ajusta la frecuencia y la amplitud según sea necesario
+//     vec2 distortedUV = vec2(vUv.x, vUv.y + distortion);
+
+//     // Normalizar las coordenadas de textura
+//     distortedUV = fract(distortedUV);
+
+//     // Use la textura deformada como el color final
+//     gl_FragColor = vec4(texture2D(uTexture, distortedUV).rgb * baseColor, 1.0);
+//   }
+// `;
+
+
+// Uniforms
+const flagUniforms = {
+  time: { value: 0 },
+  uTexture: { value: flagTexture },
+  brightness: { value: 1.5 }
+};
+
+// Material
+const flagMaterial = new THREE.ShaderMaterial({
+  vertexShader: flagVertexShader,
+  fragmentShader: flagFragmentShader,
+  uniforms: flagUniforms,
+  side: THREE.DoubleSide
+});
+
+// Geometry
+const flagGeometry = new THREE.PlaneGeometry(0.5, 0.3, 50, 50);  // Adjust the size and segments as needed
+
+// Mesh
+const flagMesh = new THREE.Mesh(flagGeometry, flagMaterial);
+flagMesh.rotation.set(0, Math.PI /2 , 0);  // Rotate the flag if needed
+flagMesh.position.set(-1.8, 0.84, 3.6);
+panteon.add(flagMesh);
+flagMesh.receiveShadow= true;
+flagMesh.castShadow=true;
 
 
 // Animation loop
@@ -2601,13 +2710,15 @@ function animate() {
   light.angle = lightProperties.angle;
   // Pasto tiempo
   grassLeavesMaterial.uniforms.time.value = clock.getElapsedTime()
-   //Update helper
+  //Bandera
+  flagMaterial.uniforms.time.value = clock.getElapsedTime()
+  //Update helper
   lightHelper.update();
   // Render the scene with the updated camera and cube position
   renderer.render(scene, camera);
-
   // Call animate again on the next frame
   requestAnimationFrame(animate);
+
 }
 
 // Start the animation loop

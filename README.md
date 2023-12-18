@@ -50,9 +50,10 @@ Ahora deberías tener el proyecto en funcionamiento localmente en tu máquina.
    Después de ejecutar este comando, intenta nuevamente el paso 3.
 
 # Panteon de los Heroes
-![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70351967/9bd2e649-1d7d-4ba0-9cfd-60dd23e5b475)
-![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70351967/2b3919ae-a2f8-4493-adb4-2dfa98e4ff83)
-![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70351967/84f15b33-352f-470d-8272-33ac8f03402f)
+![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70351967/45e30d9d-9239-4962-ad62-10c725c8b5b4)
+![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70351967/06307bab-ea13-439c-bc5c-d095acbcdfd2)
+![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70351967/d47cd6d9-3320-45cc-84a6-d702ab7a07fd)
+
 
 
 
