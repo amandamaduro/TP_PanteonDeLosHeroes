@@ -2445,8 +2445,8 @@ function crearRejaCruz2(grupo, posX, posY, posZ, geometria) {
 const rejaFgeometry4 = new THREE.BoxGeometry(0.008, 0.16, 0.008);
 const rejaFgeometry5 = new THREE.BoxGeometry(0.008, 0.05, 0.008);
 crearRejaCruz2(cupulas, 0, 4.27, 0, rejaFgeometry2);
-//crearRejaCruz2(cupulas, 0.03, 4.27, 0.01, rejaFgeometry5);
-//crearRejaCruz2(cupulas, -0.03, 4.27, -0.01, rejaFgeometry5);
+crearRejaCruz2(cupulas, 0.03, 4.27, 0.01, rejaFgeometry5);
+crearRejaCruz2(cupulas, -0.03, 4.27, -0.01, rejaFgeometry5);
 crearRejaCruz(cupulas, 0, 4.27, 0, rejaFgeometry4, (Math.PI/2),  0);
 crearRejaCruz(cupulas, 0, 4.29, 0, rejaFgeometry5, (Math.PI/2),  0);
 crearRejaCruz(cupulas, 0, 4.25, 0, rejaFgeometry5, (Math.PI/2),  0);
@@ -2564,23 +2564,23 @@ lightTargetFolder.add(lightProperties.target, 'z', -200, 200).onChange(function 
 });
 
 
-const cupulaFolder = gui.addFolder('Cupula');
-//OPCIONES DE CUPULA
-// Funciones para ajustar el color y el brillo
-function updateColor(color) {
-  materialBanda.color.set(color);
-}
+// const cupulaFolder = gui.addFolder('Cupula');
+// //OPCIONES DE CUPULA
+// // Funciones para ajustar el color y el brillo
+// function updateColor(color) {
+//   materialBanda.color.set(color);
+// }
 
-function updateBrightness(brightness) {
-  materialBanda.emissive.setRGB(brightness, brightness, brightness);
-}
+// function updateBrightness(brightness) {
+//   materialBanda.emissive.setRGB(brightness, brightness, brightness);
+// }
 
-// Crear controles en GUI
-const colorControl = cupulaFolder.addColor({ color: 0xeeece4 }, 'color').name('Color');
-colorControl.onChange(updateColor);
+// // Crear controles en GUI
+// const colorControl = cupulaFolder.addColor({ color: 0xeeece4 }, 'color').name('Color');
+// colorControl.onChange(updateColor);
 
-const brightnessControl = cupulaFolder.add({ brightness: 1 }, 'brightness', 0, 2).name('Brillo');
-brightnessControl.onChange(updateBrightness);
+// const brightnessControl = cupulaFolder.add({ brightness: 1 }, 'brightness', 0, 2).name('Brillo');
+// brightnessControl.onChange(updateBrightness);
 
 
 
