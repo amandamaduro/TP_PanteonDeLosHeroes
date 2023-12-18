@@ -2591,6 +2591,8 @@ const paloBanderaMaterial = new THREE.MeshStandardMaterial({
 const banderaPalo = new THREE.Mesh(banderaPaloGeometry, paloBanderaMaterial);
 banderaPalo.position.set(-1.8, 0.05, 3.85);
 panteon.add(banderaPalo)
+banderaPalo.receiveShadow = true;
+banderaPalo.castShadow = true;
 const flagTexture = new THREE.TextureLoader().load('./bandera.jpg');
 // Vertex Shader
 const flagVertexShader = `
@@ -2615,19 +2617,54 @@ const flagVertexShader = `
   }
 `;
 
+
 // Fragment Shader
 const flagFragmentShader = `
   varying vec2 vUv;
   uniform sampler2D uTexture; // Add this line to declare the texture uniform
 
- void main() {
+  void main() {
     vec3 baseColor = vec3(0.5, 0.5, 0.95); // Adjust the color as needed
     vec4 textureColor = texture2D(uTexture, vUv); // Sample the texture
 
-    // Use the texture color as the final color
-    gl_FragColor = vec4(textureColor.rgb * baseColor, 1.0);
+    // Aclarar la textura multiplicándola por un factor
+    //float brightnessFactor = 1.7; // Ajusta este valor según sea necesario
+    //vec4 finalColor = textureColor * brightnessFactor;
+
+    // Deformar las coordenadas de textura con una función seno
+    float distortion = sin(vUv.x * 10.0) * 0.05; // Ajusta la frecuencia y la amplitud según sea necesario
+    vec2 distortedUV = vec2(vUv.x, vUv.y + distortion);
+
+    // Use la textura deformada como el color final
+    gl_FragColor = vec4(texture2D(uTexture, distortedUV).rgb * baseColor, 1.0);
   }
 `;
+
+// // Fragment Shader
+// const flagFragmentShader = `
+//   varying vec2 vUv;
+//   uniform sampler2D uTexture; // Add this line to declare the texture uniform
+
+//   void main() {
+//     vec3 baseColor = vec3(0.5, 0.5, 0.95); // Adjust the color as needed
+//     vec4 textureColor = texture2D(uTexture, vUv); // Sample the texture
+
+//     // Aclarar la textura multiplicándola por un factor
+//     float brightnessFactor = 1.5; // Ajusta este valor según sea necesario
+//     vec4 finalColor = textureColor * brightnessFactor;
+
+//     // Deformar las coordenadas de textura con una función seno
+//     float distortion = sin(vUv.x * 10.0) * 0.05; // Ajusta la frecuencia y la amplitud según sea necesario
+//     vec2 distortedUV = vec2(vUv.x, vUv.y + distortion);
+
+//     // Normalizar las coordenadas de textura
+//     distortedUV = fract(distortedUV);
+
+//     // Use la textura deformada como el color final
+//     gl_FragColor = vec4(texture2D(uTexture, distortedUV).rgb * baseColor, 1.0);
+//   }
+// `;
+
 
 // Uniforms
 const flagUniforms = {
@@ -2641,7 +2678,7 @@ const flagMaterial = new THREE.ShaderMaterial({
   vertexShader: flagVertexShader,
   fragmentShader: flagFragmentShader,
   uniforms: flagUniforms,
-  side: THREE.DoubleSide,
+  side: THREE.DoubleSide
 });
 
 // Geometry
@@ -2652,6 +2689,8 @@ const flagMesh = new THREE.Mesh(flagGeometry, flagMaterial);
 flagMesh.rotation.set(0, Math.PI /2 , 0);  // Rotate the flag if needed
 flagMesh.position.set(-1.8, 0.84, 3.6);
 panteon.add(flagMesh);
+flagMesh.receiveShadow= true;
+flagMesh.castShadow=true;
 
 
 // Animation loop
