@@ -2,8 +2,7 @@
 ![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70444688/d633134a-2851-4664-a974-528688e054de)
 
 ## Trabajando en (Ampi):
-![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70351967/dae58cd5-4996-4288-895b-4a65ffbe7fa9)
-![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70351967/070f1a87-f6ce-44d8-9aac-e981eb7fc01e)
+![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70351967/cc8018da-5031-40fb-908f-86eb3059dd3a)
 
 ## Trabajando en (Amanda):
 ![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70444688/077adc0b-0982-4768-8066-1112f9a29835)
