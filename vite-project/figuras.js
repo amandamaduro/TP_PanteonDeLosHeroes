@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-/*
+
 export function crearVentana() {
 
     //console.log("Hola");
@@ -427,4 +427,3 @@ ventana.position.set(0, 1, 0); // Ajusta según tus necesidades
 // Añadir la ventana a la escena
 return(ventana);
 }
-*/

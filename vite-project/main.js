@@ -9,7 +9,7 @@ import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 //Para figuras
-//import { crearVentana, crearArco, crearBordeSemi, crearVentanaCupula, crearVentanaSemi, crearVentanaTransparente} from './figuras.js';
+import { crearVentana, crearArco, crearBordeSemi, crearVentanaCupula, crearVentanaSemi, crearVentanaTransparente} from './figuras.js';
 
 // Create a scene
 const scene = new THREE.Scene();
@@ -123,6 +123,113 @@ const bordeP4Geometry = new THREE.BoxGeometry(1, 0.15, 1.5);
 crearBordePanteon(panteon, bordeP4Geometry, cajaMaterial, new THREE.Vector3(-0.62, -0.8, 2));
 crearBordePanteon(panteon, bordeP3Geometry, cajaMaterial, new THREE.Vector3(0.66, -0.9, 2));
 crearBordePanteon(panteon, bordeP4Geometry, cajaMaterial, new THREE.Vector3(0.62, -0.8, 2));
+
+//////////// PUERTA PANTEON /////////////////////////////
+const puertaTexture = new THREE.TextureLoader().load('./madera2.jpg');
+const puertaGeometry = new THREE.BoxGeometry(0.25, 0.95, 0.05); 
+const puertaMaterial = new THREE.MeshStandardMaterial({
+  map: puertaTexture,
+  color: "#5c4c2e",
+});
+// Puerta Izq
+const puertaPanteonI = new THREE.Mesh(puertaGeometry, puertaMaterial);
+puertaPanteonI.position.set(-0.125,-0.35,2.745);
+panteon.add(puertaPanteonI)
+puertaPanteonI.castShadow = true;
+puertaPanteonI.receiveShadow = true;
+// Puerta Der
+const puertaPanteonD = new THREE.Mesh(puertaGeometry, puertaMaterial);
+puertaPanteonD.position.set(0.125,-0.35,2.745);
+panteon.add(puertaPanteonD)
+puertaPanteonD.castShadow = true;
+puertaPanteonD.receiveShadow = true;
+// Borde puerta
+// Izq
+const puertaBordeGeometry = new THREE.BoxGeometry(0.05, 1.05, 0.05); 
+const puertaBordePanteonI = new THREE.Mesh(puertaBordeGeometry, cajaMaterial);
+puertaBordePanteonI.position.set(-0.28,-0.35,2.74)
+panteon.add(puertaBordePanteonI)
+puertaBordePanteonI.castShadow = true;
+puertaBordePanteonI.receiveShadow = true;
+const puertaBordePanteonI2 = new THREE.Mesh(puertaBordeGeometry, cajaMaterial);
+puertaBordePanteonI2.position.set(-0.35,-0.35,2.74)
+panteon.add(puertaBordePanteonI2)
+puertaBordePanteonI2.castShadow = true;
+puertaBordePanteonI2.receiveShadow = true;
+// Der
+const puertaBordePanteonD = new THREE.Mesh(puertaBordeGeometry, cajaMaterial);
+puertaBordePanteonD.position.set(0.28,-0.35,2.74)
+panteon.add(puertaBordePanteonD)
+puertaBordePanteonD.castShadow = true;
+puertaBordePanteonD.receiveShadow = true;
+const puertaBordePanteonD2 = new THREE.Mesh(puertaBordeGeometry, cajaMaterial);
+puertaBordePanteonD2.position.set(0.35,-0.35,2.74)
+panteon.add(puertaBordePanteonD2)
+puertaBordePanteonD2.castShadow = true;
+puertaBordePanteonD2.receiveShadow = true;
+// arriba
+const puertaBordeGeometry2 = new THREE.BoxGeometry(0.51, 0.2, 0.05); 
+const puertaBordePanteonA = new THREE.Mesh(puertaBordeGeometry2, cajaMaterial);
+puertaBordePanteonA.position.set(0,0.075,2.74)
+panteon.add(puertaBordePanteonA)
+puertaBordePanteonA.castShadow = true;
+puertaBordePanteonA.receiveShadow = true;
+const puertaBordePanteonA2 = new THREE.Mesh(puertaBordeGeometry2, cajaMaterial);
+puertaBordePanteonA2.position.set(0,0.12,2.74)
+panteon.add(puertaBordePanteonA2)
+puertaBordePanteonA2.castShadow = true;
+puertaBordePanteonA2.receiveShadow = true;
+// base borde puerta
+const puertaBaseGeometry = new THREE.BoxGeometry(0.06, 0.08, 0.05);
+//izq
+const puertaBase = new THREE.Mesh(puertaBaseGeometry, cajaMaterial);
+puertaBase.position.set(-0.28,-0.65,2.76)
+panteon.add(puertaBase)
+puertaBase.castShadow = true;
+puertaBase.receiveShadow = true; 
+// der
+const puertaBase2 = new THREE.Mesh(puertaBaseGeometry, cajaMaterial);
+puertaBase2.position.set(0.28,-0.65,2.76)
+panteon.add(puertaBase2)
+puertaBase2.castShadow = true;
+puertaBase2.receiveShadow = true; 
+
+// Techo Puerta
+function agregarTechoP(geometry, position, rotation) {
+  const techoCol = new THREE.Mesh(geometry, cajaMaterial);
+  techoCol.position.copy(position);
+  techoCol.rotation.set(0, 0, rotation);
+  panteon.add(techoCol);
+  techoCol.castShadow = true;
+  techoCol.receiveShadow = true;
+}
+const techoPGeometry = new THREE.BoxGeometry(0.4, 0.05, 0.05);
+agregarTechoP(techoPGeometry, new THREE.Vector3(-0.3, 0.4, 2.76), (18 * Math.PI) / 180);
+agregarTechoP(techoPGeometry, new THREE.Vector3(0.3, 0.4, 2.76), (-18 * Math.PI) / 180);
+
+const puertaBordeGeometry3 = new THREE.BoxGeometry(0.95, 0.05, 0.05); 
+const puertaBordePanteonA3 = new THREE.Mesh(puertaBordeGeometry3, cajaMaterial);
+puertaBordePanteonA3.position.set(0,0.3,2.74)
+panteon.add(puertaBordePanteonA3)
+puertaBordePanteonA3.castShadow = true;
+puertaBordePanteonA3.receiveShadow = true;
+
+// detalle piramide techo puerta //
+const puertaBordeRedondoGeometry = new THREE.CylinderGeometry(0.05,0.05,0.05,30)
+const puertaBordeRedon = new THREE.Mesh(puertaBordeRedondoGeometry, cajaMaterial);
+puertaBordeRedon.position.set(-0.155,0.445,2.76)
+puertaBordeRedon.rotation.set(0, 0, (18 * Math.PI) / 180)
+panteon.add(puertaBordeRedon)
+puertaBordeRedon.castShadow = true;
+puertaBordeRedon.receiveShadow = true;
+const puertaBordeRedon2 = new THREE.Mesh(puertaBordeRedondoGeometry, cajaMaterial);
+puertaBordeRedon2.position.set(0.155,0.445,2.76)
+puertaBordeRedon2.rotation.set(0, 0, (-18 * Math.PI) / 180)
+panteon.add(puertaBordeRedon2)
+puertaBordeRedon2.castShadow = true;
+puertaBordeRedon2.receiveShadow = true;
+
+
 ///////////// COLUMNAS CUADRADAS ////////////////////////
 function crearColumnaCuadrada(panteon, posX, posY, posZ) {
   const columnaGeometry = new THREE.BoxGeometry(0.18, 1.6, 0.18);
@@ -1355,7 +1462,7 @@ panteon.receiveShadow = true; // El grupo recibe sombras (ajusta según sea nece
 
     }
   );
-/*
+
 /////////////////////////////////////////////////////////////////////
 
 /// Ventanales laterales PRUEBA
@@ -1545,8 +1652,6 @@ arco3Borde.position.set(1.6, 1, 0.5)
 arco3Borde.rotation.y = Math.PI / 2;  // Rotar 90 grados
 arco3Borde.scale.set(1.6,1,1)
 panteon.add(arco3Borde);
-*/
-
 
 
 //prueba de grupo
