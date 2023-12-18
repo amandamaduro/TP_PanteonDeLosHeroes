@@ -1,5 +1,16 @@
 import * as THREE from 'three';
 
+const concreteTexture = new THREE.TextureLoader().load('./pared.jpg');
+//const arcoMaterial = new THREE.MeshBasicMaterial({ color: 0x00ffff }); // Puedes ajustar el color
+const BordeMaterial = new THREE.MeshStandardMaterial({
+  map: concreteTexture,
+  color: "#dad2c5", // f4f4f4 dad2c5 #f4eadc
+  //color: 0x00ff00,
+  roughness: 0.5, // Adjust roughness
+  metalness: 0, // Adjust metalness
+  side: THREE.DoubleSide,
+});
+
 export function crearVentana() {
 
     //console.log("Hola");
@@ -250,10 +261,6 @@ arcoMaterial.map.repeat.set(6, 6); // Ajusta el número de repeticiones en direc
 const arcoMesh = new THREE.Mesh(arcoGeometry, arcoMaterial);
 
 
-
-
-
-
 // Crear un grupo para las figuras
 const grupoArco = new THREE.Group();
 // Agregar el semicírculo al grupo
@@ -385,12 +392,8 @@ arcoMaterial.map.wrapS = THREE.RepeatWrapping;
 arcoMaterial.map.wrapT = THREE.RepeatWrapping;
 arcoMaterial.map.repeat.set(1, 1); // Ajusta el número de repeticiones en dirección S y T
 
-
 // Crear la malla del arco
 const arcoMesh = new THREE.Mesh(arcoGeometry, arcoMaterial);
-
-
-
 
 // Crear un grupo para las figuras
 const grupoArco = new THREE.Group();
@@ -426,4 +429,38 @@ ventana.position.set(0, 1, 0); // Ajusta según tus necesidades
 
 // Añadir la ventana a la escena
 return(ventana);
+}
+
+export function crearVentanaBorde(){
+
+  // Dimensiones de la columna
+const altura = 0.05;
+const ancho = 0.05;
+const profundidad = 0.5; //altura
+
+// Crear la geometría de la base cuadrada
+const baseGeometry = new THREE.BoxGeometry(ancho, altura, profundidad);
+
+// Crear la malla de la base cuadrada
+const baseMesh1 = new THREE.Mesh(baseGeometry, BordeMaterial);
+baseMesh1.rotation.x = Math.PI / 2;  // Rotar 90 grados
+
+// Crear un grupo para contener la base y la columna
+const columnaGroup = new THREE.Group();
+
+// Agregar la base y la columna al grupo
+columnaGroup.add(baseMesh1);
+
+const baseMesh2 = new THREE.Mesh(baseGeometry, BordeMaterial);
+baseMesh2.rotation.x = Math.PI / 2;  // Rotar 90 grados
+baseMesh2.position.z = (0, 0, 0.25)
+
+columnaGroup.add(baseMesh2);
+
+
+
+// Agregar el grupo a la escena
+return(columnaGroup);
+
+
 }

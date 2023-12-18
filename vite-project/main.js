@@ -9,7 +9,7 @@ import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 //Para figuras
-import { crearVentana, crearArco, crearBordeSemi, crearVentanaCupula, crearVentanaSemi, crearVentanaTransparente} from './figuras.js';
+import { crearVentana, crearArco, crearBordeSemi, crearVentanaCupula, crearVentanaSemi, crearVentanaTransparente, crearVentanaBorde} from './figuras.js';
 
 // Create a scene
 const scene = new THREE.Scene();
@@ -1629,6 +1629,10 @@ ventanal.position.set(-1.63, -0.42, -1.1)
 ventanal.rotation.y = Math.PI / 2;  // Rotar 90 grados
 panteon.add(ventanal);
 
+// const bordeVentanal = crearVentanaBorde();
+// bordeVentanal.position.set(-2, 0, 0)
+// panteon.add(bordeVentanal)
+
 const ventanal2 = crearVentana();
 ventanal2.position.set(-1.63, -0.42, -0.4)
 ventanal2.rotation.y = Math.PI / 2;  // Rotar 90 grados
@@ -1691,6 +1695,7 @@ ventanalCupula.position.set(-0.38, 1.5, 0.78)
 ventanalCupula.rotation.y += THREE.MathUtils.degToRad(-25)
 cupulas.add(ventanalCupula);
 
+
 const ventanalCupula2 = crearVentanaCupula();
 ventanalCupula2.position.set(0.3, 1.5, 0.8)
 ventanalCupula2.rotation.y += THREE.MathUtils.degToRad(15)
@@ -1731,7 +1736,7 @@ const ventanaArriba = crearVentanaCupula();
 ventanaArriba.position.set(0.1, 3.65, -0.17)
 ventanaArriba.rotation.y += THREE.MathUtils.degToRad(-25)
 ventanaArriba.scale.set(0.7,0.7,0.7)
-cupulas.add(ventanaArriba);
+//cupulas.add(ventanaArriba);
 
 //Para ver el (0,0,0)
 
@@ -1747,7 +1752,7 @@ const lineaEjeX = new THREE.Line(geometriaEjeX, materialEjeX);
 const lineaEjeY = new THREE.Line(geometriaEjeY, materialEjeY);
 const lineaEjeZ = new THREE.Line(geometriaEjeZ, materialEjeZ);
 
-panteon.add(lineaEjeX, lineaEjeY, lineaEjeZ);
+//panteon.add(lineaEjeX, lineaEjeY, lineaEjeZ);
 
 
 /// Arcos Semicirlculo Techo
@@ -1755,57 +1760,57 @@ panteon.add(lineaEjeX, lineaEjeY, lineaEjeZ);
 const arco1 = crearArco();
 arco1.position.set(-1.6, 1, 0.5)
 arco1.rotation.y = Math.PI / 2;  // Rotar 90 grados
-arco1.scale.set(1.5,1,1.2);
+arco1.scale.set(1.5,0.8,3);
 panteon.add(arco1);
 arco1.castShadow = true;
 arco1.receiveShadow = true;
 
 const arco1Borde = crearBordeSemi();
-arco1Borde.position.set(-1.6, 1, 0.5)
+arco1Borde.position.set(-1.56, 1, 0.5)
 arco1Borde.rotation.y = Math.PI / 2;  // Rotar 90 grados
-arco1Borde.scale.set(1.6,1,1)
+arco1Borde.scale.set(1.6,0.8, 2)
 panteon.add(arco1Borde);
 
 const arco1Ventana = crearVentanaSemi();
 arco1Ventana.position.set(-1.65, 1, 0.5)
 arco1Ventana.rotation.y = Math.PI / 2;  // Rotar 90 grados
-arco1Ventana.scale.set(1.5, 1.5, 1.5);
+arco1Ventana.scale.set(1.5, 1.2, 1.5);
 panteon.add(arco1Ventana);
 
 const arco2 = crearArco();
 arco2.position.set(-0.1, 1, -1.5)
 //arco1.rotation.y = Math.PI / 2;  // Rotar 90 grados
-arco2.scale.set(1.5,1,1.2);
+arco2.scale.set(1.5,0.8,3.3);
 panteon.add(arco2);
 
 const arco2Ventana = crearVentanaSemi();
 arco2Ventana.position.set(-0.1, 1, -1.55)
 //arco1Ventana.rotation.y = Math.PI / 2;  // Rotar 90 grados
-arco2Ventana.scale.set(1.5, 1.5, 1.5);
+arco2Ventana.scale.set(1.5, 1.2, 1.5);
 panteon.add(arco2Ventana);
 
 const arco2Borde = crearBordeSemi();
-arco2Borde.position.set(-0.1, 1, -1.5)
+arco2Borde.position.set(-0.1, 1, -1.47)
 //arco2Borde.rotation.y = Math.PI / 2;  // Rotar 90 grados
-arco2Borde.scale.set(1.6,1,1)
+arco2Borde.scale.set(1.6,0.8,2)
 panteon.add(arco2Borde);
 
 const arco3 = crearArco();
-arco3.position.set(1.27, 1, 0.5)
+arco3.position.set(1.6, 1, 0.5)
 arco3.rotation.y = Math.PI / 2;  // Rotar 90 grados
-arco3.scale.set(1.5,1,1.2);
+arco3.scale.set(1.5,0.8,-2.8);
 panteon.add(arco3);
 
 const arco3Ventana = crearVentanaSemi();
-arco3Ventana.position.set(1.67, 1, 0.5)
+arco3Ventana.position.set(1.6, 1, 0.5)
 arco3Ventana.rotation.y = Math.PI / 2;  // Rotar 90 grados
-arco3Ventana.scale.set(1.5, 1.5, 1.5);
+arco3Ventana.scale.set(1.5, 1.2, 1.5);
 panteon.add(arco3Ventana);
 
 const arco3Borde = crearBordeSemi();
-arco3Borde.position.set(1.6, 1, 0.5)
+arco3Borde.position.set(1.57, 1, 0.5)
 arco3Borde.rotation.y = Math.PI / 2;  // Rotar 90 grados
-arco3Borde.scale.set(1.6,1,1)
+arco3Borde.scale.set(1.6,0.8,2)
 panteon.add(arco3Borde);
 
 
