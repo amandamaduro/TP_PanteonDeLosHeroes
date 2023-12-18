@@ -9,7 +9,7 @@ import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 //Para figuras
-import { crearVentana, crearArco, crearBordeSemi, crearVentanaCupula, crearVentanaSemi, crearVentanaTransparente} from './figuras.js';
+//import { crearVentana, crearArco, crearBordeSemi, crearVentanaCupula, crearVentanaSemi, crearVentanaTransparente} from './figuras.js';
 
 // Create a scene
 const scene = new THREE.Scene();
@@ -1355,7 +1355,7 @@ panteon.receiveShadow = true; // El grupo recibe sombras (ajusta según sea nece
 
     }
   );
-
+/*
 /////////////////////////////////////////////////////////////////////
 
 /// Ventanales laterales PRUEBA
@@ -1545,7 +1545,7 @@ arco3Borde.position.set(1.6, 1, 0.5)
 arco3Borde.rotation.y = Math.PI / 2;  // Rotar 90 grados
 arco3Borde.scale.set(1.6,1,1)
 panteon.add(arco3Borde);
-
+*/
 
 
 
@@ -2163,6 +2163,35 @@ baseCupula.position.set(0, 0, 0.4);
 cupulas.scale.set(0.85, 0.85, 0.85);
 
 cupulas.rotation.set(0, Math.PI*(1/7), 0);
+
+////////////////////////////////////////////////////
+////////////////  CRUZ CUPULA //////////////////////
+function crearRejaCruz(grupo, posX, posY, posZ, geometria, rotationZ, rotationX) {
+  const rejaFina = new THREE.Mesh(geometria, rejaMaterial);
+  rejaFina.position.set(posX, posY, posZ);
+  rejaFina.rotation.z = rotationZ;
+  rejaFina.rotation.y = rotationX + (-25 * Math.PI / 180); // 
+  grupo.add(rejaFina);
+  rejaFina.castShadow = true;
+  rejaFina.receiveShadow = true;
+}
+function crearRejaCruz2(grupo, posX, posY, posZ, geometria) {
+  const rejaFina = new THREE.Mesh(geometria, rejaMaterial);
+  rejaFina.position.set(posX, posY, posZ);
+  grupo.add(rejaFina);
+  rejaFina.castShadow = true;
+  rejaFina.receiveShadow = true;
+}
+const rejaFgeometry4 = new THREE.BoxGeometry(0.008, 0.16, 0.008);
+const rejaFgeometry5 = new THREE.BoxGeometry(0.008, 0.05, 0.008);
+crearRejaCruz2(cupulas, 0, 4.27, 0, rejaFgeometry2);
+//crearRejaCruz2(cupulas, 0.03, 4.27, 0.01, rejaFgeometry5);
+//crearRejaCruz2(cupulas, -0.03, 4.27, -0.01, rejaFgeometry5);
+crearRejaCruz(cupulas, 0, 4.27, 0, rejaFgeometry4, (Math.PI/2),  0);
+crearRejaCruz(cupulas, 0, 4.29, 0, rejaFgeometry5, (Math.PI/2),  0);
+crearRejaCruz(cupulas, 0, 4.25, 0, rejaFgeometry5, (Math.PI/2),  0);
+crearRejaCruz(cupulas, -0.025, 4.27,-0.01, rejaFgeometry5, 0,  0);
+crearRejaCruz(cupulas, 0.025, 4.27,0.01, rejaFgeometry5, 0,  0);
 ////////////////////////////////////////////////////
 
 
@@ -2204,7 +2233,7 @@ scene.add(ambientLight);
 
 // Camera
 const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight,);
-camera.position.x = -2.5;
+camera.position.x = -2.8;
 camera.position.y = 1;
 camera.position.z = 9;
 scene.add(camera);
