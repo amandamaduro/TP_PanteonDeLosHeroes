@@ -1,15 +1,58 @@
+# Guía de Ejecución
+
+Asegúrate de tener [Node.js](https://nodejs.org/) instalado en tu sistema.
+
+## Pasos para ejecutar el proyecto
+
+1. Clonar el repositorio:
+
+    ```bash
+    git clone https://github.com/amandamaduro/TP_PanteonDeLosHeroes.git
+    ```
+
+2. Cambia al directorio del repositorio:
+
+    ```bash
+    cd TP_PanteonDeLosHeroes
+    ```
+
+3. Instala las dependencias necesarias utilizando npm:
+
+    ```bash
+    npm install three
+    npm install vite
+    npm install dat.gui
+    ```
+
+4. Cambia al directorio del proyecto Vite:
+
+    ```bash
+    cd vite-project
+    ```
+
+5. Ejecuta la aplicación Vite con el siguiente comando:
+
+    ```bash
+    npx vite
+    ```
+
+Esto iniciará el servidor de desarrollo y podrás ver tu aplicación en [http://localhost:3000](http://localhost:3000). O en el puerto indicado en la consola.
+
+Ahora deberías tener el proyecto en funcionamiento localmente en tu máquina.
+
+***
+ Si encuentras el error: 
+ `npm ERR! code SELF_SIGNED_CERT_IN_CHAIN` durante la instalación de `three`, puedes intentar resolverlo ejecutando el siguiente comando:
+    ```
+    npm set strict-ssl false
+    ```
+
+   Después de ejecutar este comando, intenta nuevamente el paso 3.
+
 # Panteon de los Heroes
-![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70444688/29d381d3-8a31-45fc-ae29-b3f1cc403636)
-
-## Trabajando en (Ampi):
-![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70351967/dae58cd5-4996-4288-895b-4a65ffbe7fa9)
-![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70351967/070f1a87-f6ce-44d8-9aac-e981eb7fc01e)
-
-## Trabajando en (Amanda):
-![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70444688/077adc0b-0982-4768-8066-1112f9a29835)
-![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70444688/0d01d5c7-495a-4d10-96d9-d90cdb8aff0f)
-
-
+![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70351967/9bd2e649-1d7d-4ba0-9cfd-60dd23e5b475)
+![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70351967/2b3919ae-a2f8-4493-adb4-2dfa98e4ff83)
+![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70351967/84f15b33-352f-470d-8272-33ac8f03402f)
 
 
 
