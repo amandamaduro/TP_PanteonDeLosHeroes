@@ -9,7 +9,7 @@ import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 //Para figuras
-import { crearVentana, crearArco, crearBordeSemi, crearVentanaCupula } from './figuras.js';
+import { crearVentana, crearArco, crearBordeSemi, crearVentanaCupula, crearVentanaSemi, crearVentanaTransparente} from './figuras.js';
 
 // Create a scene
 const scene = new THREE.Scene();
@@ -259,195 +259,70 @@ const opcionesExtrusion3 = {
   bevelThickness: radio3,
 };
 
-const bordeDullGeometria = new THREE.ExtrudeGeometry(forma, opcionesExtrusion);
-const bordeDull = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDull.position.set(-1.01, -0.7, 2.1) 
-panteon.add(bordeDull);
-bordeDull.castShadow = true;
-bordeDull.receiveShadow = true;
+// Función para crear y agregar bordes Dull al panteón
+function agregarBordeDull(posicion, rotacion) {
+  const bordeDullGeometria = new THREE.ExtrudeGeometry(forma, opcionesExtrusion);
+  const bordeDull = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
+  bordeDull.position.copy(posicion);
+  bordeDull.rotation.y = rotacion;
+  panteon.add(bordeDull);
+  bordeDull.castShadow = true;
+  bordeDull.receiveShadow = true;
+}
 
-const bordeDull2 = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDull2.position.set(-1.01, -0.7, 1.4) // aca es
-panteon.add(bordeDull2);
-bordeDull2.castShadow = true;
-bordeDull2.receiveShadow = true;
+//Llamadas
+agregarBordeDull(new THREE.Vector3(-1.01, -0.7, 2.1), 0);
+agregarBordeDull(new THREE.Vector3(1.01, -0.7, 2.1), 0);
+agregarBordeDull(new THREE.Vector3(-1.01, -0.7, 1.45), 0); //ya
+agregarBordeDull(new THREE.Vector3(-1.24, -0.7, 1.41), Math.PI / 2); 
+agregarBordeDull(new THREE.Vector3(1.39, -0.7, 1.41), Math.PI / 2); //ya
+agregarBordeDull(new THREE.Vector3(-1.58, -0.7, 1.41), Math.PI / 2); //ya
+agregarBordeDull(new THREE.Vector3(1.01, -0.7, 1.45), 0); //ya
+agregarBordeDull(new THREE.Vector3(1.08, -0.7, 1.41), Math.PI / 2);
+agregarBordeDull(new THREE.Vector3(-1.08, -0.7, 1.41), Math.PI / 2);
+agregarBordeDull(new THREE.Vector3(-0.6, -0.7, -1.438), Math.PI / 2);
+agregarBordeDull(new THREE.Vector3(0.4, -0.7, -1.438), Math.PI / 2);
+agregarBordeDull(new THREE.Vector3(-1.1, -0.7, -1.438), Math.PI / 2);
+agregarBordeDull(new THREE.Vector3(0.9, -0.7, -1.438), Math.PI / 2);
+agregarBordeDull(new THREE.Vector3(-1.5, -0.7, 1.31), 0);
+agregarBordeDull(new THREE.Vector3(1.5, -0.7, 1.31), 0);
+agregarBordeDull(new THREE.Vector3(-1.5, -0.7, -0.1), 0);
+agregarBordeDull(new THREE.Vector3(1.5, -0.7, -0.1), 0);
+agregarBordeDull(new THREE.Vector3(-1.5, -0.7, -1.51), 0);
+agregarBordeDull(new THREE.Vector3(1.5, -0.7, -1.51), 0);
 
-const bordeDullb = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDullb.position.set(1.01, -0.7, 2.1) 
-panteon.add(bordeDullb);
-bordeDullb.castShadow = true;
-bordeDullb.receiveShadow = true;
-const bordeDull2b = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDull2b.position.set(1.01, -0.7, 1.4) 
-panteon.add(bordeDull2b);
-bordeDull2b.castShadow = true;
-bordeDull2b.receiveShadow = true;
+// Función para crear y agregar bordes Dullp al panteón
+function agregarBordeDullp(posicion, rotacion) {
+  const bordeDullGeometria3 = new THREE.ExtrudeGeometry(forma3, opcionesExtrusion3);
+  const bordeDullp = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
+  bordeDullp.position.copy(posicion);
+  bordeDullp.rotation.y = rotacion;
+  panteon.add(bordeDullp);
+  bordeDullp.castShadow = true;
+  bordeDullp.receiveShadow = true;
+}
 
-const bordeDullc = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDullc.position.set(1.05, -0.7, 1.41) 
-bordeDullc.rotation.y = Math.PI / 2;
-panteon.add(bordeDullc);
-bordeDullc.castShadow = true;
-bordeDullc.receiveShadow = true;
-const bordeDullc2 = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDullc2.position.set(-1.05, -0.7, 1.41) 
-bordeDullc.rotation.y = Math.PI / 2;
-panteon.add(bordeDullc2);
-bordeDullc2.castShadow = true;
-bordeDullc2.receiveShadow = true;
-const bordeDullc3 = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDullc3.position.set(-0.6, -0.7, -1.438) 
-bordeDullc3.rotation.y = Math.PI / 2;
-panteon.add(bordeDullc3);
-bordeDullc3.castShadow = true;
-bordeDullc3.receiveShadow = true;
-const bordeDullc3a = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDullc3a.position.set(0.4, -0.7, -1.438) 
-bordeDullc3a.rotation.y = Math.PI / 2;
-panteon.add(bordeDullc3a);
-bordeDullc3a.castShadow = true;
-bordeDullc3a.receiveShadow = true;
-const bordeDullc4 = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDullc4.position.set(-1.1, -0.7, -1.438) 
-bordeDullc4.rotation.y = Math.PI / 2;
-panteon.add(bordeDullc4);
-bordeDullc4.castShadow = true;
-bordeDullc4.receiveShadow = true;
-const bordeDullc4a = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDullc4a.position.set(0.9, -0.7, -1.438) 
-bordeDullc4a.rotation.y = Math.PI / 2;
-panteon.add(bordeDullc4a);
-bordeDullc4a.castShadow = true;
-bordeDullc4a.receiveShadow = true;
+// Llamadas borde pequeno
+agregarBordeDullp(new THREE.Vector3(-1.01, -0.67, 2.12), 0);
+agregarBordeDullp(new THREE.Vector3(1.01, -0.67, 2.12), 0);
+agregarBordeDullp(new THREE.Vector3(-1.01, -0.67, 1.44), 0); //ya
+agregarBordeDullp(new THREE.Vector3(1.01, -0.67, 1.44), 0); //ya
+agregarBordeDullp(new THREE.Vector3(-1.21, -0.67, 1.41), Math.PI / 2);
+agregarBordeDullp(new THREE.Vector3(1.409, -0.67, 1.41), Math.PI / 2); //ya
+agregarBordeDullp(new THREE.Vector3(-1.59, -0.67, 1.41), Math.PI / 2); //ya
+agregarBordeDullp(new THREE.Vector3(1.05, -0.67, 1.41), Math.PI / 2); //ya
+agregarBordeDullp(new THREE.Vector3(-1.05, -0.67, 1.41), Math.PI / 2);  // ya
+agregarBordeDullp(new THREE.Vector3(-0.59, -0.67, -1.438), Math.PI / 2); //ya
+agregarBordeDullp(new THREE.Vector3(0.41, -0.67, -1.438), Math.PI / 2); //ya
+agregarBordeDullp(new THREE.Vector3(-1.09, -0.67, -1.438), Math.PI / 2); //ya
+agregarBordeDullp(new THREE.Vector3(0.91, -0.67, -1.438), Math.PI / 2); //ya
+agregarBordeDullp(new THREE.Vector3(-1.5, -0.67, 1.318), 0); // ya
+agregarBordeDullp(new THREE.Vector3(1.5, -0.67, 1.318), 0); // ya
+agregarBordeDullp(new THREE.Vector3(-1.5, -0.67, -0.09), 0); //ya
+agregarBordeDullp(new THREE.Vector3(1.5, -0.67, -0.09), 0); //ya
+agregarBordeDullp(new THREE.Vector3(-1.5, -0.67, -1.51), 0); //ya 
+agregarBordeDullp(new THREE.Vector3(1.5, -0.67, -1.51), 0); //ya
 
-const bordeDull3 = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDull3.position.set(-1.5, -0.7, 1.31) // aca es
-panteon.add(bordeDull3);
-bordeDull3.castShadow = true;
-bordeDull3.receiveShadow = true;
-const bordeDull3a = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDull3a.position.set(1.5, -0.7, 1.31) // aca es
-panteon.add(bordeDull3a);
-bordeDull3a.castShadow = true;
-bordeDull3a.receiveShadow = true;
-
-const bordeDull4 = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDull4.position.set(-1.5, -0.7, -0.1) // aca es
-panteon.add(bordeDull4);
-bordeDull4.castShadow = true;
-bordeDull4.receiveShadow = true;
-const bordeDull4a = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDull4a.position.set(1.5, -0.7, -0.1) // aca es
-panteon.add(bordeDull4a);
-bordeDull4a.castShadow = true;
-bordeDull4a.receiveShadow = true;
-
-const bordeDull5 = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDull5.position.set(-1.5, -0.7, -1.51) // aca es
-panteon.add(bordeDull5);
-bordeDull5.castShadow = true;
-bordeDull5.receiveShadow = true;
-const bordeDull5a = new THREE.Mesh(bordeDullGeometria, cajaMaterial);
-bordeDull5a.position.set(1.5, -0.7, -1.51) // aca es
-panteon.add(bordeDull5a);
-bordeDull5a.castShadow = true;
-bordeDull5a.receiveShadow = true;
-
-///
-const bordeDullGeometria3 = new THREE.ExtrudeGeometry(forma3, opcionesExtrusion3);
-const bordeDullp = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDullp.position.set(-1.01, -0.67, 2.1) 
-panteon.add(bordeDullp);
-bordeDullp.castShadow = true;
-bordeDullp.receiveShadow = true;
-
-const bordeDull2p = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDull2p.position.set(-1.01, -0.67, 1.4) // aca es
-panteon.add(bordeDull2p);
-bordeDull2p.castShadow = true;
-bordeDull2p.receiveShadow = true;
-
-const bordeDullbp = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDullbp.position.set(1.01, -0.67, 2.12) 
-panteon.add(bordeDullbp);
-bordeDullbp.castShadow = true;
-bordeDullbp.receiveShadow = true;
-const bordeDull2bp = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDull2bp.position.set(1.01, -0.67, 1.4) 
-panteon.add(bordeDull2bp);
-bordeDull2bp.castShadow = true;
-bordeDull2bp.receiveShadow = true;
-
-const bordeDullcp = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDullcp.position.set(1.05, -0.67, 1.41) 
-bordeDullcp.rotation.y = Math.PI / 2;
-panteon.add(bordeDullcp);
-bordeDullcp.castShadow = true;
-bordeDullcp.receiveShadow = true;
-const bordeDullc2p = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDullc2p.position.set(-1.05, -0.67, 1.41) 
-bordeDullcp.rotation.y = Math.PI / 2;
-panteon.add(bordeDullc2p);
-bordeDullc2p.castShadow = true;
-bordeDullc2p.receiveShadow = true;
-const bordeDullc3p = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDullc3p.position.set(-0.6, -0.67, -1.438) 
-bordeDullc3p.rotation.y = Math.PI / 2;
-panteon.add(bordeDullc3p);
-bordeDullc3p.castShadow = true;
-bordeDullc3p.receiveShadow = true;
-const bordeDullc3ap = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDullc3ap.position.set(0.4, -0.67, -1.438) 
-bordeDullc3ap.rotation.y = Math.PI / 2;
-panteon.add(bordeDullc3ap);
-bordeDullc3ap.castShadow = true;
-bordeDullc3ap.receiveShadow = true;
-const bordeDullc4p = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDullc4p.position.set(-1.1, -0.67, -1.438) 
-bordeDullc4p.rotation.y = Math.PI / 2;
-panteon.add(bordeDullc4p);
-bordeDullc4p.castShadow = true;
-bordeDullc4p.receiveShadow = true;
-const bordeDullc4ap = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDullc4ap.position.set(0.9, -0.67, -1.438) 
-bordeDullc4ap.rotation.y = Math.PI / 2;
-panteon.add(bordeDullc4ap);
-bordeDullc4ap.castShadow = true;
-bordeDullc4ap.receiveShadow = true;
-
-const bordeDull3p = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDull3p.position.set(-1.5, -0.67, 1.31) // aca es
-panteon.add(bordeDull3p);
-bordeDull3p.castShadow = true;
-bordeDull3p.receiveShadow = true;
-const bordeDull3ap = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDull3ap.position.set(1.5, -0.67, 1.31) // aca es
-panteon.add(bordeDull3ap);
-bordeDull3ap.castShadow = true;
-bordeDull3ap.receiveShadow = true;
-
-const bordeDull4p = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDull4p.position.set(-1.5, -0.67, -0.1) // aca es
-panteon.add(bordeDull4p);
-bordeDull4p.castShadow = true;
-bordeDull4p.receiveShadow = true;
-const bordeDull4ap = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDull4ap.position.set(1.5, -0.67, -0.1) // aca es
-panteon.add(bordeDull4ap);
-bordeDull4ap.castShadow = true;
-bordeDull4ap.receiveShadow = true;
-
-const bordeDull5p = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDull5p.position.set(-1.5, -0.67, -1.51) // aca es
-panteon.add(bordeDull5p);
-bordeDull5p.castShadow = true;
-bordeDull5p.receiveShadow = true;
-const bordeDull5ap = new THREE.Mesh(bordeDullGeometria3, cajaMaterial);
-bordeDull5ap.position.set(1.5, -0.67, -1.51) // aca es
-panteon.add(bordeDull5ap);
-bordeDull5ap.castShadow = true;
-bordeDull5ap.receiveShadow = true;
-///
 ///////////////// DETALLES COLUMNA CILINDRICA ////////////////////////////
 function crearTorus(panteon, posX, posY, posZ) {
   const torusGeometry = new THREE.TorusGeometry(0.067, 0.012, 16, 50);
@@ -1507,52 +1382,110 @@ ventanal4.position.set(-1.15, 0.42, 2.55)
 ventanal4.rotation.y = Math.PI / 2;  // Rotar 90 grados
 panteon.add(ventanal4);
 
-//Cupula Ventanas
+//Lado derecho
+const ventanal5 = crearVentana();
+ventanal5.position.set(1.63, -0.42, -1.1)
+ventanal5.rotation.y = Math.PI / 2;  // Rotar 90 grados
+panteon.add(ventanal5);
+
+const ventanal6 = crearVentana();
+ventanal6.position.set(1.63, -0.42, -0.3)
+ventanal6.rotation.y = Math.PI / 2;  // Rotar 90 grados
+panteon.add(ventanal6);
+
+const ventanal7 = crearVentana();
+ventanal7.position.set(1.63, -0.42, -0.7)
+ventanal7.rotation.y = Math.PI / 2;  // Rotar 90 grados
+panteon.add(ventanal7);
+
+const ventanal8 = crearVentana();
+ventanal8.position.set(1.63, 0.42, -1.1)
+ventanal8.rotation.y = Math.PI / 2;  // Rotar 90 grados
+panteon.add(ventanal8);
+
+const ventanal9 = crearVentana();
+ventanal9.position.set(1.63, 0.42, -0.3)
+ventanal9.rotation.y = Math.PI / 2;  // Rotar 90 grados
+panteon.add(ventanal9);
+
+const ventanal10 = crearVentana();
+ventanal10.position.set(1.63, 0.42, -0.7)
+ventanal10.rotation.y = Math.PI / 2;  // Rotar 90 grados
+panteon.add(ventanal10);
+
+const ventanal11 = crearVentana();
+ventanal11.position.set(1.15, -0.42, 2.55)
+ventanal11.rotation.y = Math.PI / 2;  // Rotar 90 grados
+panteon.add(ventanal11);
+
+const ventanal12 = crearVentana();
+ventanal12.position.set(1.15, 0.42, 2.55)
+ventanal12.rotation.y = Math.PI / 2;  // Rotar 90 grados
+panteon.add(ventanal12);
+
+//Cupula Ventanas, primera mirando de frente luego hacia la derecha
 const ventanalCupula = crearVentanaCupula();
-ventanalCupula.position.set(-0.73, 1.9, 0.7)
-ventanalCupula.rotation.y = Math.PI /1.7;  // Rotar 90 grados
-panteon.add(ventanalCupula);
+ventanalCupula.position.set(-0.38, 1.5, 0.78)
+ventanalCupula.rotation.y += THREE.MathUtils.degToRad(-25)
+cupulas.add(ventanalCupula);
 
 const ventanalCupula2 = crearVentanaCupula();
-ventanalCupula2.position.set(-0.45, 1.9, 1.1)
-ventanalCupula2.rotation.y = Math.PI /1.2;  // Rotar 90 grados
-panteon.add(ventanalCupula2);
+ventanalCupula2.position.set(0.3, 1.5, 0.8)
+ventanalCupula2.rotation.y += THREE.MathUtils.degToRad(15)
+cupulas.add(ventanalCupula2);
 
-// function calcularPuntosEquidistantes(puntoInicial, radio, cantidadPuntos) {
-//   const puntos = [];
+const ventanalCupula3 = crearVentanaCupula();
+ventanalCupula3.position.set(0.8, 1.5, 0.4)
+ventanalCupula3.rotation.y += THREE.MathUtils.degToRad(65)
+cupulas.add(ventanalCupula3);
 
-//   for (let i = 0; i < cantidadPuntos; i++) {
-//     const angulo = (i / cantidadPuntos) * Math.PI * 2;
-//     const x = puntoInicial.x + radio * Math.cos(angulo);
-//     const z = puntoInicial.z + radio * Math.sin(angulo);
-//     puntos.push(new THREE.Vector3(x, puntoInicial.y, z));
-//   }
+const ventanalCupula4 = crearVentanaCupula();
+ventanalCupula4.position.set(0.8, 1.5, -0.3)
+ventanalCupula4.rotation.y += THREE.MathUtils.degToRad(110)
+cupulas.add(ventanalCupula4);
 
-//   return puntos;
-// }
+const ventanalCupula5 = crearVentanaCupula();
+ventanalCupula5.position.set(0.38, 1.5, -0.77)
+ventanalCupula5.rotation.y += THREE.MathUtils.degToRad(-25)
+cupulas.add(ventanalCupula5);
 
+const ventanalCupula6 = crearVentanaCupula();
+ventanalCupula6.position.set(-0.3, 1.5, -0.8)
+ventanalCupula6.rotation.y += THREE.MathUtils.degToRad(15)
+cupulas.add(ventanalCupula6);
 
-// const puntoInicial = new THREE.Vector3(-0.73, 1.9, 0.7);
-// const radioVentanas = 0.85;
-// const cantidadVentanas = 6;
+const ventanalCupula7 = crearVentanaCupula();
+ventanalCupula7.position.set(-0.8, 1.5, -0.4)
+ventanalCupula7.rotation.y += THREE.MathUtils.degToRad(65)
+cupulas.add(ventanalCupula7);
 
-// const coordenadasVentanas = calcularPuntosEquidistantes(puntoInicial, radioVentanas, cantidadVentanas);
+const ventanalCupula8 = crearVentanaCupula();
+ventanalCupula8.position.set(-0.8, 1.5, 0.3)
+ventanalCupula8.rotation.y += THREE.MathUtils.degToRad(110)
+cupulas.add(ventanalCupula8);
 
-// // Crear y posicionar las ventanas en las coordenadas calculadas
-// for (const coordenada of coordenadasVentanas) {
-//   const ventana = crearVentanaCupula();
-//   ventana.position.copy(coordenada);
+//Parte mas alta
+const ventanaArriba = crearVentanaCupula();
+ventanaArriba.position.set(0.1, 3.65, -0.17)
+ventanaArriba.rotation.y += THREE.MathUtils.degToRad(-25)
+ventanaArriba.scale.set(0.7,0.7,0.7)
+cupulas.add(ventanaArriba);
 
-//   // Calcular el ángulo de rotación en función de la posición relativa al punto inicial
-//   const deltaX = coordenada.x - puntoInicial.x;
-//   const deltaZ = coordenada.z - puntoInicial.z;
-//   const anguloRotacion = Math.atan2(deltaZ, deltaX);
+//Para ver el (0,0,0)
 
-//   // Aplicar la rotación alrededor del eje Y
-//   ventana.rotation.y = anguloRotacion;
+const geometriaEjeX = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-20, 0, 0), new THREE.Vector3(20, 0, 0)]);
+const geometriaEjeY = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, -20, 0), new THREE.Vector3(0, 20, 0)]);
+const geometriaEjeZ = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, -20), new THREE.Vector3(0, 0, 20)]);
 
-//   panteon.add(ventana);
-// }
+const materialEjeX = new THREE.LineBasicMaterial({ color: 0xff0000, linewidth: 2 });
+const materialEjeY = new THREE.LineBasicMaterial({ color: 0x00ff00, linewidth: 2 });
+const materialEjeZ = new THREE.LineBasicMaterial({ color: 0x0000ff, linewidth: 2 });
+
+const lineaEjeX = new THREE.Line(geometriaEjeX, materialEjeX);
+const lineaEjeY = new THREE.Line(geometriaEjeY, materialEjeY);
+const lineaEjeZ = new THREE.Line(geometriaEjeZ, materialEjeZ);
+
+panteon.add(lineaEjeX, lineaEjeY, lineaEjeZ);
 
 
 /// Arcos Semicirlculo Techo
@@ -1560,23 +1493,58 @@ panteon.add(ventanalCupula2);
 const arco1 = crearArco();
 arco1.position.set(-1.6, 1, 0.5)
 arco1.rotation.y = Math.PI / 2;  // Rotar 90 grados
+arco1.scale.set(1.5,1,1.2);
 panteon.add(arco1);
+arco1.castShadow = true;
+arco1.receiveShadow = true;
 
 const arco1Borde = crearBordeSemi();
 arco1Borde.position.set(-1.6, 1, 0.5)
 arco1Borde.rotation.y = Math.PI / 2;  // Rotar 90 grados
-//arco1Borde.scale.set(1, 1, 10);
+arco1Borde.scale.set(1.6,1,1)
 panteon.add(arco1Borde);
+
+const arco1Ventana = crearVentanaSemi();
+arco1Ventana.position.set(-1.65, 1, 0.5)
+arco1Ventana.rotation.y = Math.PI / 2;  // Rotar 90 grados
+arco1Ventana.scale.set(1.5, 1.5, 1.5);
+panteon.add(arco1Ventana);
 
 const arco2 = crearArco();
 arco2.position.set(-0.1, 1, -1.5)
 //arco1.rotation.y = Math.PI / 2;  // Rotar 90 grados
+arco2.scale.set(1.5,1,1.2);
 panteon.add(arco2);
 
+const arco2Ventana = crearVentanaSemi();
+arco2Ventana.position.set(-0.1, 1, -1.55)
+//arco1Ventana.rotation.y = Math.PI / 2;  // Rotar 90 grados
+arco2Ventana.scale.set(1.5, 1.5, 1.5);
+panteon.add(arco2Ventana);
+
+const arco2Borde = crearBordeSemi();
+arco2Borde.position.set(-0.1, 1, -1.5)
+//arco2Borde.rotation.y = Math.PI / 2;  // Rotar 90 grados
+arco2Borde.scale.set(1.6,1,1)
+panteon.add(arco2Borde);
+
 const arco3 = crearArco();
-arco3.position.set(1.3, 1, 0.5)
+arco3.position.set(1.27, 1, 0.5)
 arco3.rotation.y = Math.PI / 2;  // Rotar 90 grados
+arco3.scale.set(1.5,1,1.2);
 panteon.add(arco3);
+
+const arco3Ventana = crearVentanaSemi();
+arco3Ventana.position.set(1.67, 1, 0.5)
+arco3Ventana.rotation.y = Math.PI / 2;  // Rotar 90 grados
+arco3Ventana.scale.set(1.5, 1.5, 1.5);
+panteon.add(arco3Ventana);
+
+const arco3Borde = crearBordeSemi();
+arco3Borde.position.set(1.6, 1, 0.5)
+arco3Borde.rotation.y = Math.PI / 2;  // Rotar 90 grados
+arco3Borde.scale.set(1.6,1,1)
+panteon.add(arco3Borde);
 
 
 
