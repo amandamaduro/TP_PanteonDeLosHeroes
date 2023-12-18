@@ -1,5 +1,5 @@
 # Panteon de los Heroes
-![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70444688/29d381d3-8a31-45fc-ae29-b3f1cc403636)
+![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70444688/d633134a-2851-4664-a974-528688e054de)
 
 ## Trabajando en (Ampi):
 ![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70351967/dae58cd5-4996-4288-895b-4a65ffbe7fa9)
@@ -8,6 +8,8 @@
 ## Trabajando en (Amanda):
 ![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70444688/077adc0b-0982-4768-8066-1112f9a29835)
 ![image](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70444688/0d01d5c7-495a-4d10-96d9-d90cdb8aff0f)
+![Screenshot 2023-12-17 232941](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70444688/6f17a343-f34a-4182-9ceb-cb2cac52f0fb)
+![Screenshot 2023-12-17 233058](https://github.com/amandamaduro/TP_PanteonDeLosHeroes/assets/70444688/f6d20a4b-3de1-42ad-b4cc-30a3674279c9)
 
 
 
